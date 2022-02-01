@@ -12,3 +12,27 @@ link-citations: yes
 description: "We aim to provide an overview of the steps required to use platforms that implement artificial intelligence into workflows for processing camera trap images."
 ---
  
+#  {-} 
+
+
+```{r fig.align='center', echo=FALSE, include=identical(knitr:::pandoc_to(), 'html'), out.width="50%", comment=NA}
+knitr::include_graphics('tapir.jpg', dpi = NA)
+options(width=160)
+```
+
+```{=html}
+<br>
+<b>Cover photograph</b>: 
+<br>
+Lowland tapir in El Rey Zamuro Reserve, Central Colombia, July 2019. Photo taken by Joares A. May.
+<br>
+<br>
+```****
+
+```{=html}
+<b>Suggested Citation:</b>
+<br>
+Velez, J. and J. Fieberg. 2022. Guide for using artificial intelligence systems for camera trap data processing. https://ai-camtraps.netlify.app/.
+<br>
+<br>
+```
