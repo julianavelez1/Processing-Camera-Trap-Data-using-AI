@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 MLWIC2: Machine Learning for Wildlife Image Classification | Guide for using artificial intelligence systems for camera trap data processing</title>
+  <meta name="description" content="We aim to provide an overview of the steps required to use platforms that implement artificial intelligence into workflows for processing camera trap images." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 MLWIC2: Machine Learning for Wildlife Image Classification | Guide for using artificial intelligence systems for camera trap data processing" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="We aim to provide an overview of the steps required to use platforms that implement artificial intelligence into workflows for processing camera trap images." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 MLWIC2: Machine Learning for Wildlife Image Classification | Guide for using artificial intelligence systems for camera trap data processing" />
+  
+  <meta name="twitter:description" content="We aim to provide an overview of the steps required to use platforms that implement artificial intelligence into workflows for processing camera trap images." />
+  
+
+<meta name="author" content="Juliana Velez and John Fieberg" />
+
+
+<meta name="date" content="2022-01-31" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="megadetector---microsoft-ai.html"/>
+<link rel="next" href="conservation-ai.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.19/datatables.js"></script>
+<link href="libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Guide for using artificial intelligence systems for camera trap data processing</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="camera-trap-data.html"><a href="camera-trap-data.html"><i class="fa fa-check"></i><b>2</b> Camera-trap data</a></li>
+<li class="chapter" data-level="3" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html"><i class="fa fa-check"></i><b>3</b> Wildlife Insights (WI)</a><ul>
+<li class="chapter" data-level="3.1" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html#set-up"><i class="fa fa-check"></i><b>3.1</b> Set-up</a></li>
+<li class="chapter" data-level="3.2" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html#uploadformat-data"><i class="fa fa-check"></i><b>3.2</b> Upload/format data</a></li>
+<li class="chapter" data-level="3.3" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html#uploadenter-metadata"><i class="fa fa-check"></i><b>3.3</b> Upload/enter metadata</a></li>
+<li class="chapter" data-level="3.4" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html#processing-images---ai-module"><i class="fa fa-check"></i><b>3.4</b> Processing images - AI module</a></li>
+<li class="chapter" data-level="3.5" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html#post-ai-image-processing"><i class="fa fa-check"></i><b>3.5</b> Post-AI image processing</a></li>
+<li class="chapter" data-level="3.6" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html#wi-output"><i class="fa fa-check"></i><b>3.6</b> Using AI output</a></li>
+<li class="chapter" data-level="3.7" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html#wi-performance"><i class="fa fa-check"></i><b>3.7</b> Assessing AI performance</a><ul>
+<li class="chapter" data-level="3.7.1" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html#reading-in-data-introduction-to-the-purrr-package"><i class="fa fa-check"></i><b>3.7.1</b> Reading in data, introduction to the Purrr package</a></li>
+<li class="chapter" data-level="3.7.2" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html#removing-duplicate-images"><i class="fa fa-check"></i><b>3.7.2</b> Removing duplicate images</a></li>
+<li class="chapter" data-level="3.7.3" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html#images-with-multiple-observations-of-the-same-species"><i class="fa fa-check"></i><b>3.7.3</b> Images with multiple observations of the same species</a></li>
+<li class="chapter" data-level="3.7.4" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html#images-with-multiple-species"><i class="fa fa-check"></i><b>3.7.4</b> Images with multiple species</a></li>
+<li class="chapter" data-level="3.7.5" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html#summarizing-human-and-computer-vision-records-by-species"><i class="fa fa-check"></i><b>3.7.5</b> Summarizing human and computer vision records by species</a></li>
+<li class="chapter" data-level="3.7.6" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html#confusion-matrix-and-performance-measures"><i class="fa fa-check"></i><b>3.7.6</b> Confusion matrix and performance measures</a></li>
+<li class="chapter" data-level="3.7.7" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html#confidence-thresholds"><i class="fa fa-check"></i><b>3.7.7</b> Confidence thresholds</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html#conclusions"><i class="fa fa-check"></i><b>3.8</b> Conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="megadetector---microsoft-ai.html"><a href="megadetector---microsoft-ai.html"><i class="fa fa-check"></i><b>4</b> MegaDetector - Microsoft AI</a><ul>
+<li class="chapter" data-level="4.1" data-path="megadetector---microsoft-ai.html"><a href="megadetector---microsoft-ai.html#md-upload"><i class="fa fa-check"></i><b>4.1</b> Upload/format data</a></li>
+<li class="chapter" data-level="4.2" data-path="megadetector---microsoft-ai.html"><a href="megadetector---microsoft-ai.html#md-metadata"><i class="fa fa-check"></i><b>4.2</b> Upload/enter metadata</a></li>
+<li class="chapter" data-level="4.3" data-path="megadetector---microsoft-ai.html"><a href="megadetector---microsoft-ai.html#md-process"><i class="fa fa-check"></i><b>4.3</b> Process images - AI module</a></li>
+<li class="chapter" data-level="4.4" data-path="megadetector---microsoft-ai.html"><a href="megadetector---microsoft-ai.html#md-timelapse"><i class="fa fa-check"></i><b>4.4</b> Image processing with Timelapse 2</a></li>
+<li class="chapter" data-level="4.5" data-path="megadetector---microsoft-ai.html"><a href="megadetector---microsoft-ai.html#md-output"><i class="fa fa-check"></i><b>4.5</b> Using AI output</a></li>
+<li class="chapter" data-level="4.6" data-path="megadetector---microsoft-ai.html"><a href="megadetector---microsoft-ai.html#md-performance"><i class="fa fa-check"></i><b>4.6</b> Assessing AI performance</a><ul>
+<li class="chapter" data-level="4.6.1" data-path="megadetector---microsoft-ai.html"><a href="megadetector---microsoft-ai.html#reading-in-data-introduction-to-the-purrr-package-1"><i class="fa fa-check"></i><b>4.6.1</b> Reading in data, introduction to the Purrr package</a></li>
+<li class="chapter" data-level="4.6.2" data-path="megadetector---microsoft-ai.html"><a href="megadetector---microsoft-ai.html#format-computer-vision-data-set"><i class="fa fa-check"></i><b>4.6.2</b> Format computer vision data set</a></li>
+<li class="chapter" data-level="4.6.3" data-path="megadetector---microsoft-ai.html"><a href="megadetector---microsoft-ai.html#md-format-hv"><i class="fa fa-check"></i><b>4.6.3</b> Format human vision data set</a></li>
+<li class="chapter" data-level="4.6.4" data-path="megadetector---microsoft-ai.html"><a href="megadetector---microsoft-ai.html#merging-computer-and-human-vision-data-sets"><i class="fa fa-check"></i><b>4.6.4</b> Merging computer and human vision data sets</a></li>
+<li class="chapter" data-level="4.6.5" data-path="megadetector---microsoft-ai.html"><a href="megadetector---microsoft-ai.html#confusion-matrix-and-performance-measures-1"><i class="fa fa-check"></i><b>4.6.5</b> Confusion matrix and performance measures</a></li>
+<li class="chapter" data-level="4.6.6" data-path="megadetector---microsoft-ai.html"><a href="megadetector---microsoft-ai.html#md-thresholds"><i class="fa fa-check"></i><b>4.6.6</b> Confidence thresholds</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="megadetector---microsoft-ai.html"><a href="megadetector---microsoft-ai.html#conclusions-1"><i class="fa fa-check"></i><b>4.7</b> Conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="mlwic2-machine-learning-for-wildlife-image-classification.html"><a href="mlwic2-machine-learning-for-wildlife-image-classification.html"><i class="fa fa-check"></i><b>5</b> MLWIC2: Machine Learning for Wildlife Image Classification</a><ul>
+<li class="chapter" data-level="5.1" data-path="mlwic2-machine-learning-for-wildlife-image-classification.html"><a href="mlwic2-machine-learning-for-wildlife-image-classification.html#set-up-1"><i class="fa fa-check"></i><b>5.1</b> Set-up</a></li>
+<li class="chapter" data-level="5.2" data-path="mlwic2-machine-learning-for-wildlife-image-classification.html"><a href="mlwic2-machine-learning-for-wildlife-image-classification.html#format-mlwic2"><i class="fa fa-check"></i><b>5.2</b> Upload/format data</a></li>
+<li class="chapter" data-level="5.3" data-path="mlwic2-machine-learning-for-wildlife-image-classification.html"><a href="mlwic2-machine-learning-for-wildlife-image-classification.html#mlwic2-ai-module"><i class="fa fa-check"></i><b>5.3</b> Process images - AI module</a></li>
+<li class="chapter" data-level="5.4" data-path="mlwic2-machine-learning-for-wildlife-image-classification.html"><a href="mlwic2-machine-learning-for-wildlife-image-classification.html#ai-mlwic2"><i class="fa fa-check"></i><b>5.4</b> Assessing AI performance</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="mlwic2-machine-learning-for-wildlife-image-classification.html"><a href="mlwic2-machine-learning-for-wildlife-image-classification.html#format-human-vision-data-set"><i class="fa fa-check"></i><b>5.4.1</b> Format human vision data set</a></li>
+<li class="chapter" data-level="5.4.2" data-path="mlwic2-machine-learning-for-wildlife-image-classification.html"><a href="mlwic2-machine-learning-for-wildlife-image-classification.html#format-computer-vision-data-set-1"><i class="fa fa-check"></i><b>5.4.2</b> Format computer vision data set</a></li>
+<li class="chapter" data-level="5.4.3" data-path="mlwic2-machine-learning-for-wildlife-image-classification.html"><a href="mlwic2-machine-learning-for-wildlife-image-classification.html#merging-computer-and-human-vision-data-sets-1"><i class="fa fa-check"></i><b>5.4.3</b> Merging computer and human vision data sets</a></li>
+<li class="chapter" data-level="5.4.4" data-path="mlwic2-machine-learning-for-wildlife-image-classification.html"><a href="mlwic2-machine-learning-for-wildlife-image-classification.html#summarizing-human-and-computer-vision-records-by-class"><i class="fa fa-check"></i><b>5.4.4</b> Summarizing human and computer vision records by class</a></li>
+<li class="chapter" data-level="5.4.5" data-path="mlwic2-machine-learning-for-wildlife-image-classification.html"><a href="mlwic2-machine-learning-for-wildlife-image-classification.html#confusion-matrix-and-performance-measures-2"><i class="fa fa-check"></i><b>5.4.5</b> Confusion matrix and performance measures</a></li>
+<li class="chapter" data-level="5.4.6" data-path="mlwic2-machine-learning-for-wildlife-image-classification.html"><a href="mlwic2-machine-learning-for-wildlife-image-classification.html#confidence-thresholds-1"><i class="fa fa-check"></i><b>5.4.6</b> Confidence thresholds</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="mlwic2-machine-learning-for-wildlife-image-classification.html"><a href="mlwic2-machine-learning-for-wildlife-image-classification.html#model-training"><i class="fa fa-check"></i><b>5.5</b> Model training</a></li>
+<li class="chapter" data-level="5.6" data-path="mlwic2-machine-learning-for-wildlife-image-classification.html"><a href="mlwic2-machine-learning-for-wildlife-image-classification.html#classify-trained"><i class="fa fa-check"></i><b>5.6</b> Classify using a trained model</a></li>
+<li class="chapter" data-level="5.7" data-path="mlwic2-machine-learning-for-wildlife-image-classification.html"><a href="mlwic2-machine-learning-for-wildlife-image-classification.html#conclusion"><i class="fa fa-check"></i><b>5.7</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="conservation-ai.html"><a href="conservation-ai.html"><i class="fa fa-check"></i><b>6</b> Conservation AI</a><ul>
+<li class="chapter" data-level="6.1" data-path="conservation-ai.html"><a href="conservation-ai.html#set-up-2"><i class="fa fa-check"></i><b>6.1</b> Set-up</a></li>
+<li class="chapter" data-level="6.2" data-path="conservation-ai.html"><a href="conservation-ai.html#uploadformat-data-1"><i class="fa fa-check"></i><b>6.2</b> Upload/format data</a></li>
+<li class="chapter" data-level="6.3" data-path="conservation-ai.html"><a href="conservation-ai.html#image-tagging"><i class="fa fa-check"></i><b>6.3</b> Image tagging</a></li>
+<li class="chapter" data-level="6.4" data-path="conservation-ai.html"><a href="conservation-ai.html#process-images---ai-module"><i class="fa fa-check"></i><b>6.4</b> Process images - AI module</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Guide for using artificial intelligence systems for camera trap data processing</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="mlwic2-machine-learning-for-wildlife-image-classification" class="section level1">
+<h1><span class="header-section-number">Chapter 5</span> MLWIC2: Machine Learning for Wildlife Image Classification</h1>
+<p>MLWIC2 is an R package that allows you either to use trained models for identifying species from North America (using the species model) or to identify empty images (using the empty_animal model) <span class="citation">(Tabak et al. <a href="#ref-tabak_2020">2020</a>)</span>. The model was trained using images from 10 states across the United States but was also tested in out-of sample data sets obtaining a 91% accuracy for species from Canada and 91% - 94% for classifying empty images on samples from different continents <span class="citation">(Tabak et al. <a href="#ref-tabak_2020">2020</a>)</span>.</p>
+<p>Documentation for using MLWIC2 and the list of species that the model identifies can be found in the GitHub repository <a href="https://github.com/mikeyEcology/MLWIC2" class="uri">https://github.com/mikeyEcology/MLWIC2</a>. In this chapter we illustrate the use of the package and data preparation for model training.</p>
+<div id="set-up-1" class="section level2">
+<h2><span class="header-section-number">5.1</span> Set-up</h2>
+<p>First, you will need to install R software, Anaconda Navigator (<a href="https://docs.anaconda.com/anaconda/navigator/" class="uri">https://docs.anaconda.com/anaconda/navigator/</a>), Python (3.5, 3.6 or 3.7) and Rtools (only for Windows computers). Then you will have to install Tensorflow 1.14 and find the path location of Python on your computer.
+You can find more installation details in the GitHub repository (<a href="https://github.com/mikeyEcology/MLWIC2" class="uri">https://github.com/mikeyEcology/MLWIC2</a>), as well as an example with installation steps for Windows users (<a href="https://github.com/mikeyEcology/MLWIC_examples/blob/master/MLWIC_Windows_Set_up.md" class="uri">https://github.com/mikeyEcology/MLWIC_examples/blob/master/MLWIC_Windows_Set_up.md</a>).</p>
+<p>Make sure to install the required versions listed above. Mac users can use the Terminal Application to install Python and Tensorflow. You can use the conda package (<a href="https://docs.conda.io/en/latest/" class="uri">https://docs.conda.io/en/latest/</a>) to create an environment that can host a specific version of Python and keep it separated from other packages or dependencies. In the Terminal type:</p>
+<p><code>conda create -n ecology python=3.5</code></p>
+<p><code>conda activate ecology</code></p>
+<p><code>conda install -c conda-forge tensorflow=1.14</code></p>
+<p>Once you complete the installation of Python and Tensorflow, use the command-line utility to find the location of Python. Windows users should type: <code>where python</code>. Mac users should type <code>conda activate ecology</code> and then <code>which python</code>.</p>
+<p>The output Python location will look something like this: <code>/Users/julianavelez/opt/anaconda3/envs/ecology/bin/python</code></p>
+<p>In R, install the <code>devtools</code> package and <code>MLWIC2</code> packages. Then, setup your environment using the <code>setup</code> function <span class="citation">(Tabak et al. <a href="#ref-tabak_2020">2020</a>)</span> as shown below, making sure to change the <code>python_loc</code> argument to point to the output path provided in the previous step. You will only need to specify this setup once.</p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" data-line-number="1"><span class="co"># Uncomment and only run this code once</span></a>
+<a class="sourceLine" id="cb71-2" data-line-number="2"><span class="co"># if (!require(&#39;devtools&#39;)) install.packages(&#39;devtools&#39;)</span></a>
+<a class="sourceLine" id="cb71-3" data-line-number="3"><span class="co"># devtools::install_github(&quot;mikeyEcology/MLWIC2&quot;)</span></a>
+<a class="sourceLine" id="cb71-4" data-line-number="4"><span class="co"># MLWIC2::setup(python_loc = &quot;/Users/julianavelez/opt/anaconda3/envs/ecology/bin/&quot;)</span></a></code></pre></div>
+<p>Next, download MLWIC2 helper files from here: <a href="https://drive.google.com/file/d/1VkIBdA-oIsQ_Y83y0OWL6Afw6S9AQAbh/view" class="uri">https://drive.google.com/file/d/1VkIBdA-oIsQ_Y83y0OWL6Afw6S9AQAbh/view</a>. Note, this folder is not included in the repository because of its large size. You must download it and store it in the <code>data/mlwic2</code> directory.</p>
+</div>
+<div id="format-mlwic2" class="section level2">
+<h2><span class="header-section-number">5.2</span> Upload/format data</h2>
+<p>Once the package is installed and the python location is setup, you can run a MLWIC2 model to obtain computer vision predictions of the species present in your images. To run MLWIC2 models, you should use the <code>classify</code> function (see Section <a href="mlwic2-machine-learning-for-wildlife-image-classification.html#mlwic2-ai-module">5.3</a>), which requires arguments specifying the path (i.e., location on your computer) for the following three inputs:</p>
+<ol style="list-style-type: decimal">
+<li>The images that will be classified.</li>
+<li>The filenames of your images.</li>
+<li>The location of the MLWIC2 helper files that contain the model information.</li>
+</ol>
+<p>To create the filenames (input 2 above), you will need to create an input file using the <code>make_input</code> function <span class="citation">(Tabak et al. <a href="#ref-tabak_2020">2020</a>)</span>. This will create a CSV file with two columns, one with the filenames and the other one with a list of class_ID’s required to use MLWIC2 for classifying images or training a model. When using the <code>make_input</code> function to create the CSV file, you can select different options depending whether or not you already have filenames and images classified (type <code>?make_input</code> in R for more options).</p>
+<p>We will use <code>option = 4</code> to find filenames associated with each photo using MLWIC2 and <code>recursive = TRUE</code> to specify that photos are in subfolders organized by camera location. We then read the output using the <code>read_csv</code> function <span class="citation">(Wickham <a href="#ref-R-tidyverse">2017</a>)</span>. Let’s first load required libraries for reading data and to use MLWIC2 functions.</p>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" data-line-number="1"><span class="kw">library</span>(tidyverse) <span class="co"># for data wrangling and visualization, includes dplyr</span></a>
+<a class="sourceLine" id="cb72-2" data-line-number="2"><span class="kw">library</span>(MLWIC2)</a>
+<a class="sourceLine" id="cb72-3" data-line-number="3"><span class="kw">library</span>(here) <span class="co"># to allow the use of relative paths while reading data</span></a></code></pre></div>
+<p>When using the <code>make_input</code> function with your data, you must provide the paths indicating the location of your images (<code>path_prefix</code>) and the output directory where you want to store the output. The <code>make_input</code> function will output a file named <code>image_labels.csv</code> which we renamed as <code>images_names_classify.csv</code> and included it with the files associated with this repository. We provide a full illustration of the use of <code>make_input</code> and <code>classify</code> in Section <a href="mlwic2-machine-learning-for-wildlife-image-classification.html#classify-trained">5.6</a> using a small image set included in the repository.</p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" data-line-number="1"><span class="co"># The code below won&#39;t be executed. For using it you must replace:</span></a>
+<a class="sourceLine" id="cb73-2" data-line-number="2"><span class="co"># - the &quot;path_prefix&quot; with the path to the directory holding your images</span></a>
+<a class="sourceLine" id="cb73-3" data-line-number="3"><span class="co"># - the &quot;output_directory&quot; with the directory where you want to store the output</span></a>
+<a class="sourceLine" id="cb73-4" data-line-number="4"><span class="co">#   from running MLWIC2 </span></a>
+<a class="sourceLine" id="cb73-5" data-line-number="5"><span class="kw">make_input</span>(<span class="dt">path_prefix =</span> <span class="st">&quot;/Volumes/ct-data/CH1/jan2020&quot;</span>,</a>
+<a class="sourceLine" id="cb73-6" data-line-number="6">           <span class="dt">recursive =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb73-7" data-line-number="7">           <span class="dt">option =</span> <span class="dv">4</span>,</a>
+<a class="sourceLine" id="cb73-8" data-line-number="8">           <span class="dt">find_file_names =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb73-9" data-line-number="9">           <span class="dt">output_dir =</span> <span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;mlwic2&quot;</span>))</a>
+<a class="sourceLine" id="cb73-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb73-11" data-line-number="11"><span class="kw">file.rename</span>(<span class="dt">from =</span> <span class="st">&quot;data/mlwic2/image_labels.csv&quot;</span>, <span class="dt">to =</span> <span class="st">&quot;data/mlwic2/images_names_classify.csv&quot;</span>)</a></code></pre></div>
+<p>We then read in this file containing the image filenames and look at the first few records. We will use the here package <span class="citation">(Müller <a href="#ref-here">2017</a>)</span> to tell R that our file lives in the <code>./data/mlwic2</code> directory and specify the name of our file <code>images_names_classify.csv</code>.</p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" data-line-number="1"><span class="co"># inspect output from the make_input function</span></a>
+<a class="sourceLine" id="cb74-2" data-line-number="2">image_labels &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>,<span class="st">&quot;mlwic2&quot;</span>,<span class="st">&quot;images_names_classify.csv&quot;</span>)) </a>
+<a class="sourceLine" id="cb74-3" data-line-number="3"><span class="kw">head</span>(image_labels)</a></code></pre></div>
+<pre><code>## # A tibble: 6 × 2
+##   `A01/01080001.JPG`   `0`
+##   &lt;chr&gt;              &lt;dbl&gt;
+## 1 A01/01080002.JPG       0
+## 2 A01/01080003.JPG       0
+## 3 A01/01080004.JPG       0
+## 4 A01/01080005.JPG       0
+## 5 A01/01080006.JPG       0
+## 6 A01/01080007.JPG       0</code></pre>
+</div>
+<div id="mlwic2-ai-module" class="section level2">
+<h2><span class="header-section-number">5.3</span> Process images - AI module</h2>
+<p>Once you have the CSV file with image filenames (<code>images_names_classify.csv</code>), you can proceed to run the MLWIC2 models. It is possible to use parallel computing to run the models more efficiently. This will require specifying a number of cores that you want to use while running the models. To do that, first you need to know how many cores (i.e., processors in your computer) are available, which you can determine using the <code>detectCores</code> function in the <code>parallel</code> package <span class="citation">(R Core Team <a href="#ref-R-base">2021</a>)</span>.</p>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" data-line-number="1"><span class="kw">library</span>(parallel)</a>
+<a class="sourceLine" id="cb76-2" data-line-number="2"><span class="kw">detectCores</span>() <span class="co"># detects number of cores in your computer</span></a></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<p>If you have 4 cores, then you can use 3 cores for running the MLWIC2 model using the <code>classify</code> function <span class="citation">(Tabak et al. <a href="#ref-tabak_2020">2020</a>)</span> and the <code>num_cores</code> argument. This assures that you leave one core for your computer to perform other tasks.</p>
+<p>Other arguments for the <code>classify</code> function include:</p>
+<ul>
+<li><code>path_prefix</code>: absolute path of the location of your camera trap photos.</li>
+<li><code>data_info</code>: absolute path of the <code>images_names_classify.csv</code> file (i.e., the output from the <code>make_input</code> function).<br />
+</li>
+<li><code>model_dir</code>: absolute path of MLWIC2 helper files folder.</li>
+<li><code>python_loc</code>: absolute path of Python on your computer.</li>
+<li><code>os</code>: specification of your operating system (here “Mac”).</li>
+<li><code>make_output</code>: use TRUE for a ready-to-read CSV output.</li>
+</ul>
+<p>To complete this step, you would need to change the file paths to indicate where the files are located on your computer. Note that this step took approximately 5 hours to process 112,247 photos (run on a macOS Mojave with a 2.5 GHz Intel Core i5 Processor and 8GB 1600 MHz DDR3 of RAM).</p>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb78-1" data-line-number="1"><span class="kw">classify</span>(<span class="dt">path_prefix =</span> <span class="st">&quot;/Volumes/ct-data/CH1/jan2020/&quot;</span>,</a>
+<a class="sourceLine" id="cb78-2" data-line-number="2">         <span class="dt">data_info =</span> <span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;mlwic2&quot;</span>, <span class="st">&quot;images_names_classify.csv&quot;</span>),</a>
+<a class="sourceLine" id="cb78-3" data-line-number="3">         <span class="dt">model_dir =</span> <span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;mlwic2&quot;</span>, <span class="st">&quot;MLWIC2_helper_files/&quot;</span>),</a>
+<a class="sourceLine" id="cb78-4" data-line-number="4">         <span class="dt">python_loc =</span> <span class="st">&quot;/Users/julianavelez/opt/anaconda3/envs/ecology/bin/&quot;</span>, <span class="co"># absolute path of Python on your computer</span></a>
+<a class="sourceLine" id="cb78-5" data-line-number="5">         <span class="dt">os =</span> <span class="st">&quot;Mac&quot;</span>, <span class="co"># specify your operating system; &quot;Windows&quot; or &quot;Mac&quot;</span></a>
+<a class="sourceLine" id="cb78-6" data-line-number="6">         <span class="dt">make_output =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb78-7" data-line-number="7">         <span class="dt">num_cores =</span> <span class="dv">3</span></a>
+<a class="sourceLine" id="cb78-8" data-line-number="8">         )</a></code></pre></div>
+</div>
+<div id="ai-mlwic2" class="section level2">
+<h2><span class="header-section-number">5.4</span> Assessing AI performance</h2>
+<p>As with other AI platforms, it is recommended to evaluate model performance with your particular data set before using an AI model to classify all your images. This involves classifying a subset of your photos and comparing those classifications with predictions provided by MLWIC2 (i.e., we will compare human vs. computer vision). Let’s start by formatting the human vision data set.</p>
+<div id="format-human-vision-data-set" class="section level3">
+<h3><span class="header-section-number">5.4.1</span> Format human vision data set</h3>
+<p>To read the file containing the human vision classifications for a subset of images, we tell R the path (i.e., directory name) that holds our file. Again, we use the <code>here</code> package <span class="citation">(Müller <a href="#ref-here">2017</a>)</span> to tell R that our file lives in the <code>./data/mlwic2</code> directory and specify the name of our file <code>images_hv_jan2020.csv</code>. You may, alternatively, type in the full path to the file folder or a relative path from the root directory if you are using a project in Rstudio. We then read our file using the <code>read_csv</code> function <span class="citation">(Wickham <a href="#ref-R-tidyverse">2017</a>)</span>.</p>
+<p>The human vision data set (<code>images_hv_jan2020.csv</code>) was previously cleaned to remove duplicated records and to summarise multiple rows that reference animals of the same species identified in the same image (see Chapter <a href="wildlife-insights-wi.html#wildlife-insights-wi">3</a> for details about these steps). If there are multiple species in an image, then you may have multiple rows associated with each detection. In the Wildlife Insights, we demonstrated methods for evaluating AI performance that considered the possibility of detecting multiple species in an image. However, we can simplify the process of evaluating AI performance if we filter the data to include a single record (e.g., the first object) for each image. To keep a single record per image, we first group rows by <code>deployment_id</code>, <code>filename</code>, <code>timestamp</code> (key columns that identify an image) and then use the <code>slice</code> function <span class="citation">(Wickham et al. <a href="#ref-R-dplyr">2019</a>)</span>. This step drops 44 observations, reducing the data set from 104,826 classifications to 104,782 classifications.</p>
+<p>We use “pipes” (<code>%&gt;%</code>) from the <code>magrittr</code> package <span class="citation">(Bache and Wickham <a href="#ref-magrittr">2020</a>)</span>. Pipes (<code>%&gt;%</code>) provide a way to execute a sequence of data operations, organized so that the operations can be read from left to right (e.g., “Take the file and then group rows using <code>group_by</code>”).</p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb79-1" data-line-number="1">human_vision &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;mlwic2&quot;</span>, <span class="st">&quot;images_hv_jan2020.csv&quot;</span>))</a>
+<a class="sourceLine" id="cb79-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb79-3" data-line-number="3"><span class="co"># number of rows prior to dropping records associated with multiple species</span></a>
+<a class="sourceLine" id="cb79-4" data-line-number="4"><span class="co"># in an image</span></a>
+<a class="sourceLine" id="cb79-5" data-line-number="5"><span class="kw">nrow</span>(human_vision) </a></code></pre></div>
+<pre><code>## [1] 104826</code></pre>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb81-1" data-line-number="1">human_vision &lt;-<span class="st"> </span>human_vision <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb81-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(deployment_id, filename, timestamp) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># select first row</span></a>
+<a class="sourceLine" id="cb81-3" data-line-number="3"><span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span>) <span class="co"># Keep only one row per image</span></a>
+<a class="sourceLine" id="cb81-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb81-5" data-line-number="5"><span class="co"># Number of records after dropping records associated with multiple species</span></a>
+<a class="sourceLine" id="cb81-6" data-line-number="6"><span class="co"># in an image</span></a>
+<a class="sourceLine" id="cb81-7" data-line-number="7"><span class="kw">nrow</span>(human_vision)</a></code></pre></div>
+<pre><code>## [1] 104782</code></pre>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb83-1" data-line-number="1"><span class="co"># Inspect the first few rows of the data set </span></a>
+<a class="sourceLine" id="cb83-2" data-line-number="2"><span class="kw">head</span>(human_vision)</a></code></pre></div>
+<pre><code>## # A tibble: 6 × 4
+## # Groups:   deployment_id, filename, timestamp [6]
+##   deployment_id       filename     timestamp           common_name
+##   &lt;chr&gt;               &lt;chr&gt;        &lt;dttm&gt;              &lt;chr&gt;      
+## 1 A01-Jan2020-Jul2020 01090079.JPG 2020-01-09 10:54:39 Blank      
+## 2 A01-Jan2020-Jul2020 01090080.JPG 2020-01-09 10:54:40 Blank      
+## 3 A01-Jan2020-Jul2020 01090081.JPG 2020-01-09 10:54:41 Blank      
+## 4 A01-Jan2020-Jul2020 01090082.JPG 2020-01-09 10:54:49 Blank      
+## 5 A01-Jan2020-Jul2020 01090083.JPG 2020-01-09 10:54:50 Blank      
+## 6 A01-Jan2020-Jul2020 01090084.JPG 2020-01-09 10:54:51 Blank</code></pre>
+<p>MLWIC2 outputs columns with <code>filename</code> and the top-5 predictions along with their associated confidence values. Filenames are represented as <code>camera_location/image_filename</code>. We will need to create a variable in the human vision data set that has this same format so that we can merge the data sets containing human and computer vision classifications. In the human vision data set, the camera location and filename are contained in different columns, so we combine them using the <code>unite</code> function <span class="citation">(Wickham et al. <a href="#ref-R-dplyr">2019</a>)</span>. Before doing so, we use the <code>str_replace</code> function to reformat the <code>deployment_id</code> variable so that it matches the format of the MLWIC2 data set. These steps will allow us to later join our human and computer vision data sets using the common variable, <code>filename</code>. We also select the columns of interest.</p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb85-1" data-line-number="1">human_vision<span class="op">$</span>deployment_id &lt;-<span class="st"> </span>human_vision<span class="op">$</span>deployment_id <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb85-2" data-line-number="2"><span class="st">  </span><span class="kw">str_replace</span>(<span class="dt">pattern =</span> <span class="st">&quot;-.*&quot;</span>, <span class="st">&quot;/&quot;</span>)</a>
+<a class="sourceLine" id="cb85-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb85-4" data-line-number="4">human_vision &lt;-<span class="st"> </span>human_vision <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb85-5" data-line-number="5"><span class="st">  </span><span class="kw">unite</span>(filename, <span class="kw">c</span>(<span class="st">&quot;deployment_id&quot;</span>, <span class="st">&quot;filename&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)</a>
+<a class="sourceLine" id="cb85-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb85-7" data-line-number="7">hv &lt;-<span class="st"> </span>human_vision <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb85-8" data-line-number="8"><span class="st">  </span><span class="kw">group_by</span>(filename, timestamp) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb85-9" data-line-number="9"><span class="st">  </span><span class="kw">select</span>(filename, timestamp, common_name) <span class="co"># select columns of interest</span></a></code></pre></div>
+<p>MLWIC2 provides predictions for species from North America (see list of predicted species here <a href="https://github.com/mikeyEcology/MLWIC2/blob/master/speciesID.csv" class="uri">https://github.com/mikeyEcology/MLWIC2/blob/master/speciesID.csv</a>). However, you can also use the MLWIC2 <code>empty_animal</code> model for distinguishing blanks from images containing an object. For our example with species from South America, we will use the <code>species_model</code> as we want to evaluate model performance for predicting species present both in North and South America. These species include cattle (in MLWIC2 species list “Cow”), armadillos, opossums, horses, humans, dogs, white-tailed deer and mountain lions (i.e., pumas).</p>
+<p>Let’s inspect the species names in our data set, as we might have to replace some names according to MLWIC2 classes.</p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb86-1" data-line-number="1"><span class="kw">unique</span>(human_vision<span class="op">$</span>common_name) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb86-2" data-line-number="2"><span class="st">  </span><span class="kw">sort</span>()</a></code></pre></div>
+<pre><code>##  [1] &quot;Alouatta Species&quot;             &quot;Amazonian Motmot&quot;            
+##  [3] &quot;Ants&quot;                         &quot;Bird&quot;                        
+##  [5] &quot;Black Agouti&quot;                 &quot;Blank&quot;                       
+##  [7] &quot;Bos Species&quot;                  &quot;Bush Dog&quot;                    
+##  [9] &quot;Caprimulgidae Family&quot;         &quot;Capybara&quot;                    
+## [11] &quot;Cervidae Family&quot;              &quot;Collared Peccary&quot;            
+## [13] &quot;Common Green Iguana&quot;          &quot;Crab-eating Fox&quot;             
+## [15] &quot;Crestless Curassow&quot;           &quot;Dasypus Species&quot;             
+## [17] &quot;Domestic Dog&quot;                 &quot;Domestic Horse&quot;              
+## [19] &quot;Fasciated Tiger-heron&quot;        &quot;Giant Anteater&quot;              
+## [21] &quot;Giant Armadillo&quot;              &quot;Giant Otter&quot;                 
+## [23] &quot;Insect&quot;                       &quot;Jaguar&quot;                      
+## [25] &quot;Jaguarundi&quot;                   &quot;Lizards and Snakes&quot;          
+## [27] &quot;Lowland Tapir&quot;                &quot;Mammal&quot;                      
+## [29] &quot;Margarita Island Capuchin&quot;    &quot;Margay&quot;                      
+## [31] &quot;Neotropical Otter&quot;            &quot;Northern Amazon Red Squirrel&quot;
+## [33] &quot;Ocelot&quot;                       &quot;Ornate Tití Monkey&quot;          
+## [35] &quot;Pecari Species&quot;               &quot;Possum Family&quot;               
+## [37] &quot;Puma&quot;                         &quot;Red Brocket&quot;                 
+## [39] &quot;Rodent&quot;                       &quot;Saimiri Species&quot;             
+## [41] &quot;South American Coati&quot;         &quot;Southern Tamandua&quot;           
+## [43] &quot;Spix&#39;s Guan&quot;                  &quot;Spotted Paca&quot;                
+## [45] &quot;Tayra&quot;                        &quot;Turkey Vulture&quot;              
+## [47] &quot;Turtle Order&quot;                 &quot;Unknown species&quot;             
+## [49] &quot;Weasel Family&quot;                &quot;White-lipped Peccary&quot;        
+## [51] &quot;White-tailed Deer&quot;</code></pre>
+<p>Checking the species list, we can identify the species of interest present in North and South America. To replace species names with names used by MLWIC2, we use the <code>case_when</code> function <span class="citation">(Wickham et al. <a href="#ref-R-dplyr">2019</a>)</span> to implement multiple conditional statements, creating a variable, <code>class</code>, containing the replaced names; this makes sure that we are using the same species names in both visions. We include a class <code>Other_hv</code> for classes identified by human vision that are not identified by MLWIC2 computer vision.</p>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb88-1" data-line-number="1">hv &lt;-<span class="st"> </span>hv <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb88-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">class =</span> <span class="kw">factor</span>(<span class="kw">case_when</span>(common_name <span class="op">==</span><span class="st"> &quot;Blank&quot;</span> <span class="op">~</span><span class="st"> &quot;Blank&quot;</span>,</a>
+<a class="sourceLine" id="cb88-3" data-line-number="3">                              common_name <span class="op">==</span><span class="st"> &quot;Human&quot;</span> <span class="op">|</span></a>
+<a class="sourceLine" id="cb88-4" data-line-number="4"><span class="st">                                </span>common_name <span class="op">==</span><span class="st"> &quot;Human-Camera Trapper&quot;</span> <span class="op">~</span><span class="st"> &quot;Human&quot;</span>,</a>
+<a class="sourceLine" id="cb88-5" data-line-number="5">                              common_name <span class="op">==</span><span class="st"> &quot;Bos Species&quot;</span> <span class="op">~</span><span class="st"> &quot;Cattle&quot;</span>,</a>
+<a class="sourceLine" id="cb88-6" data-line-number="6">                              common_name <span class="op">==</span><span class="st"> &quot;Dasypus Species&quot;</span> <span class="op">~</span><span class="st"> &quot;Armadillo&quot;</span>,</a>
+<a class="sourceLine" id="cb88-7" data-line-number="7">                              common_name <span class="op">==</span><span class="st"> &quot;Possum Family&quot;</span> <span class="op">~</span><span class="st"> &quot;Opossum&quot;</span>,</a>
+<a class="sourceLine" id="cb88-8" data-line-number="8">                              common_name <span class="op">==</span><span class="st"> &quot;Domestic Horse&quot;</span> <span class="op">~</span><span class="st"> &quot;Horse&quot;</span>,</a>
+<a class="sourceLine" id="cb88-9" data-line-number="9">                              common_name <span class="op">==</span><span class="st"> &quot;Domestic Dog&quot;</span> <span class="op">~</span><span class="st"> &quot;Dog&quot;</span>,</a>
+<a class="sourceLine" id="cb88-10" data-line-number="10">                              common_name <span class="op">==</span><span class="st"> &quot;White-tailed Deer&quot;</span> <span class="op">|</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb88-11" data-line-number="11"><span class="st">                                </span>common_name <span class="op">==</span><span class="st">&quot;Cervidae Family&quot;</span> <span class="op">~</span><span class="st"> &quot;White-tailed Deer&quot;</span>,</a>
+<a class="sourceLine" id="cb88-12" data-line-number="12">                              common_name <span class="op">==</span><span class="st"> &quot;Puma&quot;</span> <span class="op">~</span><span class="st"> &quot;Puma&quot;</span>,</a>
+<a class="sourceLine" id="cb88-13" data-line-number="13">                              <span class="ot">TRUE</span> <span class="op">~</span><span class="st"> &quot;Other_hv&quot;</span>))) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb88-14" data-line-number="14"><span class="st">  </span></a>
+<a class="sourceLine" id="cb88-15" data-line-number="15"><span class="st">  </span><span class="kw">ungroup</span>()</a></code></pre></div>
+</div>
+<div id="format-computer-vision-data-set-1" class="section level3">
+<h3><span class="header-section-number">5.4.2</span> Format computer vision data set</h3>
+<p>Let’s read the MLWIC2 output, remove unwanted patterns in the filenames using <code>str_remove</code> and replace species codes with species names using <code>case_when</code>. We include a class <code>Other_cv</code> for classes identified by computer vision that were not identified by human vision. We also use the <code>factor</code> and the <code>levels</code> function <span class="citation">(R Core Team <a href="#ref-R-base">2021</a>)</span> to convert the classification variables into factors with the same levels in both data sets.</p>
+<p>Note that we have moved the model output to the <code>data/mlwic2</code> folder from its original location (in the same folder as the <code>MLWIC2_helper_files</code> that you previously downloaded).</p>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb89-1" data-line-number="1">computer_vision &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;mlwic2&quot;</span>, <span class="st">&quot;MLWIC2_output.csv&quot;</span>))</a>
+<a class="sourceLine" id="cb89-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb89-3" data-line-number="3">cv &lt;-<span class="st"> </span>computer_vision <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb89-4" data-line-number="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="kw">across</span>(<span class="kw">c</span>(guess1, guess2, guess3, guess4, guess5),</a>
+<a class="sourceLine" id="cb89-5" data-line-number="5">                <span class="op">~</span><span class="st"> </span><span class="kw">case_when</span>(. <span class="op">==</span><span class="st"> </span><span class="dv">27</span> <span class="op">~</span><span class="st"> &quot;Blank&quot;</span>,</a>
+<a class="sourceLine" id="cb89-6" data-line-number="6">                            . <span class="op">==</span><span class="st"> </span><span class="dv">11</span> <span class="op">~</span><span class="st"> &quot;Human&quot;</span>,</a>
+<a class="sourceLine" id="cb89-7" data-line-number="7">                            . <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">~</span><span class="st"> &quot;Cattle&quot;</span>,</a>
+<a class="sourceLine" id="cb89-8" data-line-number="8">                            . <span class="op">==</span><span class="st"> </span><span class="dv">7</span> <span class="op">~</span><span class="st"> &quot;Armadillo&quot;</span>,</a>
+<a class="sourceLine" id="cb89-9" data-line-number="9">                            . <span class="op">==</span><span class="st"> </span><span class="dv">9</span> <span class="op">~</span><span class="st"> &quot;Opossum&quot;</span>,</a>
+<a class="sourceLine" id="cb89-10" data-line-number="10">                            . <span class="op">==</span><span class="st"> </span><span class="dv">10</span> <span class="op">~</span><span class="st"> &quot;Horse&quot;</span>,</a>
+<a class="sourceLine" id="cb89-11" data-line-number="11">                            . <span class="op">==</span><span class="st"> </span><span class="dv">15</span> <span class="op">~</span><span class="st"> &quot;Dog&quot;</span>,</a>
+<a class="sourceLine" id="cb89-12" data-line-number="12">                            . <span class="op">==</span><span class="st"> </span><span class="dv">18</span> <span class="op">~</span><span class="st"> &quot;White-tailed Deer&quot;</span>,</a>
+<a class="sourceLine" id="cb89-13" data-line-number="13">                            . <span class="op">==</span><span class="st"> </span><span class="dv">20</span> <span class="op">~</span><span class="st"> &quot;Puma&quot;</span>,</a>
+<a class="sourceLine" id="cb89-14" data-line-number="14">                              <span class="ot">TRUE</span> <span class="op">~</span><span class="st"> &quot;Other_cv&quot;</span>)))</a>
+<a class="sourceLine" id="cb89-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb89-16" data-line-number="16"><span class="co"># The code below will remove the path of each picture and other unwanted patterns. </span></a>
+<a class="sourceLine" id="cb89-17" data-line-number="17"><span class="co"># It will only leave the location name and filename.</span></a>
+<a class="sourceLine" id="cb89-18" data-line-number="18">cv<span class="op">$</span>fileName &lt;-<span class="st"> </span>cv<span class="op">$</span>fileName <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb89-19" data-line-number="19"><span class="st">  </span><span class="kw">str_remove</span>(<span class="dt">pattern =</span> <span class="st">&quot;b&#39;/Volumes/ct-data/CH1/jan2020/&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb89-20" data-line-number="20"><span class="st">  </span><span class="kw">str_remove</span>(<span class="dt">pattern =</span> <span class="st">&quot;&#39;&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb89-21" data-line-number="21"><span class="st">  </span><span class="kw">str_remove</span>(<span class="dt">pattern =</span> <span class="st">&quot;detections/&quot;</span>)</a>
+<a class="sourceLine" id="cb89-22" data-line-number="22"></a>
+<a class="sourceLine" id="cb89-23" data-line-number="23">cv<span class="op">$</span>fileName &lt;-<span class="st"> </span><span class="kw">sub</span>(<span class="st">&quot;/1.*113&quot;</span>, <span class="st">&quot;&quot;</span>, cv<span class="op">$</span>fileName)</a></code></pre></div>
+<p>When creating the computer vision label, we will only consider MLWIC2’s top guess (i.e., <code>guess1</code>).</p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb90-1" data-line-number="1">cv &lt;-<span class="st"> </span>cv <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb90-2" data-line-number="2"><span class="st">  </span><span class="kw">rename</span>(<span class="dt">filename =</span> fileName, <span class="dt">class =</span> guess1)</a>
+<a class="sourceLine" id="cb90-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb90-4" data-line-number="4">all_levels &lt;-<span class="st"> </span><span class="kw">append</span>(<span class="kw">levels</span>(<span class="kw">factor</span>(cv<span class="op">$</span>class)), </a>
+<a class="sourceLine" id="cb90-5" data-line-number="5">                     <span class="kw">levels</span>(<span class="kw">factor</span>(hv<span class="op">$</span>class))) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb90-6" data-line-number="6"><span class="st">  </span><span class="kw">unique</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb90-7" data-line-number="7"><span class="st">  </span><span class="kw">sort</span>()</a>
+<a class="sourceLine" id="cb90-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb90-9" data-line-number="9">cv<span class="op">$</span>class &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">as.character</span>(cv<span class="op">$</span>class), <span class="dt">levels =</span> all_levels)</a>
+<a class="sourceLine" id="cb90-10" data-line-number="10">hv<span class="op">$</span>class &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">as.character</span>(hv<span class="op">$</span>class), <span class="dt">levels =</span> all_levels)</a></code></pre></div>
+</div>
+<div id="merging-computer-and-human-vision-data-sets-1" class="section level3">
+<h3><span class="header-section-number">5.4.3</span> Merging computer and human vision data sets</h3>
+<p>Now that we have the same format for both human and computer vision data sets, we can use various “joins” <span class="citation">(Wickham et al. <a href="#ref-R-dplyr">2019</a>)</span> to merge the two data sets together so that we can evaluate the accuracy of MLWIC2. First, however, we will eliminate any images that were not processed by both humans and AI.</p>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" data-line-number="1"><span class="co"># Determine which images have been viewed by both methods</span></a>
+<a class="sourceLine" id="cb91-2" data-line-number="2">ind1 &lt;-<span class="st"> </span>cv<span class="op">$</span>filename <span class="op">%in%</span><span class="st"> </span>hv<span class="op">$</span>filename <span class="co"># in both</span></a>
+<a class="sourceLine" id="cb91-3" data-line-number="3">ind2 &lt;-<span class="st"> </span>hv<span class="op">$</span>filename <span class="op">%in%</span><span class="st"> </span>cv<span class="op">$</span>filename <span class="co"># in both</span></a>
+<a class="sourceLine" id="cb91-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb91-5" data-line-number="5">cv &lt;-<span class="st"> </span>cv[ind1,] <span class="co"># eliminate images not processed by human vision</span></a>
+<a class="sourceLine" id="cb91-6" data-line-number="6">hv &lt;-<span class="st"> </span>hv[ind2,] <span class="co"># eliminate images not processed by computer vision</span></a>
+<a class="sourceLine" id="cb91-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb91-8" data-line-number="8"><span class="co"># Number of photos eliminated</span></a>
+<a class="sourceLine" id="cb91-9" data-line-number="9"><span class="kw">sum</span>(ind1 <span class="op">!=</span><span class="st"> </span><span class="ot">TRUE</span>) <span class="co"># in computer vision but not in hv</span></a></code></pre></div>
+<pre><code>## [1] 8231</code></pre>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb93-1" data-line-number="1"><span class="kw">sum</span>(ind2 <span class="op">!=</span><span class="st"> </span><span class="ot">TRUE</span>) <span class="co"># in human vision but not in cv</span></a></code></pre></div>
+<pre><code>## [1] 766</code></pre>
+<p>Now, we can use:</p>
+<ul>
+<li>an <code>inner_join</code> with <code>filename</code> and <code>class</code> to determine images that have correct predictions (i.e., images with the same class assigned by computer and human vision)</li>
+<li>an <code>anti_join</code> with <code>filename</code> and <code>class</code> to determine which records in the human vision data set have incorrect predictions from computer vision.</li>
+<li>an <code>anti_join</code> with <code>filename</code> and <code>class</code> to determine which records in the computer vision data set have incorrect predictions.</li>
+</ul>
+<p>We assume the classifications from human vision to be correct and distinguish them from MLWIC2 predictions. The MLWIC2 predictions will be correct if they match a class assigned by human vision for a particular record and incorrect if the classes assigned by the two visions differ.</p>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb95-1" data-line-number="1"><span class="co"># correct predictions</span></a>
+<a class="sourceLine" id="cb95-2" data-line-number="2">matched &lt;-<span class="st"> </span>cv <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb95-3" data-line-number="3"><span class="st">  </span><span class="kw">inner_join</span>(<span class="dt">y =</span> hv, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;filename&quot;</span>, <span class="st">&quot;class&quot;</span>), <span class="dt">suffix =</span> <span class="kw">c</span>(<span class="st">&quot;_cv&quot;</span>, <span class="st">&quot;_hv&quot;</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb95-4" data-line-number="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">class_hv =</span> class) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb95-5" data-line-number="5"><span class="st">  </span><span class="kw">rename</span>(<span class="dt">class_cv =</span> class) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb95-6" data-line-number="6"><span class="st">  </span><span class="kw">select</span>(filename, confidence1, class_cv, class_hv)</a>
+<a class="sourceLine" id="cb95-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb95-8" data-line-number="8"><span class="co"># records in the human vision data set whose predictions are incorrect</span></a>
+<a class="sourceLine" id="cb95-9" data-line-number="9">hv_only &lt;-<span class="st"> </span>hv <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb95-10" data-line-number="10"><span class="st">  </span><span class="kw">anti_join</span>(<span class="dt">y =</span> cv, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;filename&quot;</span>, <span class="st">&quot;class&quot;</span>), <span class="dt">suffix =</span> <span class="kw">c</span>(<span class="st">&quot;_hv&quot;</span>, <span class="st">&quot;_cv&quot;</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb95-11" data-line-number="11"><span class="st">  </span><span class="kw">rename</span>(<span class="dt">class_hv =</span> class)</a>
+<a class="sourceLine" id="cb95-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb95-13" data-line-number="13"><span class="co"># records in the computer vision data set whose predictions are incorrect</span></a>
+<a class="sourceLine" id="cb95-14" data-line-number="14">cv_only &lt;-<span class="st"> </span>cv <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb95-15" data-line-number="15"><span class="st">  </span><span class="kw">anti_join</span>(<span class="dt">y =</span> hv, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;filename&quot;</span>, <span class="st">&quot;class&quot;</span>), <span class="dt">suffix =</span> <span class="kw">c</span>(<span class="st">&quot;_cv&quot;</span>, <span class="st">&quot;_hv&quot;</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb95-16" data-line-number="16"><span class="st">  </span><span class="kw">rename</span>(<span class="dt">class_cv =</span> class)</a></code></pre></div>
+<p>We then use <code>left_join</code> to merge the predictions from the <code>cv_only</code> (computer vision) data set onto the records from the <code>hv_only</code> (human vision) data set.</p>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb96-1" data-line-number="1">hv_mismatch &lt;-<span class="st"> </span>hv_only <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb96-2" data-line-number="2"><span class="st">  </span><span class="kw">left_join</span>(cv_only, <span class="dt">by =</span> <span class="st">&quot;filename&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb96-3" data-line-number="3"><span class="st">  </span><span class="kw">select</span>(filename, confidence1, class_cv, class_hv)</a></code></pre></div>
+<p>We then check for any computer vision records that are not yet accounted for in our data sets containing records with correct or incorrect predictions, i.e., <code>matched</code> and <code>hv_mismatch</code>, respectively.</p>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb97-1" data-line-number="1">cv_others &lt;-<span class="st"> </span>cv_only[cv_only<span class="op">$</span>filename <span class="op">%in%</span><span class="st"> </span>hv_mismatch<span class="op">$</span>filename <span class="op">!=</span><span class="st"> </span><span class="ot">TRUE</span>,]</a>
+<a class="sourceLine" id="cb97-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb97-3" data-line-number="3">cv_others</a></code></pre></div>
+<pre><code>## # A tibble: 0 × 13
+## # … with 13 variables: ...1 &lt;dbl&gt;, filename &lt;chr&gt;, answer &lt;dbl&gt;,
+## #   class_cv &lt;fct&gt;, guess2 &lt;chr&gt;, guess3 &lt;chr&gt;, guess4 &lt;chr&gt;, guess5 &lt;chr&gt;,
+## #   confidence1 &lt;dbl&gt;, confidence2 &lt;dbl&gt;, confidence3 &lt;dbl&gt;, confidence4 &lt;dbl&gt;,
+## #   confidence5 &lt;dbl&gt;</code></pre>
+<p>Finally, we select only the variables we need, and combine the matched and mismatched data sets. Additionally, we remove the “Human” class from the data set; human images in this data set predominately correspond to images taken during camera setup.</p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb99-1" data-line-number="1">matched &lt;-<span class="st"> </span>matched <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb99-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(filename, confidence1, class_cv, class_hv)</a>
+<a class="sourceLine" id="cb99-3" data-line-number="3">hv_mismatch &lt;-<span class="st"> </span>hv_mismatch <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb99-4" data-line-number="4"><span class="st">  </span><span class="kw">select</span>(filename, confidence1, class_cv, class_hv)</a>
+<a class="sourceLine" id="cb99-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb99-6" data-line-number="6">both_visions &lt;-<span class="st"> </span><span class="kw">rbind</span>(matched, hv_mismatch)</a>
+<a class="sourceLine" id="cb99-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb99-8" data-line-number="8">both_visions &lt;-<span class="st"> </span>both_visions <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb99-9" data-line-number="9"><span class="st">  </span><span class="kw">filter</span>(class_cv <span class="op">!=</span><span class="st"> &quot;Human&quot;</span> <span class="op">&amp;</span><span class="st"> </span>class_hv <span class="op">!=</span><span class="st"> &quot;Human&quot;</span>)</a></code></pre></div>
+</div>
+<div id="summarizing-human-and-computer-vision-records-by-class" class="section level3">
+<h3><span class="header-section-number">5.4.4</span> Summarizing human and computer vision records by class</h3>
+<p>Next, we count the number of records of each class separately for human and computer vision. We will group the data by <code>class</code> and then count the number of observations using <code>n()</code> inside the <code>summarise</code> function. Then, we use the <code>left_join</code> function to join the class counts in computer and human vision using the <code>class</code> to match observations in the two data sets. Lastly, we add a suffix to the <code>class</code> variable to distinguish the counts of human and computer vision. Table <a href="mlwic2-machine-learning-for-wildlife-image-classification.html#tab:myDThtmltools3">5.1</a> contains the class counts for the two visions.</p>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb100-1" data-line-number="1">sp_counts_cv &lt;-<span class="st"> </span>both_visions <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb100-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(class_cv) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb100-3" data-line-number="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb100-4" data-line-number="4"><span class="st">  </span><span class="kw">rename</span>(<span class="dt">class =</span> class_cv)</a>
+<a class="sourceLine" id="cb100-5" data-line-number="5">        </a>
+<a class="sourceLine" id="cb100-6" data-line-number="6">sp_counts_hv &lt;-<span class="st"> </span>both_visions <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb100-7" data-line-number="7"><span class="st">  </span><span class="kw">group_by</span>(class_hv) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb100-8" data-line-number="8"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb100-9" data-line-number="9"><span class="st">  </span><span class="kw">rename</span>(<span class="dt">class =</span> class_hv)</a>
+<a class="sourceLine" id="cb100-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb100-11" data-line-number="11">sp_counts &lt;-<span class="st"> </span><span class="kw">full_join</span>(<span class="dt">x =</span> sp_counts_cv, <span class="dt">y =</span> sp_counts_hv, </a>
+<a class="sourceLine" id="cb100-12" data-line-number="12">                       <span class="dt">by =</span> <span class="st">&quot;class&quot;</span>, </a>
+<a class="sourceLine" id="cb100-13" data-line-number="13">                       <span class="dt">suffix =</span> <span class="kw">c</span>(<span class="st">&quot;_cv&quot;</span>, <span class="st">&quot;_hv&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb100-14" data-line-number="14"><span class="st">  </span><span class="kw">arrange</span>(class)</a></code></pre></div>
+<div id="htmlwidget-98cd99f33ae774200887" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-98cd99f33ae774200887">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10"],["Armadillo","Blank","Cattle","Dog","Horse","Opossum","Other_cv","Other_hv","Puma","White-tailed Deer"],[2,7554,278,53,5,254,90918,null,43,523],[5707,19658,3031,18,806,936,null,68109,119,1246]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>class<\/th>\n      <th>n_cv<\/th>\n      <th>n_hv<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<table>
+<caption>
+<span id="tab:myDThtmltools3">Table 5.1: </span>Counts of images classified by MLWIC2 (n_cv) and humans (n_hv) for each class in the data set.
+</caption>
+</table>
+</div>
+<div id="confusion-matrix-and-performance-measures-2" class="section level3">
+<h3><span class="header-section-number">5.4.5</span> Confusion matrix and performance measures</h3>
+<p>Finally, we can proceed with estimating a confusion matrix and various AI performance measures using the <code>confusionMatrix</code> function from the <code>caret</code> package <span class="citation">(Kuhn <a href="#ref-R-caret">2021</a>)</span> and specifying a 0.65 confidence threshold to accept MLWIC2 predictions. We can then plot the confusion matrix using <code>ggplot2</code> <span class="citation">(Wickham et al. <a href="#ref-R-ggplot2">2018</a>)</span>. The <code>confusionMatrix</code> function requires a data argument for predicted classes and a reference for true classifications, both as factor classes and with the same factor levels. We include <code>mode=&quot;prec_recall&quot;</code> when calling the <code>confusionMatrix</code> function <span class="citation">(Kuhn <a href="#ref-R-caret">2021</a>)</span> to estimate precision and recall.</p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb101-1" data-line-number="1"><span class="kw">library</span>(caret) <span class="co"># to inspect model performance</span></a>
+<a class="sourceLine" id="cb101-2" data-line-number="2"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb101-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb101-4" data-line-number="4"><span class="co"># Estimate confusion matrix</span></a>
+<a class="sourceLine" id="cb101-5" data-line-number="5">both_visions_<span class="fl">0.65</span> &lt;-<span class="st"> </span>both_visions</a>
+<a class="sourceLine" id="cb101-6" data-line-number="6">both_visions_<span class="fl">0.65</span><span class="op">$</span>class_cv[both_visions_<span class="fl">0.65</span><span class="op">$</span>confidence1 <span class="op">&lt;</span><span class="st"> </span><span class="fl">0.65</span>] &lt;-<span class="st"> &quot;Blank&quot;</span> </a>
+<a class="sourceLine" id="cb101-7" data-line-number="7">cm_mlwic2_<span class="fl">0.65</span> &lt;-<span class="st"> </span><span class="kw">confusionMatrix</span>(<span class="dt">data =</span> both_visions_<span class="fl">0.65</span><span class="op">$</span>class_cv, </a>
+<a class="sourceLine" id="cb101-8" data-line-number="8">                      <span class="dt">reference =</span> (both_visions_<span class="fl">0.65</span><span class="op">$</span>class_hv), </a>
+<a class="sourceLine" id="cb101-9" data-line-number="9">                      <span class="dt">mode =</span> <span class="st">&quot;prec_recall&quot;</span>)</a>
+<a class="sourceLine" id="cb101-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb101-11" data-line-number="11"><span class="co"># Plot confusion matrix</span></a>
+<a class="sourceLine" id="cb101-12" data-line-number="12">plot_cm_mlwic2_<span class="fl">0.65</span> &lt;-<span class="st"> </span>cm_mlwic2_<span class="fl">0.65</span> <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb101-13" data-line-number="13"><span class="st">  </span><span class="kw">pluck</span>(<span class="st">&quot;table&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb101-14" data-line-number="14"><span class="st">  </span><span class="kw">as.data.frame</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb101-15" data-line-number="15"><span class="st">  </span><span class="kw">rename</span>(<span class="dt">Frequency =</span> Freq) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb101-16" data-line-number="16"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y=</span>Prediction, <span class="dt">x=</span>Reference, <span class="dt">fill=</span>Frequency)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb101-17" data-line-number="17"><span class="st">  </span><span class="kw">geom_raster</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb101-18" data-line-number="18"><span class="st">  </span><span class="kw">scale_fill_gradient</span>(<span class="dt">low =</span> <span class="st">&quot;#D6EAF8&quot;</span>,<span class="dt">high =</span> <span class="st">&quot;#2E86C1&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb101-19" data-line-number="19"><span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label =</span> Frequency), <span class="dt">size =</span> <span class="fl">2.5</span>) <span class="op">+</span><span class="co"># size for matrix counts</span></a>
+<a class="sourceLine" id="cb101-20" data-line-number="20"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>,</a>
+<a class="sourceLine" id="cb101-21" data-line-number="21">        <span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>), <span class="co"># define angle for x axis text)</span></a>
+<a class="sourceLine" id="cb101-22" data-line-number="22">        <span class="dt">legend.text =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">6</span>),</a>
+<a class="sourceLine" id="cb101-23" data-line-number="23">        <span class="dt">legend.key.width =</span> <span class="kw">unit</span>(<span class="dv">1</span>, <span class="st">&quot;cm&quot;</span>))</a>
+<a class="sourceLine" id="cb101-24" data-line-number="24"></a>
+<a class="sourceLine" id="cb101-25" data-line-number="25">plot_cm_mlwic2_<span class="fl">0.65</span></a></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:confmatrix-MLWIC2"></span>
+<img src="04-mlwic2_files/figure-html/confmatrix-MLWIC2-1.png" alt="Confusion matrix applied to classifictions from MLWIC2 using a confidence threshold of 0.65." width="672" />
+<p class="caption">
+Figure 5.1: Confusion matrix applied to classifictions from MLWIC2 using a confidence threshold of 0.65.
+</p>
+</div>
+<p>Now we can use the confusion matrix to estimate metrics of model performance including accuracy, precision, recall and F-1 score (See Chapter <a href="introduction.html#introduction">1</a> for metrics description).</p>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" data-line-number="1">(overall_accuracy &lt;-<span class="st"> </span>cm_mlwic2_<span class="fl">0.65</span> <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb102-2" data-line-number="2"><span class="st">  </span><span class="kw">pluck</span>(<span class="st">&quot;overall&quot;</span>, <span class="st">&quot;Accuracy&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb102-3" data-line-number="3"><span class="st">  </span><span class="kw">round</span>(., <span class="dv">2</span>))</a></code></pre></div>
+<pre><code>## [1] 0.11</code></pre>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb104-1" data-line-number="1">classes_metrics_mlwic2_<span class="fl">0.65</span> &lt;-<span class="st"> </span>cm_mlwic2_<span class="fl">0.65</span> <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb104-2" data-line-number="2"><span class="st">  </span><span class="kw">pluck</span>(<span class="st">&quot;byClass&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb104-3" data-line-number="3"><span class="st">  </span><span class="kw">as.data.frame</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb104-4" data-line-number="4"><span class="st">  </span><span class="kw">select</span>(Precision, Recall, F1) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb104-5" data-line-number="5"><span class="st">  </span><span class="kw">rownames_to_column</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb104-6" data-line-number="6"><span class="st">  </span><span class="kw">rename</span>(<span class="dt">class =</span> rowname) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb104-7" data-line-number="7"><span class="st">  </span><span class="kw">mutate</span>(<span class="kw">across</span>(is.numeric, <span class="op">~</span><span class="kw">round</span>(., <span class="dv">2</span>))) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb104-8" data-line-number="8"><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(Precision <span class="op">|</span><span class="st"> </span>Recall))</a>
+<a class="sourceLine" id="cb104-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb104-10" data-line-number="10">classes_metrics_mlwic2_<span class="fl">0.65</span><span class="op">$</span>class &lt;-<span class="st"> </span><span class="kw">str_remove</span>(<span class="dt">string =</span> classes_metrics_mlwic2_<span class="fl">0.65</span><span class="op">$</span>class, </a>
+<a class="sourceLine" id="cb104-11" data-line-number="11">                                                <span class="dt">pattern =</span> <span class="st">&quot;Class: &quot;</span>)</a></code></pre></div>
+<div id="htmlwidget-9816dcb9dc8068108297" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-9816dcb9dc8068108297">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6"],["Blank","Cattle","Dog","Opossum","Puma","White-tailed Deer"],[0.24,0.76,0,0.33,0.8,0.3],[0.53,0.03,0,0.03,0.03,0.05],[0.33,0.06,null,0.06,0.06,0.09]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>class<\/th>\n      <th>Precision<\/th>\n      <th>Recall<\/th>\n      <th>F1<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,4]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<table>
+<caption>
+<span id="tab:myDThtmltools2">Table 4.1: </span>Model performance metrics for each class in the data set using a 0.65 confidence threshold.
+</caption>
+</table>
+<p>We see that the model has the highest precision values for the “puma” (80% precision at 3% recall) and “cattle” (76% precision at 3% recall) classes. The “Blank” class has the highest recall value of 53% at a 24% precision. We can inspect how model performance changes if we select a different confidence threshold than 0.65, as we demonstrate in the next section.</p>
+</div>
+<div id="confidence-thresholds-1" class="section level3">
+<h3><span class="header-section-number">5.4.6</span> Confidence thresholds</h3>
+<p>Lets begin by looking at the distribution of confidence values associated with each MLWIC2 classification using the <code>geom_bar</code> function <span class="citation">(Wickham et al. <a href="#ref-R-ggplot2">2018</a>)</span>. We first identify the species that have at least 30 records for both classification methods (human and computer vision).</p>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb105-1" data-line-number="1">sp_plots &lt;-<span class="st"> </span>sp_counts <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb105-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(n_cv <span class="op">&gt;</span><span class="st"> </span><span class="dv">30</span> <span class="op">&amp;</span><span class="st"> </span>n_hv <span class="op">&gt;</span><span class="st"> </span><span class="dv">30</span>)</a>
+<a class="sourceLine" id="cb105-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb105-4" data-line-number="4">both_visions_sp &lt;-<span class="st"> </span>both_visions <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb105-5" data-line-number="5"><span class="st">  </span><span class="kw">filter</span>(class_cv <span class="op">%in%</span><span class="st"> </span>sp_plots<span class="op">$</span>class) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb105-6" data-line-number="6"><span class="st">  </span><span class="kw">rename</span>(<span class="dt">Species =</span> class_cv)</a>
+<a class="sourceLine" id="cb105-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb105-8" data-line-number="8"><span class="co"># Plot confidence values </span></a>
+<a class="sourceLine" id="cb105-9" data-line-number="9">both_visions_sp <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb105-10" data-line-number="10"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(confidence1, <span class="dt">group =</span> Species, <span class="dt">colour =</span> Species)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb105-11" data-line-number="11"><span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb105-12" data-line-number="12"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>Species, <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb105-13" data-line-number="13"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;Empirical distribution&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;Confidence values&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb105-14" data-line-number="14"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb105-15" data-line-number="15"><span class="st">  </span><span class="kw">scale_color_viridis_d</span>()</a></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-15"></span>
+<img src="04-mlwic2_files/figure-html/unnamed-chunk-15-1.png" alt="Distribution of confidence values associated with classes predicted by MLWIC2." width="864" />
+<p class="caption">
+Figure 5.2: Distribution of confidence values associated with classes predicted by MLWIC2.
+</p>
+</div>
+<p>Most of the classes (e.g., “cattle”, “opossum”, “puma” and “white-tailed deer”) have a uniform distribution with records distributed along the full range of confidence values. The “Blank” class has a bell-shaped distribution, with most of the records associated with medium confidence values.</p>
+<p>To inspect how precision and recall change when different confidence thresholds are established for assigning a class predicted by computer vision, we define a function that will calculate these metrics for a user-defined confidence threshold. This function will assign a “Blank” label whenever the confidence for a computer vision prediction is below a particular confidence threshold. Higher thresholds should reduce the number of false positives but at the expense of more false negatives. We then estimate the same performance metrics for the specified confidence threshold. By repeating this process for several different thresholds, users can evaluate how precision and recall change with the confidence threshold and choose a threshold that balances these two performance metrics.</p>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" data-line-number="1">threshold_for_metrics &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">conf_threshold =</span> <span class="fl">0.7</span>) {</a>
+<a class="sourceLine" id="cb106-2" data-line-number="2">  tmp &lt;-<span class="st"> </span>both_visions</a>
+<a class="sourceLine" id="cb106-3" data-line-number="3">  tmp<span class="op">$</span>class_cv[tmp<span class="op">$</span>confidence1 <span class="op">&lt;</span><span class="st"> </span>conf_threshold] &lt;-<span class="st"> &quot;Blank&quot;</span> </a>
+<a class="sourceLine" id="cb106-4" data-line-number="4">  <span class="co"># assign a &quot;Blank&quot; class whenever the confidence value</span></a>
+<a class="sourceLine" id="cb106-5" data-line-number="5">  <span class="co"># of a prediction is lower than the threshold provided as </span></a>
+<a class="sourceLine" id="cb106-6" data-line-number="6">  <span class="co"># an argument in the function</span></a>
+<a class="sourceLine" id="cb106-7" data-line-number="7">  cm &lt;-<span class="st"> </span><span class="kw">confusionMatrix</span>(<span class="dt">data =</span> tmp<span class="op">$</span>class_cv, </a>
+<a class="sourceLine" id="cb106-8" data-line-number="8">                        <span class="dt">reference =</span> tmp<span class="op">$</span>class_hv, </a>
+<a class="sourceLine" id="cb106-9" data-line-number="9">                        <span class="dt">mode =</span> <span class="st">&quot;prec_recall&quot;</span>) </a>
+<a class="sourceLine" id="cb106-10" data-line-number="10">  <span class="co"># use the confusionMatrix function from the caret package using the</span></a>
+<a class="sourceLine" id="cb106-11" data-line-number="11">  <span class="co"># class_cv containing the new labels according to a particular</span></a>
+<a class="sourceLine" id="cb106-12" data-line-number="12">  <span class="co"># confidence threshold</span></a>
+<a class="sourceLine" id="cb106-13" data-line-number="13">  classes_metrics &lt;-<span class="st"> </span>cm <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># get confusion matrix</span></a>
+<a class="sourceLine" id="cb106-14" data-line-number="14"><span class="st">    </span><span class="kw">pluck</span>(<span class="st">&quot;byClass&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># get metrics by class</span></a>
+<a class="sourceLine" id="cb106-15" data-line-number="15"><span class="st">    </span><span class="kw">as.data.frame</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># assign a data frame object</span></a>
+<a class="sourceLine" id="cb106-16" data-line-number="16"><span class="st">    </span><span class="kw">select</span>(Precision, Recall, F1) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># select metrics of interest</span></a>
+<a class="sourceLine" id="cb106-17" data-line-number="17"><span class="st">    </span><span class="kw">rownames_to_column</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># format data frame</span></a>
+<a class="sourceLine" id="cb106-18" data-line-number="18"><span class="st">    </span><span class="kw">rename</span>(<span class="dt">class =</span> rowname) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># rename class column</span></a>
+<a class="sourceLine" id="cb106-19" data-line-number="19"><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">conf_threshold =</span> conf_threshold)</a>
+<a class="sourceLine" id="cb106-20" data-line-number="20">  classes_metrics<span class="op">$</span>class &lt;-<span class="st"> </span><span class="kw">str_remove</span>(<span class="dt">string =</span> classes_metrics<span class="op">$</span>class,</a>
+<a class="sourceLine" id="cb106-21" data-line-number="21">                                        <span class="dt">pattern =</span> <span class="st">&quot;Class: &quot;</span>) </a>
+<a class="sourceLine" id="cb106-22" data-line-number="22"></a>
+<a class="sourceLine" id="cb106-23" data-line-number="23">    <span class="kw">return</span>(classes_metrics) <span class="co"># return a data frame with metrics for every class</span></a>
+<a class="sourceLine" id="cb106-24" data-line-number="24">}</a></code></pre></div>
+<p>Let’s estimate model performance metrics for confidence values ranging from 0.1 to 0.99 using the map_df function <span class="citation">(Henry and Wickham <a href="#ref-purrr">2020</a>)</span> . The map_df function <span class="citation">(Henry and Wickham <a href="#ref-purrr">2020</a>)</span> returns a data frame object. Once we get a dataframe of model performance metrics for a range of confidence values, we can plot the results using the <code>ggplot2</code> package <span class="citation">(Wickham et al. <a href="#ref-R-ggplot2">2018</a>)</span>.</p>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb107-1" data-line-number="1">conf_vector =<span class="st"> </span><span class="kw">seq</span>(<span class="fl">0.1</span>, <span class="fl">0.99</span>, <span class="dt">length=</span><span class="dv">100</span>)</a>
+<a class="sourceLine" id="cb107-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb107-3" data-line-number="3">metrics_all_confs &lt;-<span class="st"> </span><span class="kw">map_df</span>(conf_vector, threshold_for_metrics)</a></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb108-1" data-line-number="1">metrics_all_confs &lt;-<span class="st"> </span>metrics_all_confs <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb108-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate_if</span>(is.numeric, round, <span class="dt">digits =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb108-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb108-4" data-line-number="4">prec_rec_mlwic2 &lt;-<span class="st"> </span>metrics_all_confs <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb108-5" data-line-number="5"><span class="st">  </span><span class="kw">filter</span>(class <span class="op">%in%</span><span class="st"> </span>sp_plots<span class="op">$</span>class) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb108-6" data-line-number="6"><span class="st">  </span><span class="kw">rename</span>(<span class="dt">Class =</span> class, <span class="dt">Confidence_threshold =</span> conf_threshold) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb108-7" data-line-number="7"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Recall, <span class="dt">y =</span> Precision, <span class="dt">group =</span> Class, <span class="dt">colour =</span> Class)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb108-8" data-line-number="8"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">size =</span> Confidence_threshold)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb108-9" data-line-number="9"><span class="st">  </span><span class="kw">scale_size</span>(<span class="dt">range =</span> <span class="kw">c</span>(<span class="fl">0.1</span>,<span class="dv">3</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb108-10" data-line-number="10"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Recall&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Precision&quot;</span>, ) <span class="op">+</span></a>
+<a class="sourceLine" id="cb108-11" data-line-number="11"><span class="st">  </span><span class="kw">scale_color_viridis_d</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb108-12" data-line-number="12"><span class="st">  </span><span class="kw">geom_line</span>()</a>
+<a class="sourceLine" id="cb108-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb108-14" data-line-number="14">prec_rec_mlwic2</a></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:mlwic2-thresholds"></span>
+<img src="04-mlwic2_files/figure-html/mlwic2-thresholds-1.png" alt="Precision and recall for different confidence thresholds for classes predicted by MLWIC2." width="100%" />
+<p class="caption">
+Figure 5.3: Precision and recall for different confidence thresholds for classes predicted by MLWIC2.
+</p>
+</div>
+<p>We see that as we increase the confidence threshold, precision associated with the different species labels usually increases and recall decreases (Figure <a href="mlwic2-machine-learning-for-wildlife-image-classification.html#fig:mlwic2-thresholds">5.3</a>); the opposite pattern occurs for the “Blank” class. Ideally, we would like AI to have high precision and recall, though the latter is likely to be more important in most cases. Remember that precision tells us the probability that the class is truly present when AI identifies the class as being present in an image (Chapter <a href="introduction.html#introduction">1</a>). If AI suffers from low precision, then we may have to manually review photos that AI tags as having a class present in order to remove false positives. Recall, on the other hand, tells us how likely AI is to find a class in the image when it is truly present. If AI suffers from low recall, then it will miss many photos containing a class that is truly present. To remedy this problem, we would need to review images where AI says the class is absent in order to reduce false negatives. To compare confusion matrices estimated using different confidence thresholds please refer to Chapter <a href="megadetector---microsoft-ai.html#megadetector---microsoft-ai">4</a>.</p>
+</div>
+</div>
+<div id="model-training" class="section level2">
+<h2><span class="header-section-number">5.5</span> Model training</h2>
+<p>For training a model, we also need to provide a CSV file containing image filenames. For illustration, we will get the filenames from a small set of images included in the repository (<code>images/train</code> folder), but you will want to train a model with at least 1,000 labeled images per species <span class="citation">(Schneider et al. <a href="#ref-schneider_2020">2020</a>)</span>. To get the filenames for those images we can use the <code>make_input</code> function (See Section <a href="mlwic2-machine-learning-for-wildlife-image-classification.html#format-mlwic2">5.2</a>); in the argument <code>path_prefix</code> you should provide the path of the directory containing the images. The <code>make_input</code> function will create the <code>image_labels.csv</code> file in the directory provided in the <code>output_dir</code> argument. We rename this file as <code>images_names_train_temp.csv</code>.</p>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" data-line-number="1"><span class="co"># this will read filenames from each image and create a CSV file with them</span></a>
+<a class="sourceLine" id="cb109-2" data-line-number="2"><span class="kw">make_input</span>(<span class="dt">path_prefix =</span> <span class="kw">here</span>(<span class="st">&quot;data&quot;</span>,<span class="st">&quot;mlwic2&quot;</span>,<span class="st">&quot;images&quot;</span>, <span class="st">&quot;train&quot;</span>),</a>
+<a class="sourceLine" id="cb109-3" data-line-number="3">           <span class="dt">option =</span> <span class="dv">4</span>,</a>
+<a class="sourceLine" id="cb109-4" data-line-number="4">           <span class="dt">find_file_names =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb109-5" data-line-number="5">           <span class="dt">output_dir =</span> <span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;mlwic2&quot;</span>, <span class="st">&quot;training&quot;</span>)) </a></code></pre></div>
+<pre><code>## Your file is located at &#39;/Users/julianavelez/Documents/GitHub/Processing-Camera-Trap-Data-using-AI/data/mlwic2/training/image_labels.csv&#39;.</code></pre>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb111-1" data-line-number="1"><span class="kw">file.rename</span>(<span class="dt">from =</span> <span class="st">&quot;data/mlwic2/training/image_labels.csv&quot;</span>, </a>
+<a class="sourceLine" id="cb111-2" data-line-number="2">            <span class="dt">to =</span> <span class="st">&quot;data/mlwic2/training/images_names_train_temp.csv&quot;</span>)</a></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<p>Once we have the filenames for the training set, we add the corresponding human vision labels for each image using a <code>left_join</code>. Additionally, we recode our species names with numbers as required by the MLWIC2 package; these numbers must be consecutive and should start with <code>0</code> <span class="citation">(Tabak et al. <a href="#ref-tabak_2020">2020</a>)</span>. We save this file <code>images_names_train.csv</code> with recoded species names using the <code>write_csv</code> function.</p>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb113-1" data-line-number="1">img_labs &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;mlwic2&quot;</span>, <span class="st">&quot;training&quot;</span>, <span class="st">&quot;images_names_train_temp.csv&quot;</span>), </a>
+<a class="sourceLine" id="cb113-2" data-line-number="2">                     <span class="dt">col_names =</span> <span class="kw">c</span>(<span class="st">&quot;filename&quot;</span>, <span class="st">&quot;class&quot;</span>))</a>
+<a class="sourceLine" id="cb113-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb113-4" data-line-number="4">hv_train &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;mlwic2&quot;</span>, <span class="st">&quot;training&quot;</span>, <span class="st">&quot;images_hv.csv&quot;</span>))</a>
+<a class="sourceLine" id="cb113-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb113-6" data-line-number="6">imgs_train &lt;-<span class="st"> </span>img_labs <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb113-7" data-line-number="7"><span class="st">  </span><span class="kw">left_join</span>(hv_train, <span class="dt">by =</span> <span class="st">&quot;filename&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb113-8" data-line-number="8"><span class="st">  </span><span class="kw">select</span>(filename, common_name) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb113-9" data-line-number="9"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">class_ID =</span> <span class="kw">factor</span>(<span class="kw">case_when</span>(common_name <span class="op">==</span><span class="st"> &quot;Blank&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb113-10" data-line-number="10">                                     common_name <span class="op">==</span><span class="st"> &quot;Black Agouti&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb113-11" data-line-number="11">                                     common_name <span class="op">==</span><span class="st"> &quot;Bos Species&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb113-12" data-line-number="12">                                     common_name <span class="op">==</span><span class="st"> &quot;Cervidae Family&quot;</span> <span class="op">|</span></a>
+<a class="sourceLine" id="cb113-13" data-line-number="13"><span class="st">                                       </span>common_name <span class="op">==</span><span class="st">  &quot;White-tailed Deer&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">4</span>,</a>
+<a class="sourceLine" id="cb113-14" data-line-number="14">                                     common_name <span class="op">==</span><span class="st"> &quot;Collared Peccary&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">5</span>,</a>
+<a class="sourceLine" id="cb113-15" data-line-number="15">                                     common_name <span class="op">==</span><span class="st"> &quot;Dasypus Species&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">6</span>,</a>
+<a class="sourceLine" id="cb113-16" data-line-number="16">                                     common_name <span class="op">==</span><span class="st"> &quot;Domestic Dog&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">7</span>,</a>
+<a class="sourceLine" id="cb113-17" data-line-number="17">                                     common_name <span class="op">==</span><span class="st"> &quot;Domestic Horse&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">8</span>,</a>
+<a class="sourceLine" id="cb113-18" data-line-number="18">                                     common_name <span class="op">==</span><span class="st"> &quot;Giant Anteater&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">9</span>,</a>
+<a class="sourceLine" id="cb113-19" data-line-number="19">                                     common_name <span class="op">==</span><span class="st"> &quot;Giant Armadillo&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">10</span>,</a>
+<a class="sourceLine" id="cb113-20" data-line-number="20">                                     common_name <span class="op">==</span><span class="st"> &quot;Human&quot;</span> <span class="op">|</span></a>
+<a class="sourceLine" id="cb113-21" data-line-number="21"><span class="st">                                       </span>common_name <span class="op">==</span><span class="st"> &quot;Human-Camera Trapper&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">11</span>,</a>
+<a class="sourceLine" id="cb113-22" data-line-number="22">                                     common_name <span class="op">==</span><span class="st"> &quot;Jaguar&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">12</span>,</a>
+<a class="sourceLine" id="cb113-23" data-line-number="23">                                     common_name <span class="op">==</span><span class="st"> &quot;Lowland Tapir&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">13</span>,</a>
+<a class="sourceLine" id="cb113-24" data-line-number="24">                                     common_name <span class="op">==</span><span class="st"> &quot;Nine-banded Armadillo&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">14</span>,</a>
+<a class="sourceLine" id="cb113-25" data-line-number="25">                                     common_name <span class="op">==</span><span class="st"> &quot;Ocelot&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">15</span>,</a>
+<a class="sourceLine" id="cb113-26" data-line-number="26">                                     common_name <span class="op">==</span><span class="st"> &quot;Possum Family&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">16</span>,</a>
+<a class="sourceLine" id="cb113-27" data-line-number="27">                                     common_name <span class="op">==</span><span class="st"> &quot;Puma&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">17</span>,</a>
+<a class="sourceLine" id="cb113-28" data-line-number="28">                                     common_name <span class="op">==</span><span class="st"> &quot;South American Coati&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">18</span>,</a>
+<a class="sourceLine" id="cb113-29" data-line-number="29">                                     common_name <span class="op">==</span><span class="st"> &quot;Southern Tamandua&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">19</span>,</a>
+<a class="sourceLine" id="cb113-30" data-line-number="30">                                     common_name <span class="op">==</span><span class="st"> &quot;Spotted Paca&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">20</span>,</a>
+<a class="sourceLine" id="cb113-31" data-line-number="31">                                     common_name <span class="op">==</span><span class="st"> &quot;White-lipped Peccary&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">21</span>,</a>
+<a class="sourceLine" id="cb113-32" data-line-number="32">                                       <span class="ot">TRUE</span> <span class="op">~</span><span class="st"> </span><span class="dv">0</span>))) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb113-33" data-line-number="33"><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb113-34" data-line-number="34"><span class="st">  </span><span class="kw">select</span>(filename, class_ID)</a>
+<a class="sourceLine" id="cb113-35" data-line-number="35">  </a>
+<a class="sourceLine" id="cb113-36" data-line-number="36"><span class="kw">write_csv</span>(imgs_train, <span class="dt">file =</span> <span class="st">&quot;data/mlwic2/training/images_names_train.csv&quot;</span>, <span class="dt">col_names =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<p>We then use the <code>train</code> function to train a new model, where we need to specify arguments that were also used with the <code>classify</code> function (see Section <a href="mlwic2-machine-learning-for-wildlife-image-classification.html#mlwic2-ai-module">5.3</a>); these include the <code>path_prefix</code>, <code>model_dir</code>, <code>python_loc</code>, <code>os</code> and <code>num_cores</code>. In the <code>data_info</code> argument we pass the <code>images_names_train.csv</code> file. We also need to specify the number of classes that we want to train the model to predict (e.g., these classes might differ from the 58 classes predicted when using MLWIC2’s built-in AI species model).</p>
+<p>We can use <code>retrain = FALSE</code> to train a model from scratch or <code>retrain = TRUE</code> if we want to retrain a pre-specified model using <em>transfer learning</em>.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> For more references on model training see <a href="https://github.com/mikeyEcology/MLWIC2" class="uri">https://github.com/mikeyEcology/MLWIC2</a>.</p>
+<p>We also need to specify the number of epochs (i.e., the number of times the learning algorithm will iterate on the training data set) using the<code>num_epochs</code> argument; we use the recommended default of 55 <span class="citation">(Tabak et al. <a href="#ref-tabak_2020">2020</a>)</span>. Lastly, we specify the directory where we want to store the model using the <code>log_dir_train</code> argument; we use “SA” for “South America”.</p>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb114-1" data-line-number="1"><span class="kw">train</span>(<span class="dt">path_prefix =</span> <span class="kw">here</span>(<span class="st">&quot;data&quot;</span>,<span class="st">&quot;mlwic2&quot;</span>, <span class="st">&quot;images&quot;</span>, <span class="st">&quot;train&quot;</span>),</a>
+<a class="sourceLine" id="cb114-2" data-line-number="2">         <span class="dt">data_info =</span> <span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;mlwic2&quot;</span>, <span class="st">&quot;training&quot;</span>, <span class="st">&quot;images_names_train.csv&quot;</span>), <span class="co"># absolute path to the make_input output</span></a>
+<a class="sourceLine" id="cb114-3" data-line-number="3">         <span class="dt">model_dir =</span> <span class="kw">here</span>(<span class="st">&quot;data&quot;</span>,<span class="st">&quot;mlwic2&quot;</span>, <span class="st">&quot;MLWIC2_helper_files/&quot;</span>),</a>
+<a class="sourceLine" id="cb114-4" data-line-number="4">         <span class="dt">python_loc =</span> <span class="st">&quot;/Users/julianavelez/opt/anaconda3/envs/ecology/bin/&quot;</span>, <span class="co"># absolute path of Python on your computer</span></a>
+<a class="sourceLine" id="cb114-5" data-line-number="5">         <span class="dt">os =</span> <span class="st">&quot;Mac&quot;</span>, <span class="co"># specify your operating system; &quot;Windows&quot; or &quot;Mac&quot;</span></a>
+<a class="sourceLine" id="cb114-6" data-line-number="6">         <span class="dt">num_cores =</span> <span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb114-7" data-line-number="7">      <span class="dt">num_classes =</span> <span class="dv">22</span>, <span class="co"># number of classes in your data set </span></a>
+<a class="sourceLine" id="cb114-8" data-line-number="8">      <span class="dt">retrain =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb114-9" data-line-number="9">      <span class="dt">num_epochs =</span> <span class="dv">55</span>, <span class="co"># initially you can use a smaller number for num_epochs to verify model training; it will take a long time to run.</span></a>
+<a class="sourceLine" id="cb114-10" data-line-number="10">      <span class="dt">log_dir_train =</span><span class="st">&quot;SA&quot;</span></a>
+<a class="sourceLine" id="cb114-11" data-line-number="11">      )</a></code></pre></div>
+</div>
+<div id="classify-trained" class="section level2">
+<h2><span class="header-section-number">5.6</span> Classify using a trained model</h2>
+<p>Then you can run the model that you trained using a test image set. You should also get filenames for these images (renamed as <code>images_names_test.csv</code>) and pass it when running the model with the <code>classify</code> function.</p>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb115-1" data-line-number="1"><span class="kw">make_input</span>(<span class="dt">path_prefix =</span> <span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;mlwic2&quot;</span>, <span class="st">&quot;images&quot;</span>, <span class="st">&quot;test&quot;</span>),</a>
+<a class="sourceLine" id="cb115-2" data-line-number="2">           <span class="dt">option =</span> <span class="dv">4</span>,</a>
+<a class="sourceLine" id="cb115-3" data-line-number="3">           <span class="dt">find_file_names =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb115-4" data-line-number="4">           <span class="dt">output_dir =</span> <span class="kw">here</span>(<span class="st">&quot;data&quot;</span>,<span class="st">&quot;mlwic2&quot;</span>,<span class="st">&quot;training&quot;</span>))</a></code></pre></div>
+<pre><code>## Your file is located at &#39;/Users/julianavelez/Documents/GitHub/Processing-Camera-Trap-Data-using-AI/data/mlwic2/training/image_labels.csv&#39;.</code></pre>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb117-1" data-line-number="1"><span class="kw">file.rename</span>(<span class="dt">from =</span> <span class="st">&quot;data/mlwic2/training/image_labels.csv&quot;</span>, <span class="dt">to =</span> <span class="st">&quot;data/mlwic2/training/images_names_test.csv&quot;</span>)</a></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb119-1" data-line-number="1"><span class="kw">classify</span>(<span class="dt">path_prefix =</span> <span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;mlwic2&quot;</span>, <span class="st">&quot;images&quot;</span>, <span class="st">&quot;test&quot;</span>), <span class="co"># absolute path to test images directory</span></a>
+<a class="sourceLine" id="cb119-2" data-line-number="2">         <span class="dt">data_info =</span> <span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;mlwic2&quot;</span>, <span class="st">&quot;training&quot;</span>, <span class="st">&quot;images_names_test.csv&quot;</span>), <span class="co"># absolute path to your image_labels.csv file</span></a>
+<a class="sourceLine" id="cb119-3" data-line-number="3">         <span class="dt">model_dir =</span> <span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;mlwic2&quot;</span>, <span class="st">&quot;MLWIC2_helper_files&quot;</span>),</a>
+<a class="sourceLine" id="cb119-4" data-line-number="4">         <span class="dt">log_dir =</span> <span class="st">&quot;SA&quot;</span>, <span class="co"># model name</span></a>
+<a class="sourceLine" id="cb119-5" data-line-number="5">         <span class="dt">python_loc =</span> <span class="st">&quot;/Users/julianavelez/opt/anaconda3/envs/ecology/bin/&quot;</span>, <span class="co"># absolute path of Python on your computer</span></a>
+<a class="sourceLine" id="cb119-6" data-line-number="6">         <span class="dt">os =</span> <span class="st">&quot;Mac&quot;</span>, <span class="co"># specify your operating system; &quot;Windows&quot; or &quot;Mac&quot;</span></a>
+<a class="sourceLine" id="cb119-7" data-line-number="7">         <span class="dt">make_output =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb119-8" data-line-number="8">         <span class="dt">num_cores =</span> <span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb119-9" data-line-number="9">         <span class="dt">output_name =</span> <span class="st">&quot;output_SA.csv&quot;</span>, <span class="co"># name for model output</span></a>
+<a class="sourceLine" id="cb119-10" data-line-number="10">         <span class="dt">num_classes =</span> <span class="dv">22</span></a>
+<a class="sourceLine" id="cb119-11" data-line-number="11">         )</a></code></pre></div>
+<p>Finally, you can read the trained model output to see how it looks like. It contains a column with the human vision label, <code>answer</code>, and top-5 predictions for each image with their associated confidence values. Once you have this output, you can verify model performance as described along Section <a href="mlwic2-machine-learning-for-wildlife-image-classification.html#ai-mlwic2">5.4</a>.</p>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb120-1" data-line-number="1">output_trained &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;mlwic2&quot;</span>, <span class="st">&quot;MLWIC2_helper_files&quot;</span>, <span class="st">&quot;output_SA.csv&quot;</span>))</a></code></pre></div>
+</div>
+<div id="conclusion" class="section level2">
+<h2><span class="header-section-number">5.7</span> Conclusion</h2>
+<p>We have seen how to set-up MLWIC2, prepare the required input files, and run its built-in AI model. Additionally, we illustrated how one can evaluate MLWIC2 performance by comparing true classifications with computer predictions, for species or groups found in North and South America (e.g., “Blank”, “cattle”,“armadillo”, “opossum”, “horse”, “dog”, “white-tailed deer” and “puma”). For our data set, MLWIC2 classifications had low precision and recall, probably due to strong differences between the training and the test data. Thus, we would need to train our own models using the tools provided by the MLWIC2 package to improve model performance with our data.</p>
+
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-magrittr">
+<p>Bache, Stefan Milton, and Hadley Wickham. 2020. <em>Magrittr: A Forward-Pipe Operator for R</em>. <a href="https://CRAN.R-project.org/package=magrittr">https://CRAN.R-project.org/package=magrittr</a>.</p>
+</div>
+<div id="ref-purrr">
+<p>Henry, Lionel, and Hadley Wickham. 2020. <em>Purrr: Functional Programming Tools</em>. <a href="https://CRAN.R-project.org/package=purrr">https://CRAN.R-project.org/package=purrr</a>.</p>
+</div>
+<div id="ref-R-caret">
+<p>Kuhn, Max. 2021. <em>Caret: Classification and Regression Training</em>. <a href="https://CRAN.R-project.org/package=caret">https://CRAN.R-project.org/package=caret</a>.</p>
+</div>
+<div id="ref-here">
+<p>Müller, Kirill. 2017. <em>Here: A Simpler Way to Find Your Files</em>. <a href="https://CRAN.R-project.org/package=here">https://CRAN.R-project.org/package=here</a>.</p>
+</div>
+<div id="ref-R-base">
+<p>R Core Team. 2021. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>.</p>
+</div>
+<div id="ref-schneider_2020">
+<p>Schneider, Stefan, Saul Greenberg, Graham W Taylor, and Stefan C Kremer. 2020. “Three Critical Factors Affecting Automated Image Species Recognition Performance for Camera Traps.” Journal Article. <em>Ecology and Evolution</em> 10 (7): 3503–17. <a href="https://doi.org/10.1002/ece3.6147">https://doi.org/10.1002/ece3.6147</a>.</p>
+</div>
+<div id="ref-tabak_2020">
+<p>Tabak, Michael A., Mohammad S. Norouzzadeh, David W. Wolfson, Erica J. Newton, Raoul K. Boughton, Jacob S. Ivan, Eric A. Odell, et al. 2020. “Improving the Accessibility and Transferability of Machine Learning Algorithms for Identification of Animals in Camera Trap Images: MLWIC2.” Journal Article. <em>Ecology and Evolution</em> n/a (n/a). <a href="https://doi.org/10.1002/ece3.6692">https://doi.org/10.1002/ece3.6692</a>.</p>
+</div>
+<div id="ref-R-tidyverse">
+<p>Wickham, Hadley. 2017. <em>Tidyverse: Easily Install and Load the ’Tidyverse’</em>. <a href="https://CRAN.R-project.org/package=tidyverse">https://CRAN.R-project.org/package=tidyverse</a>.</p>
+</div>
+<div id="ref-R-ggplot2">
+<p>Wickham, Hadley, Winston Chang, Lionel Henry, Thomas Lin Pedersen, Kohske Takahashi, Claus Wilke, and Kara Woo. 2018. <em>Ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics</em>. <a href="https://CRAN.R-project.org/package=ggplot2">https://CRAN.R-project.org/package=ggplot2</a>.</p>
+</div>
+<div id="ref-R-dplyr">
+<p>Wickham, Hadley, Romain François, Lionel Henry, and Kirill Müller. 2019. <em>Dplyr: A Grammar of Data Manipulation</em>. <a href="https://CRAN.R-project.org/package=dplyr">https://CRAN.R-project.org/package=dplyr</a>.</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>Transfer learning is a process in which a source model and new data set are used to improve model learning for a new task.<a href="mlwic2-machine-learning-for-wildlife-image-classification.html#fnref1" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="megadetector---microsoft-ai.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="conservation-ai.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/04-mlwic2.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["CTWorkflows.pdf", "CTWorkflows.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,22 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+.html
+_book/search_index.json
+_book/*.*
+latexsheet.pdf
+github-git-cheat-sheet.pdf
+rmarkdown-cheatsheet.pdf
+Useful_Links.pdf
+Setup.pdf
+
+# Folder view configuration files
+.DS_Store
+Desktop.ini
+
+# Folder view configuration files
+/carpentry_scripts/
+
+# Folder with information related to bookdown, github, rmarkdown
+/cheatsheets/

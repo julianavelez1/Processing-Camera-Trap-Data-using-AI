@@ -1,0 +1,62 @@
+---
+title: "Introduction"
+author: "Juliana Vélez"
+date: "3/24/2021"
+output: html_document
+---
+
+```{r setup1, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(message = FALSE, warning = FALSE)
+```
+
+# Introduction
+
+Our objectives in writing this guideline are to:
+
+1. Describe the steps needed to set up and process camera trap data using popular artificial intelligence (AI) platforms, including Wildlife Insights, MegaDetector, MLWIC2, and Conservation AI.  
+
+2. Demonstrate common workflows for analyzing camera trap data using these platforms via a case study in which we process data collected by the lead author. The aim of the case study project is to develop a joint species distribution model integrating data from camera traps and acoustic sensors to understand interactions between wildlife species in multi-functional landscapes in Colombia that support both biological diversity and economic activities such as cattle ranching.
+
+Each chapter covers a different AI system, and we provide appropriate links to instruction manuals and other resources for researchers looking for additional documentation. We describe the steps required to set up the platforms, upload pictures (e.g., required folder structure), and include and format metadata (e.g., geographical coordinates of locations, deployment dates, and other deployment information such as camera height, use of bait, etc.). We then provide guidance on how to use the artificial intelligence platforms for object detection (e.g., to separate blanks from non-blanks) and species classification. 
+
+Importantly, we also demonstrate methods for evaluating the performance of AI platforms. Before AI platforms can be evaluated, users will need to manually label a subset of images which can then be compared with AI output. This labeling can be done using a variety of available software [e.g., @scotson2017best], but the resulting data should include, at minimum, the 1) image filename, 2) camera location and 3) species name. The first two variables (e.g., filename and location) are needed to match records from the human-labeled and AI-labeled data sets (hereafter human and computer vision, respectively), and the third variable will allow one to compare human and AI-generated labels. 
+
+Having a subset of labeled images will allow you to assess how a particular AI model is performing with your data set and determine appropriate use given its performance. We provide annotated R code and examples demonstrating how to compute  model performance metrics estimated using categories described in Table \@ref(tab:notation) that classify correct and incorrect predictions.
+
+```{r notation, echo=FALSE}
+library(huxtable)
+library(dplyr)
+
+notation <- tribble_hux(~Notation, ~Description,
+                       "TP - True Positives", "Number of observations where the species was correctly identified as being present in the photo.",
+                       "TN - True Negatives", "Number of observations where the species was correctly identified as being absent in the photo.",
+                       "FP - False Positives", "Number of observations where the species was absent, but the AI classified the species as being present.",
+                       "FN - False Negatives", "Number of observations where the species was present, but the AI classified the species as being absent.",
+                       add_colnames = TRUE) %>% 
+  set_bold(1, everywhere)
+
+notation <- set_caption(notation, value = "Notation and categories of classifications used to estimate model performance metrics.")
+
+notation
+
+```
+
+Performance metrics include model accuracy, precision, recall and F1 score [Table \@ref(tab:intro-metrics); @sokolova_2009]. To describe these metrics, we will refer to AI classifications as "predictions" and human vision classifications as "true classifications". *Accuracy* is the proportion of correct AI predictions in the data set [@R-yardstick], *precision* is the probability that the species is present given it is predicted to be present, and *recall* is the probability a species is predicted to be present given it is truly present; *F1 score* is a weighted average of precision and recall  (Table \@ref(tab:intro-metrics)). When inspecting model performance, it can be useful to calculate these metrics separately for each species.
+ 
+`
+```{r intro-metrics, echo=FALSE}
+metrics <- tribble_hux(~Metrics, ~Equation, ~Interpretation,
+                       "Accuracy", "(TP+TN)/(TP+FP+TN+FN)", "Proportion of correct predictions in a data set.",
+                       "Precision", "TP/(TP+FP)", "Probability the species is correctly classified as present given that the AI system classified it as present.",
+                       "Recall", "TP/(TP+FN)", "Probability the species is correctly classified as present given that the species truly is present.",
+                       "F1 Score", "2*precision*recall / (precision + recall)", "Weighted average of precision and recall.",
+                       add_colnames = TRUE) %>% 
+  set_bold(1, everywhere)
+
+metrics <- set_caption(metrics, value = "Metrics used to assess model performance")
+
+metrics
+```
+
+AI platforms typically assign a *confidence level* to each classification, with higher values reflective of more certain classifications. These confidence levels can be used to post-process the data in a way that trades off precision and recall.  For example, one can choose to only accept classifications that have a high level of confidence.  Doing so will typically reduce the number of false positives, leading to high levels of precision (i.e., users can be more confident that the species is truly present when AI returns a species classification). The number of true positives, and thus recall, may also be reduced but hopefully to a lesser extent.   

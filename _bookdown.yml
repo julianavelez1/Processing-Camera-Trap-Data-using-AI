@@ -1,0 +1,8 @@
+book_filename: "CTWorkflows"
+language:
+  ui:
+    chapter_name: "Chapter "
+delete_merged_file: true
+#rmd_files: ["index.Rmd", "99-references.Rmd"] # can list them here
+before_chapter_script: ["colfuncs.R"]
+new_session: yes

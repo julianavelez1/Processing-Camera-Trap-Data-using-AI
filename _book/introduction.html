@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Guide for using artificial intelligence systems for camera trap data processing</title>
+  <meta name="description" content="We aim to provide an overview of the steps required to use platforms that implement artificial intelligence into workflows for processing camera trap images." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Guide for using artificial intelligence systems for camera trap data processing" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="We aim to provide an overview of the steps required to use platforms that implement artificial intelligence into workflows for processing camera trap images." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Guide for using artificial intelligence systems for camera trap data processing" />
+  
+  <meta name="twitter:description" content="We aim to provide an overview of the steps required to use platforms that implement artificial intelligence into workflows for processing camera trap images." />
+  
+
+<meta name="author" content="Juliana Velez and John Fieberg" />
+
+
+<meta name="date" content="2022-01-31" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="camera-trap-data.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.19/datatables.js"></script>
+<link href="libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Guide for using artificial intelligence systems for camera trap data processing</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="camera-trap-data.html"><a href="camera-trap-data.html"><i class="fa fa-check"></i><b>2</b> Camera-trap data</a></li>
+<li class="chapter" data-level="3" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html"><i class="fa fa-check"></i><b>3</b> Wildlife Insights (WI)</a><ul>
+<li class="chapter" data-level="3.1" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html#set-up"><i class="fa fa-check"></i><b>3.1</b> Set-up</a></li>
+<li class="chapter" data-level="3.2" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html#uploadformat-data"><i class="fa fa-check"></i><b>3.2</b> Upload/format data</a></li>
+<li class="chapter" data-level="3.3" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html#uploadenter-metadata"><i class="fa fa-check"></i><b>3.3</b> Upload/enter metadata</a></li>
+<li class="chapter" data-level="3.4" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html#processing-images---ai-module"><i class="fa fa-check"></i><b>3.4</b> Processing images - AI module</a></li>
+<li class="chapter" data-level="3.5" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html#post-ai-image-processing"><i class="fa fa-check"></i><b>3.5</b> Post-AI image processing</a></li>
+<li class="chapter" data-level="3.6" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html#wi-output"><i class="fa fa-check"></i><b>3.6</b> Using AI output</a></li>
+<li class="chapter" data-level="3.7" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html#wi-performance"><i class="fa fa-check"></i><b>3.7</b> Assessing AI performance</a><ul>
+<li class="chapter" data-level="3.7.1" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html#reading-in-data-introduction-to-the-purrr-package"><i class="fa fa-check"></i><b>3.7.1</b> Reading in data, introduction to the Purrr package</a></li>
+<li class="chapter" data-level="3.7.2" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html#removing-duplicate-images"><i class="fa fa-check"></i><b>3.7.2</b> Removing duplicate images</a></li>
+<li class="chapter" data-level="3.7.3" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html#images-with-multiple-observations-of-the-same-species"><i class="fa fa-check"></i><b>3.7.3</b> Images with multiple observations of the same species</a></li>
+<li class="chapter" data-level="3.7.4" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html#images-with-multiple-species"><i class="fa fa-check"></i><b>3.7.4</b> Images with multiple species</a></li>
+<li class="chapter" data-level="3.7.5" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html#summarizing-human-and-computer-vision-records-by-species"><i class="fa fa-check"></i><b>3.7.5</b> Summarizing human and computer vision records by species</a></li>
+<li class="chapter" data-level="3.7.6" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html#confusion-matrix-and-performance-measures"><i class="fa fa-check"></i><b>3.7.6</b> Confusion matrix and performance measures</a></li>
+<li class="chapter" data-level="3.7.7" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html#confidence-thresholds"><i class="fa fa-check"></i><b>3.7.7</b> Confidence thresholds</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html#conclusions"><i class="fa fa-check"></i><b>3.8</b> Conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="megadetector---microsoft-ai.html"><a href="megadetector---microsoft-ai.html"><i class="fa fa-check"></i><b>4</b> MegaDetector - Microsoft AI</a><ul>
+<li class="chapter" data-level="4.1" data-path="megadetector---microsoft-ai.html"><a href="megadetector---microsoft-ai.html#md-upload"><i class="fa fa-check"></i><b>4.1</b> Upload/format data</a></li>
+<li class="chapter" data-level="4.2" data-path="megadetector---microsoft-ai.html"><a href="megadetector---microsoft-ai.html#md-metadata"><i class="fa fa-check"></i><b>4.2</b> Upload/enter metadata</a></li>
+<li class="chapter" data-level="4.3" data-path="megadetector---microsoft-ai.html"><a href="megadetector---microsoft-ai.html#md-process"><i class="fa fa-check"></i><b>4.3</b> Process images - AI module</a></li>
+<li class="chapter" data-level="4.4" data-path="megadetector---microsoft-ai.html"><a href="megadetector---microsoft-ai.html#md-timelapse"><i class="fa fa-check"></i><b>4.4</b> Image processing with Timelapse 2</a></li>
+<li class="chapter" data-level="4.5" data-path="megadetector---microsoft-ai.html"><a href="megadetector---microsoft-ai.html#md-output"><i class="fa fa-check"></i><b>4.5</b> Using AI output</a></li>
+<li class="chapter" data-level="4.6" data-path="megadetector---microsoft-ai.html"><a href="megadetector---microsoft-ai.html#md-performance"><i class="fa fa-check"></i><b>4.6</b> Assessing AI performance</a><ul>
+<li class="chapter" data-level="4.6.1" data-path="megadetector---microsoft-ai.html"><a href="megadetector---microsoft-ai.html#reading-in-data-introduction-to-the-purrr-package-1"><i class="fa fa-check"></i><b>4.6.1</b> Reading in data, introduction to the Purrr package</a></li>
+<li class="chapter" data-level="4.6.2" data-path="megadetector---microsoft-ai.html"><a href="megadetector---microsoft-ai.html#format-computer-vision-data-set"><i class="fa fa-check"></i><b>4.6.2</b> Format computer vision data set</a></li>
+<li class="chapter" data-level="4.6.3" data-path="megadetector---microsoft-ai.html"><a href="megadetector---microsoft-ai.html#md-format-hv"><i class="fa fa-check"></i><b>4.6.3</b> Format human vision data set</a></li>
+<li class="chapter" data-level="4.6.4" data-path="megadetector---microsoft-ai.html"><a href="megadetector---microsoft-ai.html#merging-computer-and-human-vision-data-sets"><i class="fa fa-check"></i><b>4.6.4</b> Merging computer and human vision data sets</a></li>
+<li class="chapter" data-level="4.6.5" data-path="megadetector---microsoft-ai.html"><a href="megadetector---microsoft-ai.html#confusion-matrix-and-performance-measures-1"><i class="fa fa-check"></i><b>4.6.5</b> Confusion matrix and performance measures</a></li>
+<li class="chapter" data-level="4.6.6" data-path="megadetector---microsoft-ai.html"><a href="megadetector---microsoft-ai.html#md-thresholds"><i class="fa fa-check"></i><b>4.6.6</b> Confidence thresholds</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="megadetector---microsoft-ai.html"><a href="megadetector---microsoft-ai.html#conclusions-1"><i class="fa fa-check"></i><b>4.7</b> Conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="mlwic2-machine-learning-for-wildlife-image-classification.html"><a href="mlwic2-machine-learning-for-wildlife-image-classification.html"><i class="fa fa-check"></i><b>5</b> MLWIC2: Machine Learning for Wildlife Image Classification</a><ul>
+<li class="chapter" data-level="5.1" data-path="mlwic2-machine-learning-for-wildlife-image-classification.html"><a href="mlwic2-machine-learning-for-wildlife-image-classification.html#set-up-1"><i class="fa fa-check"></i><b>5.1</b> Set-up</a></li>
+<li class="chapter" data-level="5.2" data-path="mlwic2-machine-learning-for-wildlife-image-classification.html"><a href="mlwic2-machine-learning-for-wildlife-image-classification.html#format-mlwic2"><i class="fa fa-check"></i><b>5.2</b> Upload/format data</a></li>
+<li class="chapter" data-level="5.3" data-path="mlwic2-machine-learning-for-wildlife-image-classification.html"><a href="mlwic2-machine-learning-for-wildlife-image-classification.html#mlwic2-ai-module"><i class="fa fa-check"></i><b>5.3</b> Process images - AI module</a></li>
+<li class="chapter" data-level="5.4" data-path="mlwic2-machine-learning-for-wildlife-image-classification.html"><a href="mlwic2-machine-learning-for-wildlife-image-classification.html#ai-mlwic2"><i class="fa fa-check"></i><b>5.4</b> Assessing AI performance</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="mlwic2-machine-learning-for-wildlife-image-classification.html"><a href="mlwic2-machine-learning-for-wildlife-image-classification.html#format-human-vision-data-set"><i class="fa fa-check"></i><b>5.4.1</b> Format human vision data set</a></li>
+<li class="chapter" data-level="5.4.2" data-path="mlwic2-machine-learning-for-wildlife-image-classification.html"><a href="mlwic2-machine-learning-for-wildlife-image-classification.html#format-computer-vision-data-set-1"><i class="fa fa-check"></i><b>5.4.2</b> Format computer vision data set</a></li>
+<li class="chapter" data-level="5.4.3" data-path="mlwic2-machine-learning-for-wildlife-image-classification.html"><a href="mlwic2-machine-learning-for-wildlife-image-classification.html#merging-computer-and-human-vision-data-sets-1"><i class="fa fa-check"></i><b>5.4.3</b> Merging computer and human vision data sets</a></li>
+<li class="chapter" data-level="5.4.4" data-path="mlwic2-machine-learning-for-wildlife-image-classification.html"><a href="mlwic2-machine-learning-for-wildlife-image-classification.html#summarizing-human-and-computer-vision-records-by-class"><i class="fa fa-check"></i><b>5.4.4</b> Summarizing human and computer vision records by class</a></li>
+<li class="chapter" data-level="5.4.5" data-path="mlwic2-machine-learning-for-wildlife-image-classification.html"><a href="mlwic2-machine-learning-for-wildlife-image-classification.html#confusion-matrix-and-performance-measures-2"><i class="fa fa-check"></i><b>5.4.5</b> Confusion matrix and performance measures</a></li>
+<li class="chapter" data-level="5.4.6" data-path="mlwic2-machine-learning-for-wildlife-image-classification.html"><a href="mlwic2-machine-learning-for-wildlife-image-classification.html#confidence-thresholds-1"><i class="fa fa-check"></i><b>5.4.6</b> Confidence thresholds</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="mlwic2-machine-learning-for-wildlife-image-classification.html"><a href="mlwic2-machine-learning-for-wildlife-image-classification.html#model-training"><i class="fa fa-check"></i><b>5.5</b> Model training</a></li>
+<li class="chapter" data-level="5.6" data-path="mlwic2-machine-learning-for-wildlife-image-classification.html"><a href="mlwic2-machine-learning-for-wildlife-image-classification.html#classify-trained"><i class="fa fa-check"></i><b>5.6</b> Classify using a trained model</a></li>
+<li class="chapter" data-level="5.7" data-path="mlwic2-machine-learning-for-wildlife-image-classification.html"><a href="mlwic2-machine-learning-for-wildlife-image-classification.html#conclusion"><i class="fa fa-check"></i><b>5.7</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="conservation-ai.html"><a href="conservation-ai.html"><i class="fa fa-check"></i><b>6</b> Conservation AI</a><ul>
+<li class="chapter" data-level="6.1" data-path="conservation-ai.html"><a href="conservation-ai.html#set-up-2"><i class="fa fa-check"></i><b>6.1</b> Set-up</a></li>
+<li class="chapter" data-level="6.2" data-path="conservation-ai.html"><a href="conservation-ai.html#uploadformat-data-1"><i class="fa fa-check"></i><b>6.2</b> Upload/format data</a></li>
+<li class="chapter" data-level="6.3" data-path="conservation-ai.html"><a href="conservation-ai.html#image-tagging"><i class="fa fa-check"></i><b>6.3</b> Image tagging</a></li>
+<li class="chapter" data-level="6.4" data-path="conservation-ai.html"><a href="conservation-ai.html#process-images---ai-module"><i class="fa fa-check"></i><b>6.4</b> Process images - AI module</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Guide for using artificial intelligence systems for camera trap data processing</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Guide for using artificial intelligence systems for camera trap data processing</h1>
+<p class="author"><em>Juliana Velez and John Fieberg</em></p>
+<p class="date"><em>2022-01-31</em></p>
+</div>
+<div id="introduction" class="section level1">
+<h1><span class="header-section-number">Chapter 1</span> Introduction</h1>
+<p>Our objectives in writing this guideline are to:</p>
+<ol style="list-style-type: decimal">
+<li><p>Describe the steps needed to set up and process camera trap data using popular artificial intelligence (AI) platforms, including Wildlife Insights, MegaDetector, MLWIC2, and Conservation AI.</p></li>
+<li><p>Demonstrate common workflows for analyzing camera trap data using these platforms via a case study in which we process data collected by the lead author. The aim of the case study project is to develop a joint species distribution model integrating data from camera traps and acoustic sensors to understand interactions between wildlife species in multi-functional landscapes in Colombia that support both biological diversity and economic activities such as cattle ranching.</p></li>
+</ol>
+<p>Each chapter covers a different AI system, and we provide appropriate links to instruction manuals and other resources for researchers looking for additional documentation. We describe the steps required to set up the platforms, upload pictures (e.g., required folder structure), and include and format metadata (e.g., geographical coordinates of locations, deployment dates, and other deployment information such as camera height, use of bait, etc.). We then provide guidance on how to use the artificial intelligence platforms for object detection (e.g., to separate blanks from non-blanks) and species classification.</p>
+<p>Importantly, we also demonstrate methods for evaluating the performance of AI platforms. Before AI platforms can be evaluated, users will need to manually label a subset of images which can then be compared with AI output. This labeling can be done using a variety of available software <span class="citation">(e.g., Scotson et al. <a href="#ref-scotson2017best">2017</a>)</span>, but the resulting data should include, at minimum, the 1) image filename, 2) camera location and 3) species name. The first two variables (e.g., filename and location) are needed to match records from the human-labeled and AI-labeled data sets (hereafter human and computer vision, respectively), and the third variable will allow one to compare human and AI-generated labels.</p>
+<p>Having a subset of labeled images will allow you to assess how a particular AI model is performing with your data set and determine appropriate use given its performance. We provide annotated R code and examples demonstrating how to compute model performance metrics estimated using categories described in Table <a href="introduction.html#tab:notation">1.1</a> that classify correct and incorrect predictions.</p>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:notation">
+<caption style="caption-side: top; text-align: center;"><span id="tab:notation">Table 1.1: </span> Notation and categories of classifications used to estimate model performance metrics.</caption><col><col><tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Notation</th><th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Description</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">TP - True Positives</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Number of observations where the species was correctly identified as being present in the photo.</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">TN - True Negatives</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Number of observations where the species was correctly identified as being absent in the photo.</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">FP - False Positives</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Number of observations where the species was absent, but the AI classified the species as being present.</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">FN - False Negatives</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Number of observations where the species was present, but the AI classified the species as being absent.</td></tr>
+</table>
+
+<p>Performance metrics include model accuracy, precision, recall and F1 score <span class="citation">(Table <a href="introduction.html#tab:intro-metrics">1.2</a>; Sokolova and Lapalme <a href="#ref-sokolova_2009">2009</a>)</span>. To describe these metrics, we will refer to AI classifications as “predictions” and human vision classifications as “true classifications”. <em>Accuracy</em> is the proportion of correct AI predictions in the data set <span class="citation">(Kuhn and Vaughan <a href="#ref-R-yardstick">2021</a>)</span>, <em>precision</em> is the probability that the species is present given it is predicted to be present, and <em>recall</em> is the probability a species is predicted to be present given it is truly present; <em>F1 score</em> is a weighted average of precision and recall (Table <a href="introduction.html#tab:intro-metrics">1.2</a>). When inspecting model performance, it can be useful to calculate these metrics separately for each species.</p>
+<p>`
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:intro-metrics">
+<caption style="caption-side: top; text-align: center;"><span id="tab:intro-metrics">Table 1.2: </span> Metrics used to assess model performance</caption><col><col><col><tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Metrics</th><th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Equation</th><th style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Interpretation</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Accuracy</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">(TP+TN)/(TP+FP+TN+FN)</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Proportion of correct predictions in a data set.</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Precision</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">TP/(TP+FP)</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Probability the species is correctly classified as present given that the AI system classified it as present.</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Recall</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">TP/(TP+FN)</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Probability the species is correctly classified as present given that the species truly is present.</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">F1 Score</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">2*precision*recall / (precision + recall)</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Weighted average of precision and recall.</td></tr>
+</table>
+</p>
+<p>AI platforms typically assign a <em>confidence level</em> to each classification, with higher values reflective of more certain classifications. These confidence levels can be used to post-process the data in a way that trades off precision and recall. For example, one can choose to only accept classifications that have a high level of confidence. Doing so will typically reduce the number of false positives, leading to high levels of precision (i.e., users can be more confident that the species is truly present when AI returns a species classification). The number of true positives, and thus recall, may also be reduced but hopefully to a lesser extent.</p>
+
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-R-yardstick">
+<p>Kuhn, Max, and Davis Vaughan. 2021. <em>Yardstick: Tidy Characterizations of Model Performance</em>. <a href="https://CRAN.R-project.org/package=yardstick">https://CRAN.R-project.org/package=yardstick</a>.</p>
+</div>
+<div id="ref-scotson2017best">
+<p>Scotson, Lorraine, Lisa R Johnston, Fabiola Iannarilli, Oliver R Wearn, Jayasilan Mohd-Azlan, Wai Ming Wong, Thomas NE Gray, et al. 2017. “Best Practices and Software for the Management and Sharing of Camera Trap Data for Small and Large Scales Studies.” <em>Remote Sensing in Ecology and Conservation</em> 3 (3). Wiley Online Library: 158–72.</p>
+</div>
+<div id="ref-sokolova_2009">
+<p>Sokolova, Marina, and Guy Lapalme. 2009. “A Systematic Analysis of Performance Measures for Classification Tasks.” Journal Article. <em>Information Processing &amp; Management</em> 45 (4): 427–37. <a href="https://doi.org/https://doi.org/10.1016/j.ipm.2009.03.002">https://doi.org/https://doi.org/10.1016/j.ipm.2009.03.002</a>.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="camera-trap-data.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/01-intro.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["CTWorkflows.pdf", "CTWorkflows.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
