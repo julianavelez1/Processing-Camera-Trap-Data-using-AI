@@ -448,8 +448,8 @@ sp_counts <- full_join(x = sp_counts_cv, y = sp_counts_hv,
 
 
 ```{=html}
-<div id="htmlwidget-98cd99f33ae774200887" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-98cd99f33ae774200887">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10"],["Armadillo","Blank","Cattle","Dog","Horse","Opossum","Other_cv","Other_hv","Puma","White-tailed Deer"],[2,7554,278,53,5,254,90918,null,43,523],[5707,19658,3031,18,806,936,null,68109,119,1246]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>class<\/th>\n      <th>n_cv<\/th>\n      <th>n_hv<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-a541c196af6c63ae7c5f" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a541c196af6c63ae7c5f">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10"],["Armadillo","Blank","Cattle","Dog","Horse","Opossum","Other_cv","Other_hv","Puma","White-tailed Deer"],[2,7554,278,53,5,254,90918,null,43,523],[5707,19658,3031,18,806,936,null,68109,119,1246]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>class<\/th>\n      <th>n_cv<\/th>\n      <th>n_hv<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 ```
 <table>
 <caption>(#tab:myDThtmltools3)Counts of images classified by MLWIC2 (n_cv) and humans (n_hv) for each class in the data set.</caption>
@@ -522,8 +522,8 @@ classes_metrics_mlwic2_0.65$class <- str_remove(string = classes_metrics_mlwic2_
 
 
 ```{=html}
-<div id="htmlwidget-9816dcb9dc8068108297" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-9816dcb9dc8068108297">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6"],["Blank","Cattle","Dog","Opossum","Puma","White-tailed Deer"],[0.24,0.76,0,0.33,0.8,0.3],[0.53,0.03,0,0.03,0.03,0.05],[0.33,0.06,null,0.06,0.06,0.09]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>class<\/th>\n      <th>Precision<\/th>\n      <th>Recall<\/th>\n      <th>F1<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,4]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-33ec9a46ecaeea32c0c1" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-33ec9a46ecaeea32c0c1">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6"],["Blank","Cattle","Dog","Opossum","Puma","White-tailed Deer"],[0.24,0.76,0,0.33,0.8,0.3],[0.53,0.03,0,0.03,0.03,0.05],[0.33,0.06,null,0.06,0.06,0.09]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>class<\/th>\n      <th>Precision<\/th>\n      <th>Recall<\/th>\n      <th>F1<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,4]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 ```
 <table>
 <caption>(#tab:myDThtmltools2)Model performance metrics for each class in the data set using a 0.65 confidence threshold.</caption>

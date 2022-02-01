@@ -24,7 +24,7 @@
 <meta name="author" content="Juliana Velez and John Fieberg" />
 
 
-<meta name="date" content="2022-01-31" />
+<meta name="date" content="2022-02-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -139,9 +139,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">Guide for using artificial intelligence systems for camera trap data processing</a></li>
+<li><a href="./index.html">Guide for using artificial intelligence systems for camera trap data processing</a></li>
 
 <li class="divider"></li>
+<li><a href="index.html#section"></a></li>
 <li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
 <li class="chapter" data-level="2" data-path="camera-trap-data.html"><a href="camera-trap-data.html"><i class="fa fa-check"></i><b>2</b> Camera-trap data</a></li>
 <li class="chapter" data-level="3" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html"><i class="fa fa-check"></i><b>3</b> Wildlife Insights (WI)</a><ul>
@@ -517,8 +518,8 @@ You can find more installation details in the GitHub repository (<a href="https:
 <a class="sourceLine" id="cb100-12" data-line-number="12">                       <span class="dt">by =</span> <span class="st">&quot;class&quot;</span>, </a>
 <a class="sourceLine" id="cb100-13" data-line-number="13">                       <span class="dt">suffix =</span> <span class="kw">c</span>(<span class="st">&quot;_cv&quot;</span>, <span class="st">&quot;_hv&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb100-14" data-line-number="14"><span class="st">  </span><span class="kw">arrange</span>(class)</a></code></pre></div>
-<div id="htmlwidget-98cd99f33ae774200887" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-98cd99f33ae774200887">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10"],["Armadillo","Blank","Cattle","Dog","Horse","Opossum","Other_cv","Other_hv","Puma","White-tailed Deer"],[2,7554,278,53,5,254,90918,null,43,523],[5707,19658,3031,18,806,936,null,68109,119,1246]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>class<\/th>\n      <th>n_cv<\/th>\n      <th>n_hv<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-a541c196af6c63ae7c5f" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a541c196af6c63ae7c5f">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10"],["Armadillo","Blank","Cattle","Dog","Horse","Opossum","Other_cv","Other_hv","Puma","White-tailed Deer"],[2,7554,278,53,5,254,90918,null,43,523],[5707,19658,3031,18,806,936,null,68109,119,1246]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>class<\/th>\n      <th>n_cv<\/th>\n      <th>n_hv<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 <table>
 <caption>
 <span id="tab:myDThtmltools3">Table 5.1: </span>Counts of images classified by MLWIC2 (n_cv) and humans (n_hv) for each class in the data set.
@@ -575,8 +576,8 @@ Figure 5.1: Confusion matrix applied to classifictions from MLWIC2 using a confi
 <a class="sourceLine" id="cb104-9" data-line-number="9"></a>
 <a class="sourceLine" id="cb104-10" data-line-number="10">classes_metrics_mlwic2_<span class="fl">0.65</span><span class="op">$</span>class &lt;-<span class="st"> </span><span class="kw">str_remove</span>(<span class="dt">string =</span> classes_metrics_mlwic2_<span class="fl">0.65</span><span class="op">$</span>class, </a>
 <a class="sourceLine" id="cb104-11" data-line-number="11">                                                <span class="dt">pattern =</span> <span class="st">&quot;Class: &quot;</span>)</a></code></pre></div>
-<div id="htmlwidget-9816dcb9dc8068108297" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-9816dcb9dc8068108297">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6"],["Blank","Cattle","Dog","Opossum","Puma","White-tailed Deer"],[0.24,0.76,0,0.33,0.8,0.3],[0.53,0.03,0,0.03,0.03,0.05],[0.33,0.06,null,0.06,0.06,0.09]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>class<\/th>\n      <th>Precision<\/th>\n      <th>Recall<\/th>\n      <th>F1<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,4]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-33ec9a46ecaeea32c0c1" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-33ec9a46ecaeea32c0c1">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6"],["Blank","Cattle","Dog","Opossum","Puma","White-tailed Deer"],[0.24,0.76,0,0.33,0.8,0.3],[0.53,0.03,0,0.03,0.03,0.05],[0.33,0.06,null,0.06,0.06,0.09]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>class<\/th>\n      <th>Precision<\/th>\n      <th>Recall<\/th>\n      <th>F1<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,4]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 <table>
 <caption>
 <span id="tab:myDThtmltools2">Table 4.1: </span>Model performance metrics for each class in the data set using a 0.65 confidence threshold.

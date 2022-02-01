@@ -24,7 +24,7 @@
 <meta name="author" content="Juliana Velez and John Fieberg" />
 
 
-<meta name="date" content="2022-01-31" />
+<meta name="date" content="2022-02-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -139,9 +139,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">Guide for using artificial intelligence systems for camera trap data processing</a></li>
+<li><a href="./index.html">Guide for using artificial intelligence systems for camera trap data processing</a></li>
 
 <li class="divider"></li>
+<li><a href="index.html#section"></a></li>
 <li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
 <li class="chapter" data-level="2" data-path="camera-trap-data.html"><a href="camera-trap-data.html"><i class="fa fa-check"></i><b>2</b> Camera-trap data</a></li>
 <li class="chapter" data-level="3" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html"><i class="fa fa-check"></i><b>3</b> Wildlife Insights (WI)</a><ul>
@@ -612,8 +613,8 @@ Figure 4.8: Confusion matrix applied to classifications from MegaDetector using 
 <a class="sourceLine" id="cb63-9" data-line-number="9"></a>
 <a class="sourceLine" id="cb63-10" data-line-number="10">classes_metrics_md_<span class="fl">0.65</span> &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span class="kw">pluck</span>(classes_metrics_md_<span class="fl">0.65</span>, <span class="dv">1</span>), <span class="kw">pluck</span>(classes_metrics_md_<span class="fl">0.65</span>,<span class="dv">2</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb63-11" data-line-number="11"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Class =</span> <span class="kw">c</span>(<span class="st">&quot;Animal&quot;</span>, <span class="st">&quot;Blank&quot;</span>), <span class="dt">.before =</span> Precision)</a></code></pre></div>
-<div id="htmlwidget-8f6a82d6dafe8ba51677" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-8f6a82d6dafe8ba51677">{"x":{"filter":"none","vertical":false,"data":[["1","2"],["Animal","Blank"],[0.98,0.77],[0.93,0.93],[0.96,0.84]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Class<\/th>\n      <th>Precision<\/th>\n      <th>Recall<\/th>\n      <th>F1<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,4]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-d320681334d4859f4054" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d320681334d4859f4054">{"x":{"filter":"none","vertical":false,"data":[["1","2"],["Animal","Blank"],[0.98,0.77],[0.93,0.93],[0.96,0.84]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Class<\/th>\n      <th>Precision<\/th>\n      <th>Recall<\/th>\n      <th>F1<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,4]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 <table>
 <caption>
 <span id="tab:myDThtmltools2">Table 4.1: </span>Model performance metrics for the classes detected by MegaDetector using a 0.65 confidence threshold.
