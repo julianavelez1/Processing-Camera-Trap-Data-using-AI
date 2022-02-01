@@ -27,7 +27,8 @@ options(width=160)
 Lowland tapir in El Rey Zamuro Reserve, Central Colombia, July 2019. Photo taken by Joares A. May.
 <br>
 <br>
-```****
+```
+
 
 ```{=html}
 <b>Suggested Citation:</b>
