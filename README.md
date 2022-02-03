@@ -11,3 +11,4 @@ Here, we aim to provide an overview of the steps required to implement machine l
 - [Machine Learning for Wildlife Image Classification](https://github.com/mikeyEcology/MLWIC2) (MLWIC2)
 - [Conservation AI](https://www.conservationai.co.uk/)
 
+The rendered book can be found at: https://ai-camtraps.netlify.app/
