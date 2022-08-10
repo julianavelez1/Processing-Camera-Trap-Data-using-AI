@@ -211,12 +211,12 @@ We can use various "joins" [@R-dplyr] to merge computer and human vision togethe
 ind1 <- cv$filename %in% hv$filename # in both
 ind2 <- hv$filename %in% cv$filename # in both
 
-cv <- cv[ind1,] # eliminate images not processed by human vision
-hv <- hv[ind2,] # eliminate images not processed by computer vision
+cv <- cv[ind1,] # eliminate images not processed by hv
+hv <- hv[ind2,] # eliminate images not processed by cv
 
 # Number of photos eliminated
-sum(ind1 != TRUE) # in computer vision but not in hv
-sum(ind2 != TRUE) # in human vision but not in cv  
+sum(ind1 != TRUE) # in cv but not in hv
+sum(ind2 != TRUE) # in hv but not in cv  
 ```
 
 Now, we can use:
@@ -367,10 +367,10 @@ threshold_for_metrics <- function(conf_threshold = 0.7) {
   # metrics
   classes_metrics <- cm %>% # get confusion matrix
     pluck("byClass") %>% # get metrics by class
-    as.data.frame() %>% # assign a data frame object
-    select(Precision, Recall, F1) %>% # select metrics of interest
-    rownames_to_column() %>% # format data frame
-    rename(class = rowname) %>% # rename class column
+    as.data.frame() %>% 
+    select(Precision, Recall, F1) %>% 
+    rownames_to_column() %>% 
+    rename(class = rowname) %>% 
     mutate(conf_threshold = conf_threshold)
   classes_metrics$class <- str_remove(string = classes_metrics$class,
                                       pattern = "Class: ") 

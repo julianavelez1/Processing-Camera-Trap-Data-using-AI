@@ -146,7 +146,7 @@ We begin by creating a `max_conf_blank` variable, which we will use to identify 
 cv_wide <- mycsv %>% 
   pluck(1) %>% #extract the computer vision images_cv.csv file
   rename(filename = image_path) %>% 
-  group_by(filename) %>% # group by filename
+  group_by(filename) %>%
   mutate(max_conf_blank = case_when(sum(is.na(max_conf_animal),
                                is.na(max_conf_person), 
                                is.na(max_conf_group), 
@@ -159,7 +159,7 @@ MD can detect and classify more than one object in an image, and each object wil
 
 ```{r reformat MD output2}
 cv_long <- cv_wide %>%
-  select(-detections) %>% # remove the "detections" column
+  select(-detections) %>% 
   pivot_longer(c("max_conf_animal",
                  "max_conf_person", 
                  "max_conf_group", 
@@ -182,8 +182,7 @@ cv <- cv_long %>%
          name = replace(name, name == "max_conf_person", "Human"), 
          name = replace(name, name == "max_conf_group", "Animal"), 
          name = replace(name, name == "max_conf_vehicle", "Vehicle")) %>%  
-  # rename predictions
-  rename(class = name) %>% # rename column with predicted classes
+  rename(class = name) %>% 
   filter(!class %in% "Human" & !class %in% "Vehicle")
 ```
 
@@ -213,7 +212,7 @@ Lastly, we add a variable that will indicate if there are multiple detections wi
 cv <- cv %>% 
   group_by(filename) %>% 
   mutate(multiple_det = n() > 1) %>%
-  select(filename,  class, value, multiple_det) %>% # select columns of interest
+  select(filename,  class, value, multiple_det) %>% 
   ungroup()
 ```
 
@@ -249,7 +248,7 @@ hv <- hv_sp %>%
   mutate(multiple_det = n() > 1) %>% # create multiple detections column (TRUE/FALSE).
   mutate(class = case_when(common_name == "Blank" ~ common_name,
                            TRUE ~ "Animal")) %>% 
-  select(filename, timestamp, class, multiple_det)  # select columns of interest
+  select(filename, timestamp, class, multiple_det)
 
 hv <- hv %>%
   group_by(filename, class) %>%
@@ -269,12 +268,12 @@ Now that we have the same format for both human and computer vision data sets, w
 ind1 <- cv$filename %in% hv$filename # in both
 ind2 <- hv$filename %in% cv$filename # in both
 
-cv <- cv[ind1,] # eliminate images not processed by human vision
-hv <- hv[ind2,] # eliminate images not processed by computer vision
+cv <- cv[ind1,] # eliminate images not processed by hv
+hv <- hv[ind2,] # eliminate images not processed by cv
 
 # Number of photos eliminated
-sum(ind1 != TRUE) # in computer vision but not in hv
-sum(ind2 != TRUE) # in human vision but not in cv
+sum(ind1 != TRUE) # in cv but not in hv
+sum(ind2 != TRUE) # in hv but not in cv
 ```
 
 
@@ -295,13 +294,13 @@ matched <- cv %>%
   rename(class_cv = class) %>%
   select(filename, value, class_cv, class_hv, multiple_det_cv, multiple_det_hv)
 
-# records in the human vision data set whose predictions are incorrect
+# incorrect predictions in hv set
 hv_only <- hv %>% 
   anti_join(y = cv, by = c("filename", "class"), suffix = c("_hv", "_cv")) %>%
   rename(class_hv = class) %>%
   rename(multiple_det_hv = multiple_det)
   
-# records in the computer vision data set whose predictions are incorrect
+# incorrect predictions in cv set
 cv_only<- cv %>% 
   anti_join(y = hv, by = c("filename", "class"), suffix = c("_cv", "_hv")) %>%
   rename(class_cv = class)
@@ -429,15 +428,11 @@ To inspect how precision and recall change when different confidence thresholds 
 threshold_for_metrics <- function(conf_threshold = 0.7) {
   tmp <- both_visions
   tmp$class_cv[tmp$value < conf_threshold] <- "Blank" 
-  # assign a "No Detection" (i.e., Blank) whenever the confidence value of
-  # a prediction (max_confidence) is lower than the threshold provided as 
-  # an argument in the function
+
   cm <- confusionMatrix(data = tmp$class_cv, 
                         reference = tmp$class_hv, 
                         mode = "prec_recall") 
-  # use the confusionMatrix function from the caret package using the
-  # class_cv containing the new labels according to a particular
-  # confidence threshold
+
   classes_metrics <- cm %>% # get confusion matrix
     pluck("byClass") %>% # get metrics by class
     t() %>% 
@@ -465,13 +460,13 @@ metrics_all_confs <- map_df(conf_vector, threshold_for_metrics)
 ```{r md-thresholds, fig.width=9, fig.height=5, fig.cap="Precision and recall for different confidence thresholds for the animal class predicted by MegaDetector."}
 
 prec_rec_md <- metrics_all_confs %>% 
-  rename(Confidence_threshold = conf_threshold) %>% 
+  rename(`Confidence threshold` = conf_threshold) %>%
   ggplot(aes(x = Recall, y = Precision)) +
-  geom_point(aes(size = Confidence_threshold, color = "#8ecae6")) +
+  geom_point(aes(size = `Confidence threshold`, color = "#440154FF")) +
   scale_size(range = c(0.1,3)) +
   labs(x = "Recall", y = "Precision")+
-  geom_line(color = "#8ecae6") +
-  scale_color_manual(values = "#8ecae6", name = "Class", labels = "Animal") +
+  geom_line(color = "#440154FF") +
+  scale_color_manual(values = "#440154FF", name = "Class", labels = "Animal") +
   xlim(0, 1) + ylim(0, 1)
 
 
@@ -489,7 +484,6 @@ We see that as we increase the confidence threshold, precision increases and rec
 Let’s say that we were willing to miss only 3% of the animals present. In this case, we could pick the confidence threshold that maximizes precision under the constraint that recall does not fall below 97%.
 
 ```{r}
-# Thresholds that meet our criterion that Recall >= 0.97
 conf_meets <- metrics_all_confs %>% 
   mutate(across(where(is.numeric), ~round(., 2))) %>% 
   filter(Recall >= 0.97)
