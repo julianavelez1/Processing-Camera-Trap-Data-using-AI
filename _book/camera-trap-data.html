@@ -4,27 +4,27 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 2 Camera-trap data | Guide for using artificial intelligence systems for camera trap data processing</title>
-  <meta name="description" content="We aim to provide an overview of the steps required to use platforms that implement artificial intelligence into workflows for processing camera trap images." />
+  <title>Chapter 2 Camera-trap data | Guide for using artificial intelligence platforms for camera-trap data processing</title>
+  <meta name="description" content="We aim to provide an overview of the steps required to use platforms that implement artificial intelligence into workflows for processing camera-trap images." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 2 Camera-trap data | Guide for using artificial intelligence systems for camera trap data processing" />
+  <meta property="og:title" content="Chapter 2 Camera-trap data | Guide for using artificial intelligence platforms for camera-trap data processing" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="We aim to provide an overview of the steps required to use platforms that implement artificial intelligence into workflows for processing camera trap images." />
+  <meta property="og:description" content="We aim to provide an overview of the steps required to use platforms that implement artificial intelligence into workflows for processing camera-trap images." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 2 Camera-trap data | Guide for using artificial intelligence systems for camera trap data processing" />
+  <meta name="twitter:title" content="Chapter 2 Camera-trap data | Guide for using artificial intelligence platforms for camera-trap data processing" />
   
-  <meta name="twitter:description" content="We aim to provide an overview of the steps required to use platforms that implement artificial intelligence into workflows for processing camera trap images." />
+  <meta name="twitter:description" content="We aim to provide an overview of the steps required to use platforms that implement artificial intelligence into workflows for processing camera-trap images." />
   
 
 <meta name="author" content="Juliana Velez and John Fieberg" />
 
 
-<meta name="date" content="2022-02-01" />
+<meta name="date" content="2022-08-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="introduction.html"/>
-<link rel="next" href="wildlife-insights-wi.html"/>
+<link rel="next" href="wildlife-insights.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -139,45 +139,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./index.html">Guide for using artificial intelligence systems for camera trap data processing</a></li>
+<li><a href="./index.html">Guide for using artificial intelligence platforms for camera trap data processing</a></li>
 
 <li class="divider"></li>
 <li><a href="index.html#section"></a></li>
 <li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
 <li class="chapter" data-level="2" data-path="camera-trap-data.html"><a href="camera-trap-data.html"><i class="fa fa-check"></i><b>2</b> Camera-trap data</a></li>
-<li class="chapter" data-level="3" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html"><i class="fa fa-check"></i><b>3</b> Wildlife Insights (WI)</a><ul>
-<li class="chapter" data-level="3.1" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html#set-up"><i class="fa fa-check"></i><b>3.1</b> Set-up</a></li>
-<li class="chapter" data-level="3.2" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html#uploadformat-data"><i class="fa fa-check"></i><b>3.2</b> Upload/format data</a></li>
-<li class="chapter" data-level="3.3" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html#uploadenter-metadata"><i class="fa fa-check"></i><b>3.3</b> Upload/enter metadata</a></li>
-<li class="chapter" data-level="3.4" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html#processing-images---ai-module"><i class="fa fa-check"></i><b>3.4</b> Processing images - AI module</a></li>
-<li class="chapter" data-level="3.5" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html#post-ai-image-processing"><i class="fa fa-check"></i><b>3.5</b> Post-AI image processing</a></li>
-<li class="chapter" data-level="3.6" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html#wi-output"><i class="fa fa-check"></i><b>3.6</b> Using AI output</a></li>
-<li class="chapter" data-level="3.7" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html#wi-performance"><i class="fa fa-check"></i><b>3.7</b> Assessing AI performance</a><ul>
-<li class="chapter" data-level="3.7.1" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html#reading-in-data-introduction-to-the-purrr-package"><i class="fa fa-check"></i><b>3.7.1</b> Reading in data, introduction to the Purrr package</a></li>
-<li class="chapter" data-level="3.7.2" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html#removing-duplicate-images"><i class="fa fa-check"></i><b>3.7.2</b> Removing duplicate images</a></li>
-<li class="chapter" data-level="3.7.3" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html#images-with-multiple-observations-of-the-same-species"><i class="fa fa-check"></i><b>3.7.3</b> Images with multiple observations of the same species</a></li>
-<li class="chapter" data-level="3.7.4" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html#images-with-multiple-species"><i class="fa fa-check"></i><b>3.7.4</b> Images with multiple species</a></li>
-<li class="chapter" data-level="3.7.5" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html#summarizing-human-and-computer-vision-records-by-species"><i class="fa fa-check"></i><b>3.7.5</b> Summarizing human and computer vision records by species</a></li>
-<li class="chapter" data-level="3.7.6" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html#confusion-matrix-and-performance-measures"><i class="fa fa-check"></i><b>3.7.6</b> Confusion matrix and performance measures</a></li>
-<li class="chapter" data-level="3.7.7" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html#confidence-thresholds"><i class="fa fa-check"></i><b>3.7.7</b> Confidence thresholds</a></li>
+<li class="chapter" data-level="3" data-path="wildlife-insights.html"><a href="wildlife-insights.html"><i class="fa fa-check"></i><b>3</b> Wildlife Insights</a><ul>
+<li class="chapter" data-level="3.1" data-path="wildlife-insights.html"><a href="wildlife-insights.html#set-up"><i class="fa fa-check"></i><b>3.1</b> Set-up</a></li>
+<li class="chapter" data-level="3.2" data-path="wildlife-insights.html"><a href="wildlife-insights.html#uploadformat-data"><i class="fa fa-check"></i><b>3.2</b> Upload/format data</a></li>
+<li class="chapter" data-level="3.3" data-path="wildlife-insights.html"><a href="wildlife-insights.html#uploadenter-metadata"><i class="fa fa-check"></i><b>3.3</b> Upload/enter metadata</a></li>
+<li class="chapter" data-level="3.4" data-path="wildlife-insights.html"><a href="wildlife-insights.html#processing-images---ai-module"><i class="fa fa-check"></i><b>3.4</b> Processing images - AI module</a></li>
+<li class="chapter" data-level="3.5" data-path="wildlife-insights.html"><a href="wildlife-insights.html#post-ai-image-processing"><i class="fa fa-check"></i><b>3.5</b> Post-AI image processing</a></li>
+<li class="chapter" data-level="3.6" data-path="wildlife-insights.html"><a href="wildlife-insights.html#wi-output"><i class="fa fa-check"></i><b>3.6</b> Using AI output</a></li>
+<li class="chapter" data-level="3.7" data-path="wildlife-insights.html"><a href="wildlife-insights.html#wi-performance"><i class="fa fa-check"></i><b>3.7</b> Assessing AI performance</a><ul>
+<li class="chapter" data-level="3.7.1" data-path="wildlife-insights.html"><a href="wildlife-insights.html#reading-in-data-introduction-to-the-purrr-package"><i class="fa fa-check"></i><b>3.7.1</b> Reading in data, introduction to the Purrr package</a></li>
+<li class="chapter" data-level="3.7.2" data-path="wildlife-insights.html"><a href="wildlife-insights.html#removing-duplicated-images"><i class="fa fa-check"></i><b>3.7.2</b> Removing duplicated images</a></li>
+<li class="chapter" data-level="3.7.3" data-path="wildlife-insights.html"><a href="wildlife-insights.html#images-with-multiple-observations-of-the-same-species"><i class="fa fa-check"></i><b>3.7.3</b> Images with multiple observations of the same species</a></li>
+<li class="chapter" data-level="3.7.4" data-path="wildlife-insights.html"><a href="wildlife-insights.html#merging-computer-and-human-vision-data-sets"><i class="fa fa-check"></i><b>3.7.4</b> Merging computer and human vision data sets</a></li>
+<li class="chapter" data-level="3.7.5" data-path="wildlife-insights.html"><a href="wildlife-insights.html#confusion-matrix-and-performance-measures"><i class="fa fa-check"></i><b>3.7.5</b> Confusion matrix and performance measures</a></li>
+<li class="chapter" data-level="3.7.6" data-path="wildlife-insights.html"><a href="wildlife-insights.html#confidence-thresholds"><i class="fa fa-check"></i><b>3.7.6</b> Confidence thresholds</a></li>
 </ul></li>
-<li class="chapter" data-level="3.8" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html#conclusions"><i class="fa fa-check"></i><b>3.8</b> Conclusions</a></li>
+<li class="chapter" data-level="3.8" data-path="wildlife-insights.html"><a href="wildlife-insights.html#conclusions"><i class="fa fa-check"></i><b>3.8</b> Conclusions</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="megadetector---microsoft-ai.html"><a href="megadetector---microsoft-ai.html"><i class="fa fa-check"></i><b>4</b> MegaDetector - Microsoft AI</a><ul>
-<li class="chapter" data-level="4.1" data-path="megadetector---microsoft-ai.html"><a href="megadetector---microsoft-ai.html#md-upload"><i class="fa fa-check"></i><b>4.1</b> Upload/format data</a></li>
-<li class="chapter" data-level="4.2" data-path="megadetector---microsoft-ai.html"><a href="megadetector---microsoft-ai.html#md-metadata"><i class="fa fa-check"></i><b>4.2</b> Upload/enter metadata</a></li>
-<li class="chapter" data-level="4.3" data-path="megadetector---microsoft-ai.html"><a href="megadetector---microsoft-ai.html#md-process"><i class="fa fa-check"></i><b>4.3</b> Process images - AI module</a></li>
-<li class="chapter" data-level="4.4" data-path="megadetector---microsoft-ai.html"><a href="megadetector---microsoft-ai.html#md-timelapse"><i class="fa fa-check"></i><b>4.4</b> Image processing with Timelapse 2</a></li>
-<li class="chapter" data-level="4.5" data-path="megadetector---microsoft-ai.html"><a href="megadetector---microsoft-ai.html#md-output"><i class="fa fa-check"></i><b>4.5</b> Using AI output</a></li>
-<li class="chapter" data-level="4.6" data-path="megadetector---microsoft-ai.html"><a href="megadetector---microsoft-ai.html#md-performance"><i class="fa fa-check"></i><b>4.6</b> Assessing AI performance</a><ul>
-<li class="chapter" data-level="4.6.1" data-path="megadetector---microsoft-ai.html"><a href="megadetector---microsoft-ai.html#reading-in-data-introduction-to-the-purrr-package-1"><i class="fa fa-check"></i><b>4.6.1</b> Reading in data, introduction to the Purrr package</a></li>
-<li class="chapter" data-level="4.6.2" data-path="megadetector---microsoft-ai.html"><a href="megadetector---microsoft-ai.html#format-computer-vision-data-set"><i class="fa fa-check"></i><b>4.6.2</b> Format computer vision data set</a></li>
-<li class="chapter" data-level="4.6.3" data-path="megadetector---microsoft-ai.html"><a href="megadetector---microsoft-ai.html#md-format-hv"><i class="fa fa-check"></i><b>4.6.3</b> Format human vision data set</a></li>
-<li class="chapter" data-level="4.6.4" data-path="megadetector---microsoft-ai.html"><a href="megadetector---microsoft-ai.html#merging-computer-and-human-vision-data-sets"><i class="fa fa-check"></i><b>4.6.4</b> Merging computer and human vision data sets</a></li>
-<li class="chapter" data-level="4.6.5" data-path="megadetector---microsoft-ai.html"><a href="megadetector---microsoft-ai.html#confusion-matrix-and-performance-measures-1"><i class="fa fa-check"></i><b>4.6.5</b> Confusion matrix and performance measures</a></li>
-<li class="chapter" data-level="4.6.6" data-path="megadetector---microsoft-ai.html"><a href="megadetector---microsoft-ai.html#md-thresholds"><i class="fa fa-check"></i><b>4.6.6</b> Confidence thresholds</a></li>
+<li class="chapter" data-level="4" data-path="megadetector.html"><a href="megadetector.html"><i class="fa fa-check"></i><b>4</b> MegaDetector</a><ul>
+<li class="chapter" data-level="4.1" data-path="megadetector.html"><a href="megadetector.html#md-upload"><i class="fa fa-check"></i><b>4.1</b> Upload/format data</a></li>
+<li class="chapter" data-level="4.2" data-path="megadetector.html"><a href="megadetector.html#md-metadata"><i class="fa fa-check"></i><b>4.2</b> Upload/enter metadata</a></li>
+<li class="chapter" data-level="4.3" data-path="megadetector.html"><a href="megadetector.html#md-process"><i class="fa fa-check"></i><b>4.3</b> Process images - AI module</a></li>
+<li class="chapter" data-level="4.4" data-path="megadetector.html"><a href="megadetector.html#md-timelapse"><i class="fa fa-check"></i><b>4.4</b> Image processing with Timelapse</a></li>
+<li class="chapter" data-level="4.5" data-path="megadetector.html"><a href="megadetector.html#md-output"><i class="fa fa-check"></i><b>4.5</b> Using AI output</a></li>
+<li class="chapter" data-level="4.6" data-path="megadetector.html"><a href="megadetector.html#md-performance"><i class="fa fa-check"></i><b>4.6</b> Assessing AI performance</a><ul>
+<li class="chapter" data-level="4.6.1" data-path="megadetector.html"><a href="megadetector.html#reading-in-data-introduction-to-the-purrr-package-1"><i class="fa fa-check"></i><b>4.6.1</b> Reading in data, introduction to the Purrr package</a></li>
+<li class="chapter" data-level="4.6.2" data-path="megadetector.html"><a href="megadetector.html#format-computer-vision-data-set"><i class="fa fa-check"></i><b>4.6.2</b> Format computer vision data set</a></li>
+<li class="chapter" data-level="4.6.3" data-path="megadetector.html"><a href="megadetector.html#md-format-hv"><i class="fa fa-check"></i><b>4.6.3</b> Format human vision data set</a></li>
+<li class="chapter" data-level="4.6.4" data-path="megadetector.html"><a href="megadetector.html#merging-computer-and-human-vision-data-sets-1"><i class="fa fa-check"></i><b>4.6.4</b> Merging computer and human vision data sets</a></li>
+<li class="chapter" data-level="4.6.5" data-path="megadetector.html"><a href="megadetector.html#confusion-matrix-and-performance-measures-1"><i class="fa fa-check"></i><b>4.6.5</b> Confusion matrix and performance measures</a></li>
+<li class="chapter" data-level="4.6.6" data-path="megadetector.html"><a href="megadetector.html#md-thresholds"><i class="fa fa-check"></i><b>4.6.6</b> Confidence thresholds</a></li>
 </ul></li>
-<li class="chapter" data-level="4.7" data-path="megadetector---microsoft-ai.html"><a href="megadetector---microsoft-ai.html#conclusions-1"><i class="fa fa-check"></i><b>4.7</b> Conclusions</a></li>
+<li class="chapter" data-level="4.7" data-path="megadetector.html"><a href="megadetector.html#conclusions-1"><i class="fa fa-check"></i><b>4.7</b> Conclusions</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="mlwic2-machine-learning-for-wildlife-image-classification.html"><a href="mlwic2-machine-learning-for-wildlife-image-classification.html"><i class="fa fa-check"></i><b>5</b> MLWIC2: Machine Learning for Wildlife Image Classification</a><ul>
 <li class="chapter" data-level="5.1" data-path="mlwic2-machine-learning-for-wildlife-image-classification.html"><a href="mlwic2-machine-learning-for-wildlife-image-classification.html#set-up-1"><i class="fa fa-check"></i><b>5.1</b> Set-up</a></li>
@@ -186,20 +185,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.4" data-path="mlwic2-machine-learning-for-wildlife-image-classification.html"><a href="mlwic2-machine-learning-for-wildlife-image-classification.html#ai-mlwic2"><i class="fa fa-check"></i><b>5.4</b> Assessing AI performance</a><ul>
 <li class="chapter" data-level="5.4.1" data-path="mlwic2-machine-learning-for-wildlife-image-classification.html"><a href="mlwic2-machine-learning-for-wildlife-image-classification.html#format-human-vision-data-set"><i class="fa fa-check"></i><b>5.4.1</b> Format human vision data set</a></li>
 <li class="chapter" data-level="5.4.2" data-path="mlwic2-machine-learning-for-wildlife-image-classification.html"><a href="mlwic2-machine-learning-for-wildlife-image-classification.html#format-computer-vision-data-set-1"><i class="fa fa-check"></i><b>5.4.2</b> Format computer vision data set</a></li>
-<li class="chapter" data-level="5.4.3" data-path="mlwic2-machine-learning-for-wildlife-image-classification.html"><a href="mlwic2-machine-learning-for-wildlife-image-classification.html#merging-computer-and-human-vision-data-sets-1"><i class="fa fa-check"></i><b>5.4.3</b> Merging computer and human vision data sets</a></li>
-<li class="chapter" data-level="5.4.4" data-path="mlwic2-machine-learning-for-wildlife-image-classification.html"><a href="mlwic2-machine-learning-for-wildlife-image-classification.html#summarizing-human-and-computer-vision-records-by-class"><i class="fa fa-check"></i><b>5.4.4</b> Summarizing human and computer vision records by class</a></li>
-<li class="chapter" data-level="5.4.5" data-path="mlwic2-machine-learning-for-wildlife-image-classification.html"><a href="mlwic2-machine-learning-for-wildlife-image-classification.html#confusion-matrix-and-performance-measures-2"><i class="fa fa-check"></i><b>5.4.5</b> Confusion matrix and performance measures</a></li>
-<li class="chapter" data-level="5.4.6" data-path="mlwic2-machine-learning-for-wildlife-image-classification.html"><a href="mlwic2-machine-learning-for-wildlife-image-classification.html#confidence-thresholds-1"><i class="fa fa-check"></i><b>5.4.6</b> Confidence thresholds</a></li>
+<li class="chapter" data-level="5.4.3" data-path="mlwic2-machine-learning-for-wildlife-image-classification.html"><a href="mlwic2-machine-learning-for-wildlife-image-classification.html#merging-computer-and-human-vision-data-sets-2"><i class="fa fa-check"></i><b>5.4.3</b> Merging computer and human vision data sets</a></li>
+<li class="chapter" data-level="5.4.4" data-path="mlwic2-machine-learning-for-wildlife-image-classification.html"><a href="mlwic2-machine-learning-for-wildlife-image-classification.html#confusion-matrix-and-performance-measures-2"><i class="fa fa-check"></i><b>5.4.4</b> Confusion matrix and performance measures</a></li>
+<li class="chapter" data-level="5.4.5" data-path="mlwic2-machine-learning-for-wildlife-image-classification.html"><a href="mlwic2-machine-learning-for-wildlife-image-classification.html#confidence-thresholds-1"><i class="fa fa-check"></i><b>5.4.5</b> Confidence thresholds</a></li>
 </ul></li>
 <li class="chapter" data-level="5.5" data-path="mlwic2-machine-learning-for-wildlife-image-classification.html"><a href="mlwic2-machine-learning-for-wildlife-image-classification.html#model-training"><i class="fa fa-check"></i><b>5.5</b> Model training</a></li>
 <li class="chapter" data-level="5.6" data-path="mlwic2-machine-learning-for-wildlife-image-classification.html"><a href="mlwic2-machine-learning-for-wildlife-image-classification.html#classify-trained"><i class="fa fa-check"></i><b>5.6</b> Classify using a trained model</a></li>
-<li class="chapter" data-level="5.7" data-path="mlwic2-machine-learning-for-wildlife-image-classification.html"><a href="mlwic2-machine-learning-for-wildlife-image-classification.html#conclusion"><i class="fa fa-check"></i><b>5.7</b> Conclusion</a></li>
+<li class="chapter" data-level="5.7" data-path="mlwic2-machine-learning-for-wildlife-image-classification.html"><a href="mlwic2-machine-learning-for-wildlife-image-classification.html#conclusions-2"><i class="fa fa-check"></i><b>5.7</b> Conclusions</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="conservation-ai.html"><a href="conservation-ai.html"><i class="fa fa-check"></i><b>6</b> Conservation AI</a><ul>
 <li class="chapter" data-level="6.1" data-path="conservation-ai.html"><a href="conservation-ai.html#set-up-2"><i class="fa fa-check"></i><b>6.1</b> Set-up</a></li>
 <li class="chapter" data-level="6.2" data-path="conservation-ai.html"><a href="conservation-ai.html#uploadformat-data-1"><i class="fa fa-check"></i><b>6.2</b> Upload/format data</a></li>
 <li class="chapter" data-level="6.3" data-path="conservation-ai.html"><a href="conservation-ai.html#image-tagging"><i class="fa fa-check"></i><b>6.3</b> Image tagging</a></li>
 <li class="chapter" data-level="6.4" data-path="conservation-ai.html"><a href="conservation-ai.html#process-images---ai-module"><i class="fa fa-check"></i><b>6.4</b> Process images - AI module</a></li>
+<li class="chapter" data-level="6.5" data-path="conservation-ai.html"><a href="conservation-ai.html#conclusions-3"><i class="fa fa-check"></i><b>6.5</b> Conclusions</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -214,7 +213,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Guide for using artificial intelligence systems for camera trap data processing</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Guide for using artificial intelligence platforms for camera-trap data processing</a>
           </h1>
         </div>
 
@@ -224,13 +223,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="camera-trap-data" class="section level1">
 <h1><span class="header-section-number">Chapter 2</span> Camera-trap data</h1>
-<p>We evaluated model performance using data from a camera trap survey performed from January - July 2020 for wildlife detection within the private natural reserves El Rey Zamuro (31 km2) and Las Unamas (40 km2), located in the Meta department in the Orinoquia region in central Colombia. During the survey period, we collected 112,247 images from a 50-camera-trap array, with cameras spaced 1-km apart; 20 percent of the images were blank and 80 percent contained at least one animal. Images were stored and reviewed by experts using the WI platform. WI was chosen because it provides advanced processing capabilities that helped to accelerate image review (e.g., multiple image selection, image editing and infrastructure for collaborative data processing). Expert (i.e., human vision) labels were compared to classifications by computer vision derived from AI models associated with WI (downloaded in February 2021), MD (version 4.1) and MLWIC2 (version 1.0) platforms to determine how well these models would perform when applied to data that were not included in the training data set. Records containing the “Human” class were removed from the data set; these were predominately associated with images during camera setup.</p>
-<div class="figure"><span style="display:block;" id="fig:ctimages"></span>
-<img src="input_figures/ct_images/danta.JPG" alt="Camera trap images collected in the reserves El Rey Zamuro and Las Unamas, located in the Meta department in central Colombia." width="24%" /><img src="input_figures/ct_images/guala.JPG" alt="Camera trap images collected in the reserves El Rey Zamuro and Las Unamas, located in the Meta department in central Colombia." width="24%" /><img src="input_figures/ct_images/jaguar.JPG" alt="Camera trap images collected in the reserves El Rey Zamuro and Las Unamas, located in the Meta department in central Colombia." width="24%" /><img src="input_figures/ct_images/maicero.JPG" alt="Camera trap images collected in the reserves El Rey Zamuro and Las Unamas, located in the Meta department in central Colombia." width="24%" /><img src="input_figures/ct_images/nasua.JPG" alt="Camera trap images collected in the reserves El Rey Zamuro and Las Unamas, located in the Meta department in central Colombia." width="24%" /><img src="input_figures/ct_images/ocarro.JPG" alt="Camera trap images collected in the reserves El Rey Zamuro and Las Unamas, located in the Meta department in central Colombia." width="24%" /><img src="input_figures/ct_images/ocelot.JPG" alt="Camera trap images collected in the reserves El Rey Zamuro and Las Unamas, located in the Meta department in central Colombia." width="24%" /><img src="input_figures/ct_images/palmero.JPG" alt="Camera trap images collected in the reserves El Rey Zamuro and Las Unamas, located in the Meta department in central Colombia." width="24%" /><img src="input_figures/ct_images/puma_2.JPG" alt="Camera trap images collected in the reserves El Rey Zamuro and Las Unamas, located in the Meta department in central Colombia." width="24%" /><img src="input_figures/ct_images/puma.JPG" alt="Camera trap images collected in the reserves El Rey Zamuro and Las Unamas, located in the Meta department in central Colombia." width="24%" /><img src="input_figures/ct_images/saimiri.JPG" alt="Camera trap images collected in the reserves El Rey Zamuro and Las Unamas, located in the Meta department in central Colombia." width="24%" /><img src="input_figures/ct_images/tamandua.JPG" alt="Camera trap images collected in the reserves El Rey Zamuro and Las Unamas, located in the Meta department in central Colombia." width="24%" /><img src="input_figures/ct_images/tayra_2.JPG" alt="Camera trap images collected in the reserves El Rey Zamuro and Las Unamas, located in the Meta department in central Colombia." width="24%" /><img src="input_figures/ct_images/tayra.JPG" alt="Camera trap images collected in the reserves El Rey Zamuro and Las Unamas, located in the Meta department in central Colombia." width="24%" /><img src="input_figures/ct_images/tigrillo.JPG" alt="Camera trap images collected in the reserves El Rey Zamuro and Las Unamas, located in the Meta department in central Colombia." width="24%" /><img src="input_figures/ct_images/zorro.JPG" alt="Camera trap images collected in the reserves El Rey Zamuro and Las Unamas, located in the Meta department in central Colombia." width="24%" />
-<p class="caption">
-Figure 2.1: Camera trap images collected in the reserves El Rey Zamuro and Las Unamas, located in the Meta department in central Colombia.
-</p>
-</div>
+<p>We evaluated model performance using data from a camera trap survey performed from January - July 2020 for wildlife detection within the private natural reserves El Rey Zamuro (31 km2) and Las Unamas (40 km2), located in the Meta department in the Orinoquía region in central Colombia. During the survey period, we collected 112,247 images from a 50-camera-trap array, with cameras spaced 1-km apart; 20 percent of the images were blank and 80 percent contained at least one animal. Records containing the “Vehicle” and “Human” classes were removed from the data set; these were predominately associated with images during camera setup.</p>
+<p>Images were stored and reviewed by experts using the Wildlife Insights platform. Wildlife Insights was chosen because it provides advanced processing capabilities that helped to accelerate image review (e.g., multiple image selection, image editing and infrastructure for collaborative data processing). Expert (i.e., human vision) labels were compared to predictions derived from AI models associated with Wildlife Insights (downloaded in July 2022), MegaDetector (MDv4.1) and MLWIC2 (v1.0) platforms to determine how well these models would perform when applied to data that were not included in the training data set.</p>
 
 </div>
             </section>
@@ -239,7 +233,7 @@ Figure 2.1: Camera trap images collected in the reserves El Rey Zamuro and Las U
         </div>
       </div>
 <a href="introduction.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="wildlife-insights-wi.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="wildlife-insights.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
