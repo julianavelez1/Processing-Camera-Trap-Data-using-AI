@@ -15,10 +15,3 @@ We evaluated model performance using data from a camera trap survey performed fr
 
 Images were stored and reviewed by experts using the Wildlife Insights platform. Wildlife Insights was chosen because it provides advanced processing capabilities that helped to accelerate image review (e.g., multiple image selection, image editing and infrastructure for collaborative data processing).  Expert (i.e., human vision) labels were compared to predictions derived from AI models associated with Wildlife Insights (downloaded in July 2022), MegaDetector (MDv4.1) and MLWIC2 (v1.0) platforms to determine how well these models would perform when applied to data that were not included in the training data set. 
 
-```{r, ctimages, fig.cap = 'Camera trap images collected in the reserves El Rey Zamuro and Las Unamas, located in the Meta department in central Colombia.', out.width="24%", echo = FALSE, fig.show='hold'}
-files <- list.files(path = "input_figures/ct_images/", pattern = "JPG", full.names = TRUE)
-knitr::include_graphics(files)
-```
-
-
-
