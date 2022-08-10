@@ -1,0 +1,55 @@
+kingdom,phylum,class,order,family,genus,species,common_name
+Animalia,Chordata,Mammalia,Artiodactyla,Tayassuidae,Pecari,Pecari tajacu,Collared Peccary
+Animalia,Chordata,Aves,Galliformes,Cracidae,Mitu,Mitu salvini,Crestless Curassow
+Animalia,Chordata,Mammalia,Rodentia,Dasyproctidae,Dasyprocta,Dasyprocta fuliginosa,Black Agouti
+Animalia,NA,NA,NA,NA,NA,NA,Unknown species
+Animalia,Chordata,Mammalia,Artiodactyla,Bovidae,Bos,NA,Bos Species
+Animalia,Chordata,Aves,Galliformes,Cracidae,Penelope,Penelope jacquacu,Spix's Guan
+Animalia,Chordata,Mammalia,Artiodactyla,Tayassuidae,Tayassu,Tayassu pecari,White-lipped Peccary
+Animalia,Chordata,Mammalia,Perissodactyla,Tapiridae,Tapirus,Tapirus terrestris,Lowland Tapir
+Animalia,Chordata,Mammalia,Perissodactyla,Equidae,Equus,Equus caballus,Domestic Horse
+Blank,NA,NA,NA,NA,NA,NA,Blank
+Animalia,Chordata,Mammalia,Cingulata,Dasypodidae,Dasypus,NA,Dasypus Species
+Animalia,Chordata,Aves,NA,NA,NA,NA,Bird
+Animalia,Chordata,Aves,Coraciiformes,Momotidae,Momotus,Momotus momota,Amazonian Motmot
+Animalia,Chordata,Mammalia,Rodentia,NA,NA,NA,Rodent
+Animalia,Chordata,Mammalia,Carnivora,Mustelidae,NA,NA,Weasel Family
+Animalia,Chordata,Mammalia,Rodentia,Cuniculidae,Cuniculus,Cuniculus paca,Spotted Paca
+Animalia,Chordata,Mammalia,Carnivora,Procyonidae,Nasua,Nasua nasua,South American Coati
+Animalia,Chordata,Mammalia,Pilosa,Myrmecophagidae,Tamandua,Tamandua tetradactyla,Southern Tamandua
+Animalia,Chordata,Mammalia,Primates,Hominidae,Homo,Homo sapiens,Human
+Animalia,Chordata,Mammalia,Primates,Cebidae,Sapajus,Sapajus apella,Margarita Island Capuchin
+Animalia,Chordata,Mammalia,Didelphimorphia,Didelphidae,NA,NA,Possum Family
+Animalia,Chordata,Mammalia,Carnivora,Mustelidae,Eira,Eira barbara,Tayra
+Animalia,Chordata,Mammalia,Rodentia,Sciuridae,Sciurus,Sciurus igniventris,Northern Amazon Red Squirrel
+Animalia,Chordata,Mammalia,Carnivora,Felidae,Puma,Puma concolor,Puma
+Animalia,Chordata,Mammalia,Pilosa,Myrmecophagidae,Myrmecophaga,Myrmecophaga tridactyla,Giant Anteater
+Animalia,Chordata,Reptilia,Squamata,NA,NA,NA,Lizards and Snakes
+Animalia,Chordata,Mammalia,Artiodactyla,Cervidae,NA,NA,Cervidae Family
+Animalia,Chordata,Mammalia,Artiodactyla,Cervidae,Odocoileus,Odocoileus virginianus,White-tailed Deer
+Animalia,Chordata,Mammalia,Carnivora,Canidae,Speothos,Speothos venaticus,Bush Dog
+Animalia,Chordata,Mammalia,Artiodactyla,Cervidae,Mazama,Mazama americana,Red Brocket
+Animalia,Chordata,Mammalia,Carnivora,Felidae,Leopardus,Leopardus pardalis,Ocelot
+Animalia,Chordata,Mammalia,Primates,Pitheciidae,Plecturocebus,Plecturocebus ornatus,Ornate Titi Monkey
+Animalia,Chordata,Reptilia,Testudines,NA,NA,NA,Turtle Order
+Animalia,Chordata,Mammalia,Cingulata,Dasypodidae,Priodontes,Priodontes maximus,Giant Armadillo
+Animalia,Chordata,Mammalia,Carnivora,Felidae,Leopardus,Leopardus wiedii,Margay
+Animalia,Chordata,Reptilia,Squamata,Iguanidae,Iguana,Iguana iguana,Common Green Iguana
+Animalia,Chordata,Mammalia,Carnivora,Canidae,Cerdocyon,Cerdocyon thous,Crab-eating Fox
+Animalia,Chordata,Aves,Caprimulgiformes,Caprimulgidae,NA,NA,Caprimulgidae Family
+Animalia,Chordata,Mammalia,Carnivora,Mustelidae,Lontra,Lontra longicaudis,Neotropical Otter
+Animalia,Chordata,Mammalia,Primates,Cebidae,Saimiri,Saimiri sciureus,Saimiri Species
+Animalia,Arthropoda,Insecta,Hymenoptera,NA,NA,NA,Ants
+Animalia,Chordata,Aves,Galliformes,Cracidae,Penelope,Penelope jacucaca,Crestless Curassow
+Animalia,Chordata,Mammalia,Carnivora,Felidae,Herpailurus,Herpailurus yagouaroundi,Jaguarundi
+Animalia,Chordata,Mammalia,Artiodactyla,Tayassuidae,Pecari,NA,Pecari Species
+Animalia,Arthropoda,Insecta,NA,NA,NA,NA,Insect
+Animalia,Chordata,Aves,Pelecaniformes,Ardeidae,Tigrisoma,Tigrisoma fasciatum,Fasciated Tiger-heron
+Animalia,Chordata,Mammalia,NA,NA,NA,NA,Mammal
+Animalia,Chordata,Mammalia,Carnivora,Canidae,Canis,Canis lupus,Domestic Dog
+Animalia,Chordata,Mammalia,Primates,Atelidae,Alouatta,Alouatta seniculus,Alouatta Species
+Animalia,Chordata,Mammalia,Rodentia,Caviidae,Hydrochoerus,Hydrochoerus hydrochaeris,Capybara
+Animalia,Chordata,Mammalia,Carnivora,Felidae,Panthera,Panthera onca,Jaguar
+Animalia,Chordata,Mammalia,Primates,Hominidae,Homo,Homo sapiens,Human-Camera Trapper
+Animalia,Chordata,Aves,Accipitriformes,Cathartidae,Cathartes,Cathartes aura,Turkey Vulture
+Animalia,Chordata,Mammalia,Carnivora,Mammalia,Mustelidae,Pteronura brasiliensis,Giant Otter

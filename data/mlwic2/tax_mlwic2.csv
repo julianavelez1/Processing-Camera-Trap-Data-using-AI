@@ -1,0 +1,60 @@
+kingdom,phylum,class,order,family,genus,species,common_name
+Animalia,Chordata,Mammalia,Artiodactyla,Cervidae,Alces,Alces alces,0
+Animalia,Chordata,Mammalia,Artiodactyla,Bovidae,Bos,NA,1
+Animalia,Chordata,Aves,Galliformes,Odontophoridae,Callipepla,Callipepla californica,2
+Animalia,Chordata,Mammalia,Carnivora,Canidae,Canis,Canis latrans,3
+Animalia,Chordata,Mammalia,Artiodactyla,Cervidae,Cervus,Cervus elaphus,4
+Animalia,Chordata,Mammalia,Carnivora,Mustelidae,Martes,Martes americana,5
+Animalia,Chordata,Aves,Passeriformes,Corvidae,Corvus,Corvus brachyrhynchos,6
+Animalia,Chordata,Mammalia,Cingulata,Dasypodidae,NA,NA,7
+Animalia,Chordata,Aves,Galliformes,Phasianidae,Meleagris,Meleagris gallopavo,8
+Animalia,Chordata,Mammalia,Didelphimorphia,Didelphidae,NA,NA,9
+Animalia,Chordata,Mammalia,Perissodactyla,Equidae,Equus,Equus ferus,10
+Animalia,Chordata,Mammalia,Primates,Hominidae,Homo,Homo sapiens,11
+Animalia,Chordata,Mammalia,Lagomorpha,Leporidae,NA,NA,12
+Animalia,Chordata,Mammalia,Carnivora,Felidae,Lynx,Lynx rufus,13
+Animalia,Chordata,Mammalia,Carnivora,Mephitidae,Mephitis,Mephitis mephitis,14
+Animalia,Chordata,Mammalia,Carnivora,Canidae,Canis,Canis lupus,15
+Animalia,Chordata,Mammalia,Rodentia,NA,NA,NA,16
+Animalia,Chordata,Mammalia,Artiodactyla,Cervidae,Odocoileus,Odocoileus hemionus,17
+Animalia,Chordata,Mammalia,Artiodactyla,Cervidae,Odocoileus,Odocoileus virginianus,18
+Animalia,Chordata,Mammalia,Carnivora,Procyonidae,Procyon,Procyon lotor,19
+Animalia,Chordata,Mammalia,Carnivora,Felidae,Puma,Puma concolor,20
+Animalia,Chordata,Mammalia,Rodentia,Sciuridae,Otospermophilus,Otospermophilus beecheyi,21
+Animalia,Chordata,Mammalia,Artiodactyla,Suidae,Sus,Sus scrofa,22
+Animalia,Chordata,Mammalia,Carnivora,Canidae,Urocyon,Urocyon cinereoargenteus,23
+Animalia,Chordata,Mammalia,Carnivora,Ursidae,Ursus,Ursus americanus,24
+Vehicle,NA,NA,NA,NA,NA,NA,25
+Animalia,Chordata,Mammalia,Carnivora,Canidae,Canis,Canis lupus,26
+Blank,NA,NA,NA,NA,NA,NA,27
+Animalia,Chordata,Mammalia,Carnivora,Mustelidae,NA,NA,28
+Animalia,Chordata,Aves,Passeriformes,Corvidae,Perisoreus,Perisoreus canadensis,29
+Animalia,Chordata,Mammalia,Perissodactyla,Equidae,Equus,Equus asinus,30
+Animalia,Chordata,Mammalia,Lagomorpha,Leporidae,Lepus,Lepus californicus,31
+Animalia,Chordata,Mammalia,Lagomorpha,Leporidae,Lepus,Lepus americanus,32
+Animalia,Chordata,Mammalia,Rodentia,Sciuridae,Marmota,NA,33
+Animalia,Chordata,Mammalia,Rodentia,Erethizontidae,Erethizon,Erethizon dorsatus,34
+Animalia,Chordata,Mammalia,Rodentia,Sciuridae,Sciurus,Sciurus carolinensis,35
+Animalia,Chordata,Mammalia,Rodentia,Sciuridae,Tamiasciurus,Tamiasciurus hudsonicus,36
+Animalia,Chordata,Mammalia,Carnivora,Canidae,Vulpes,Vulpes vulpes,37
+Animalia,Chordata,Aves,Accipitriformes,Accipitridae,NA,NA,38
+Animalia,Chordata,Aves,Anseriformes,Anatidae,NA,NA,39
+Animalia,Chordata,Mammalia,Artiodactyla,Bovidae,Ovis,Ovis canadensis,40
+Animalia,Chordata,Aves,Passeriformes,Corvidae,Pica,Pica hudsonia,41
+Animalia,Chordata,Mammalia,Rodentia,Sciuridae,Cynomys,Cynomys ludovicianus,42
+Animalia,Chordata,Mammalia,Carnivora,Felidae,Lynx,Lynx canadensis,43
+Animalia,Chordata,Aves,Passeriformes,Corvidae,Nucifraga,Nucifraga columbiana,44
+Animalia,Chordata,Aves,Passeriformes,Corvidae,Corvus,Corvus corax,45
+Animalia,Chordata,Mammalia,Artiodactyla,Bovidae,Ovis,Ovis aries,46
+Animalia,Chordata,Mammalia,Rodentia,Sciuridae,Callospermophilus,Callospermophilus lateralis,47
+Animalia,Chordata,Mammalia,Carnivora,Ursidae,Ursus,Ursus arctos,48
+Animalia,Chordata,Aves,Galliformes,Phasianidae,NA,NA,49
+Animalia,Chordata,Mammalia,Rodentia,Sciuridae,Cynomys,Cynomys gunnisoni,50
+Animalia,Chordata,Mammalia,Carnivora,Mustelidae,Pekania,Pekania pennanti,51
+Animalia,Chordata,Aves,Passeriformes,NA,NA,NA,52
+Animalia,Chordata,Aves,Galliformes,Phasianidae,Tympanuchus,Tympanuchus cupido,53
+Animalia,Chordata,Mammalia,Artiodactyla,Antilocapridae,Antilocapra,Antilocapra americana,54
+Animalia,Chordata,Mammalia,Carnivora,Mustelidae,Lontra,Lontra canadensis,55
+Animalia,Chordata,Aves,Passeriformes,Corvidae,Cyanocitta,Cyanocitta stelleri,56
+Animalia,Chordata,Mammalia,Carnivora,Canidae,Vulpes,Vulpes velox,57
+Animalia,Chordata,Mammalia,Carnivora,Mustelidae,Gulo,Gulo gulo,58
