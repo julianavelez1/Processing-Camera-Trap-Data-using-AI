@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Wildlife Insights (WI) | Guide for using artificial intelligence systems for camera trap data processing</title>
+  <meta name="description" content="We aim to provide an overview of the steps required to use platforms that implement artificial intelligence into workflows for processing camera trap images." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Wildlife Insights (WI) | Guide for using artificial intelligence systems for camera trap data processing" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="We aim to provide an overview of the steps required to use platforms that implement artificial intelligence into workflows for processing camera trap images." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Wildlife Insights (WI) | Guide for using artificial intelligence systems for camera trap data processing" />
+  
+  <meta name="twitter:description" content="We aim to provide an overview of the steps required to use platforms that implement artificial intelligence into workflows for processing camera trap images." />
+  
+
+<meta name="author" content="Juliana Velez and John Fieberg" />
+
+
+<meta name="date" content="2022-02-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="camera-trap-data.html"/>
+<link rel="next" href="megadetector.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.19/datatables.js"></script>
+<link href="libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./index.html">Guide for using artificial intelligence systems for camera trap data processing</a></li>
+
+<li class="divider"></li>
+<li><a href="index.html#section"></a></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="camera-trap-data.html"><a href="camera-trap-data.html"><i class="fa fa-check"></i><b>2</b> Camera-trap data</a></li>
+<li class="chapter" data-level="3" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html"><i class="fa fa-check"></i><b>3</b> Wildlife Insights (WI)</a><ul>
+<li class="chapter" data-level="3.1" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html#set-up"><i class="fa fa-check"></i><b>3.1</b> Set-up</a></li>
+<li class="chapter" data-level="3.2" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html#uploadformat-data"><i class="fa fa-check"></i><b>3.2</b> Upload/format data</a></li>
+<li class="chapter" data-level="3.3" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html#uploadenter-metadata"><i class="fa fa-check"></i><b>3.3</b> Upload/enter metadata</a></li>
+<li class="chapter" data-level="3.4" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html#processing-images---ai-module"><i class="fa fa-check"></i><b>3.4</b> Processing images - AI module</a></li>
+<li class="chapter" data-level="3.5" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html#post-ai-image-processing"><i class="fa fa-check"></i><b>3.5</b> Post-AI image processing</a></li>
+<li class="chapter" data-level="3.6" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html#wi-output"><i class="fa fa-check"></i><b>3.6</b> Using AI output</a></li>
+<li class="chapter" data-level="3.7" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html#wi-performance"><i class="fa fa-check"></i><b>3.7</b> Assessing AI performance</a><ul>
+<li class="chapter" data-level="3.7.1" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html#reading-in-data-introduction-to-the-purrr-package"><i class="fa fa-check"></i><b>3.7.1</b> Reading in data, introduction to the Purrr package</a></li>
+<li class="chapter" data-level="3.7.2" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html#removing-duplicate-images"><i class="fa fa-check"></i><b>3.7.2</b> Removing duplicate images</a></li>
+<li class="chapter" data-level="3.7.3" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html#images-with-multiple-observations-of-the-same-species"><i class="fa fa-check"></i><b>3.7.3</b> Images with multiple observations of the same species</a></li>
+<li class="chapter" data-level="3.7.4" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html#merging-computer-and-human-vision-data-sets"><i class="fa fa-check"></i><b>3.7.4</b> Merging computer and human vision data sets</a></li>
+<li class="chapter" data-level="3.7.5" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html#confusion-matrix-and-performance-measures"><i class="fa fa-check"></i><b>3.7.5</b> Confusion matrix and performance measures</a></li>
+<li class="chapter" data-level="3.7.6" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html#confidence-thresholds"><i class="fa fa-check"></i><b>3.7.6</b> Confidence thresholds</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="wildlife-insights-wi.html"><a href="wildlife-insights-wi.html#conclusions"><i class="fa fa-check"></i><b>3.8</b> Conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="megadetector.html"><a href="megadetector.html"><i class="fa fa-check"></i><b>4</b> MegaDetector</a><ul>
+<li class="chapter" data-level="4.1" data-path="megadetector.html"><a href="megadetector.html#md-upload"><i class="fa fa-check"></i><b>4.1</b> Upload/format data</a></li>
+<li class="chapter" data-level="4.2" data-path="megadetector.html"><a href="megadetector.html#md-metadata"><i class="fa fa-check"></i><b>4.2</b> Upload/enter metadata</a></li>
+<li class="chapter" data-level="4.3" data-path="megadetector.html"><a href="megadetector.html#md-process"><i class="fa fa-check"></i><b>4.3</b> Process images - AI module</a></li>
+<li class="chapter" data-level="4.4" data-path="megadetector.html"><a href="megadetector.html#md-timelapse"><i class="fa fa-check"></i><b>4.4</b> Image processing with Timelapse</a></li>
+<li class="chapter" data-level="4.5" data-path="megadetector.html"><a href="megadetector.html#md-output"><i class="fa fa-check"></i><b>4.5</b> Using AI output</a></li>
+<li class="chapter" data-level="4.6" data-path="megadetector.html"><a href="megadetector.html#md-performance"><i class="fa fa-check"></i><b>4.6</b> Assessing AI performance</a><ul>
+<li class="chapter" data-level="4.6.1" data-path="megadetector.html"><a href="megadetector.html#reading-in-data-introduction-to-the-purrr-package-1"><i class="fa fa-check"></i><b>4.6.1</b> Reading in data, introduction to the Purrr package</a></li>
+<li class="chapter" data-level="4.6.2" data-path="megadetector.html"><a href="megadetector.html#format-computer-vision-data-set"><i class="fa fa-check"></i><b>4.6.2</b> Format computer vision data set</a></li>
+<li class="chapter" data-level="4.6.3" data-path="megadetector.html"><a href="megadetector.html#md-format-hv"><i class="fa fa-check"></i><b>4.6.3</b> Format human vision data set</a></li>
+<li class="chapter" data-level="4.6.4" data-path="megadetector.html"><a href="megadetector.html#merging-computer-and-human-vision-data-sets-1"><i class="fa fa-check"></i><b>4.6.4</b> Merging computer and human vision data sets</a></li>
+<li class="chapter" data-level="4.6.5" data-path="megadetector.html"><a href="megadetector.html#confusion-matrix-and-performance-measures-1"><i class="fa fa-check"></i><b>4.6.5</b> Confusion matrix and performance measures</a></li>
+<li class="chapter" data-level="4.6.6" data-path="megadetector.html"><a href="megadetector.html#md-thresholds"><i class="fa fa-check"></i><b>4.6.6</b> Confidence thresholds</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="megadetector.html"><a href="megadetector.html#conclusions-1"><i class="fa fa-check"></i><b>4.7</b> Conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="mlwic2-machine-learning-for-wildlife-image-classification.html"><a href="mlwic2-machine-learning-for-wildlife-image-classification.html"><i class="fa fa-check"></i><b>5</b> MLWIC2: Machine Learning for Wildlife Image Classification</a><ul>
+<li class="chapter" data-level="5.1" data-path="mlwic2-machine-learning-for-wildlife-image-classification.html"><a href="mlwic2-machine-learning-for-wildlife-image-classification.html#set-up-1"><i class="fa fa-check"></i><b>5.1</b> Set-up</a></li>
+<li class="chapter" data-level="5.2" data-path="mlwic2-machine-learning-for-wildlife-image-classification.html"><a href="mlwic2-machine-learning-for-wildlife-image-classification.html#format-mlwic2"><i class="fa fa-check"></i><b>5.2</b> Upload/format data</a></li>
+<li class="chapter" data-level="5.3" data-path="mlwic2-machine-learning-for-wildlife-image-classification.html"><a href="mlwic2-machine-learning-for-wildlife-image-classification.html#mlwic2-ai-module"><i class="fa fa-check"></i><b>5.3</b> Process images - AI module</a></li>
+<li class="chapter" data-level="5.4" data-path="mlwic2-machine-learning-for-wildlife-image-classification.html"><a href="mlwic2-machine-learning-for-wildlife-image-classification.html#ai-mlwic2"><i class="fa fa-check"></i><b>5.4</b> Assessing AI performance</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="mlwic2-machine-learning-for-wildlife-image-classification.html"><a href="mlwic2-machine-learning-for-wildlife-image-classification.html#format-human-vision-data-set"><i class="fa fa-check"></i><b>5.4.1</b> Format human vision data set</a></li>
+<li class="chapter" data-level="5.4.2" data-path="mlwic2-machine-learning-for-wildlife-image-classification.html"><a href="mlwic2-machine-learning-for-wildlife-image-classification.html#format-computer-vision-data-set-1"><i class="fa fa-check"></i><b>5.4.2</b> Format computer vision data set</a></li>
+<li class="chapter" data-level="5.4.3" data-path="mlwic2-machine-learning-for-wildlife-image-classification.html"><a href="mlwic2-machine-learning-for-wildlife-image-classification.html#merging-computer-and-human-vision-data-sets-2"><i class="fa fa-check"></i><b>5.4.3</b> Merging computer and human vision data sets</a></li>
+<li class="chapter" data-level="5.4.4" data-path="mlwic2-machine-learning-for-wildlife-image-classification.html"><a href="mlwic2-machine-learning-for-wildlife-image-classification.html#summarizing-human-and-computer-vision-records-by-class"><i class="fa fa-check"></i><b>5.4.4</b> Summarizing human and computer vision records by class</a></li>
+<li class="chapter" data-level="5.4.5" data-path="mlwic2-machine-learning-for-wildlife-image-classification.html"><a href="mlwic2-machine-learning-for-wildlife-image-classification.html#confusion-matrix-and-performance-measures-2"><i class="fa fa-check"></i><b>5.4.5</b> Confusion matrix and performance measures</a></li>
+<li class="chapter" data-level="5.4.6" data-path="mlwic2-machine-learning-for-wildlife-image-classification.html"><a href="mlwic2-machine-learning-for-wildlife-image-classification.html#confidence-thresholds-1"><i class="fa fa-check"></i><b>5.4.6</b> Confidence thresholds</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="mlwic2-machine-learning-for-wildlife-image-classification.html"><a href="mlwic2-machine-learning-for-wildlife-image-classification.html#model-training"><i class="fa fa-check"></i><b>5.5</b> Model training</a></li>
+<li class="chapter" data-level="5.6" data-path="mlwic2-machine-learning-for-wildlife-image-classification.html"><a href="mlwic2-machine-learning-for-wildlife-image-classification.html#classify-trained"><i class="fa fa-check"></i><b>5.6</b> Classify using a trained model</a></li>
+<li class="chapter" data-level="5.7" data-path="mlwic2-machine-learning-for-wildlife-image-classification.html"><a href="mlwic2-machine-learning-for-wildlife-image-classification.html#conclusion"><i class="fa fa-check"></i><b>5.7</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="conservation-ai.html"><a href="conservation-ai.html"><i class="fa fa-check"></i><b>6</b> Conservation AI</a><ul>
+<li class="chapter" data-level="6.1" data-path="conservation-ai.html"><a href="conservation-ai.html#set-up-2"><i class="fa fa-check"></i><b>6.1</b> Set-up</a></li>
+<li class="chapter" data-level="6.2" data-path="conservation-ai.html"><a href="conservation-ai.html#uploadformat-data-1"><i class="fa fa-check"></i><b>6.2</b> Upload/format data</a></li>
+<li class="chapter" data-level="6.3" data-path="conservation-ai.html"><a href="conservation-ai.html#image-tagging"><i class="fa fa-check"></i><b>6.3</b> Image tagging</a></li>
+<li class="chapter" data-level="6.4" data-path="conservation-ai.html"><a href="conservation-ai.html#process-images---ai-module"><i class="fa fa-check"></i><b>6.4</b> Process images - AI module</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Guide for using artificial intelligence systems for camera trap data processing</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="wildlife-insights-wi" class="section level1">
+<h1><span class="header-section-number">Chapter 3</span> Wildlife Insights (WI)</h1>
+<p>Wildlife Insights (WI) is an initiative developed by Conservation International in partnership with the Wildlife Conservation Society, World Wildlife Fund, Zoological Society of London, The Smithsonian Institution, North Carolina Museum of Natural Sciences, Yale University and Google <span class="citation">(Ahumada et al. <a href="#ref-ahumada_wi">2019</a>)</span>. WI provides an interface and tools to support workflows for processing, visualizing, and analyzing camera trap data. These tools include infrastructure to store, review and process images, AI to classify species and blanks, and an analysis engine for implementing common statistical methods with camera trap data (e.g., estimation of species’ activity patterns, occupancy, density and diversity indices) <span class="citation">(Ahumada et al. <a href="#ref-ahumada_wi">2019</a>)</span>. Beyond serving as an interface for image processing and data analysis, WI was also conceived as a data repository for hosting camera trap data collected worldwide; images and associated metadata stored in WI can be downloaded by the public after sensitive content (e.g., images with people or endangered species) has been removed and once an embargo time (maximum 48 months) provided by data providers has passed <span class="citation">(Ahumada et al. <a href="#ref-ahumada_wi">2019</a>)</span>.</p>
+<p>WI provides comprehensive guides for navigating the platform and tutorials showing step-by-step usage of the system’s features. This documentation can be found here: <a href="https://www.wildlifeinsights.org/get-started" class="uri">https://www.wildlifeinsights.org/get-started</a>.</p>
+<p>Additionally, WI provides references describing how their AI models work along with a table listing species used for model training and performance metrics for each species, which users can consult here: <a href="https://www.wildlifeinsights.org/about-wildlife-insights-ai" class="uri">https://www.wildlifeinsights.org/about-wildlife-insights-ai</a>. We synthesize some of the key navigation steps and illustrate how one can evaluate performance of built-in AI models. Specifically, we provide code for comparing human classifications with model predictions for a subset of your images. This comparison will be useful to better understand how AI models are likely to perform with your particular images and whether AI may be able to provide accurate enough classification for some of your species.</p>
+<p><strong>Before we get started</strong>: if you plan to compare model predictions with human classifications, you should download computer vision identifications right after uploading images to the WI platform (see Section <a href="wildlife-insights-wi.html#wi-performance">3.7</a>). It is important that you have a record of the WI classifications <strong>before you do any processing on your data</strong>.</p>
+<div id="set-up" class="section level2">
+<h2><span class="header-section-number">3.1</span> Set-up</h2>
+<ul>
+<li>Create an account here <a href="https://app.wildlifeinsights.org/join" class="uri">https://app.wildlifeinsights.org/join</a></li>
+<li><p>In WI, you can structure your data hierarchically. Below, we provide an example structure from our camera trapping project in Colombia:</p>
+<ul>
+<li>Organization: University of Minnesota</li>
+<li>Initiative: Wildlife monitoring in South America using camera traps.</li>
+<li>Project: Large mammals Colombia.</li>
+<li>Subprojects:
+<ul>
+<li>Jul2019-Jan2020 Deployment</li>
+<li>Jan2020-Jul2020 Deployment</li>
+</ul></li>
+<li>Location: We use alphanumerical codes to name each camera trap location, with letters representing different areas within our study area (Figure <a href="wildlife-insights-wi.html#fig:locations">3.1</a>). Each location has its own geographical coordinates.</li>
+<li>Deployment: Information for deployments include temporal record (start and end dates) of a camera trap survey within a particular location. In our example, for our location “A08” a camera trap was deployed from 2019-07-10 to 2020-01-08 (Figure <a href="wildlife-insights-wi.html#fig:deployments">3.2</a>).</li>
+</ul></li>
+</ul>
+<p>This data structure allows you to manage multiple collaborators and data sets collected by different organizations and teams but associated with a single purpose <span class="citation">(Initiatives <a href="#ref-wi_initiatives">2021</a>)</span>. For example, an “Initiative” allows you to share a project between different organizations <span class="citation">(Initiatives <a href="#ref-wi_initiatives">2021</a>)</span> which facilitates data management and labor distribution.</p>
+<p>Hierarchical data storage also might help to organize and filter subsets of images or data. For example “Projects” can contain “Subprojects” that might represent groups of deployments and/or locations. See the Glossary page for more terms found in WI <a href="https://www.wildlifeinsights.org/get-started/glossary" class="uri">https://www.wildlifeinsights.org/get-started/glossary</a>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:locations"></span>
+<img src="input_figures/wi/locations.png" alt="Locations of camera traps mapped in the Wildlife Insights platform along with location names and geographical coordinates." width="100%" />
+<p class="caption">
+Figure 3.1: Locations of camera traps mapped in the Wildlife Insights platform along with location names and geographical coordinates.
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:deployments"></span>
+<img src="input_figures/wi/deployments.png" alt="Deployments showing &quot;Start date&quot; and &quot;End date&quot; for each camera loaction." width="100%" />
+<p class="caption">
+Figure 3.2: Deployments showing “Start date” and “End date” for each camera loaction.
+</p>
+</div>
+</div>
+<div id="uploadformat-data" class="section level2">
+<h2><span class="header-section-number">3.2</span> Upload/format data</h2>
+<p>You can upload already labeled images (e.g., for storing and managing images in the cloud) or unlabeled images to be processed.</p>
+<ul>
+<li><p>For labeled images, you will need to (re)format images’ metadata using the WI batch upload templates and transfer images from a public URL (e.g., Google Drive) or directly to the Google Cloud Platform. See <a href="https://www.wildlifeinsights.org/get-started/upload/bulk-data-uploads" class="uri">https://www.wildlifeinsights.org/get-started/upload/bulk-data-uploads</a></p></li>
+<li><p>For unlabeled images, you can upload images via the WI platform. Images will then be stored in the Google Cloud Platform and displayed in the user’s project. See <a href="https://www.wildlifeinsights.org/get-started/upload/upload-new-data" class="uri">https://www.wildlifeinsights.org/get-started/upload/upload-new-data</a></p></li>
+</ul>
+</div>
+<div id="uploadenter-metadata" class="section level2">
+<h2><span class="header-section-number">3.3</span> Upload/enter metadata</h2>
+<p>Metadata, such as the time and date each picture was taken, the filename, camera trap name and Exif data (camera settings: photo exposure, ISO and aperture) are automatically read once unlabeled images are uploaded.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:metadat1-fig"></span>
+<img src="input_figures/wi/metadata.png" alt="Picture metadata displayed after uploading an image to Wildlife Insights online platform." width="85%" />
+<p class="caption">
+Figure 3.3: Picture metadata displayed after uploading an image to Wildlife Insights online platform.
+</p>
+</div>
+<p>You can provide additional metadata, including coordinates for the camera trap or other features associated with camera deployment (e.g., dates, camera height, settings, use of bait, etc.). This information can be entered manually for each deployment or you can use a CSV file formatted using the WI template for a bulk deployment upload. See the deployments guide <a href="https://www.wildlifeinsights.org/get-started/manage-metadata/deployments." class="uri">https://www.wildlifeinsights.org/get-started/manage-metadata/deployments.</a></p>
+</div>
+<div id="processing-images---ai-module" class="section level2">
+<h2><span class="header-section-number">3.4</span> Processing images - AI module</h2>
+<p>While images are uploaded, they will be processed by WI’s AI model. Computer vision classifications will be available in the WI platform as soon as your images are uploaded. Additionally, after images are uploaded, you can download the output (see download tab in the upper right corner of Figure <a href="wildlife-insights-wi.html#fig:wiproject-fig">3.4</a>). The output will include a CSV file with the AI classifications (See Section <a href="wildlife-insights-wi.html#wi-output">3.6</a> for more information on WI output); you will receive an email with a link for downloading the output. <strong>Again, to facilitate evaluation of AI performance, we recommend downloading this CSV file before you do any other manipulations in the WI platform</strong>.</p>
+<p>Your project in WI will include the uploaded images in the “Identify” tab. Species predictions will be shown along with their confidence values associated. You will be able to verify if these classifications are correct, after which they will be moved to the “Catalogued” tab (Figure <a href="wildlife-insights-wi.html#fig:wiproject-fig">3.4</a>).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:wiproject-fig"></span>
+<img src="input_figures/wi/project.png" alt="WI processing module after uploading images." width="85%" />
+<p class="caption">
+Figure 3.4: WI processing module after uploading images.
+</p>
+</div>
+</div>
+<div id="post-ai-image-processing" class="section level2">
+<h2><span class="header-section-number">3.5</span> Post-AI image processing</h2>
+<p>WI provides a platform with multiple tools for reviewing images, allowing users to verify AI output. In addition, users can:</p>
+<ul>
+<li>Sort images by “Date taken”, “Upload date” or “Last modification” (the latter only for “Catalogued” images) (Figure <a href="wildlife-insights-wi.html#fig:wiproject-fig">3.4</a>).</li>
+<li>Filter images by categories such as Subprojects, Deployments, Species, Status (e.g., Blank or Not blank) or Photos (e.g., Highlighted images for quick access or Not highlighted) (Figure <a href="wildlife-insights-wi.html#fig:wiproject-fig">3.4</a>).</li>
+<li>Edit under- or over-exposed images by adjusting brightness, contrast and saturation.</li>
+<li>Edit identifications using bulk actions by selecting and entering information for multiple images at a time (e.g., for 100 or 200 images).</li>
+<li>Group images within a Burst defined by a timeframe to perform bulk actions.</li>
+<li>Manage collaborations for data processing by assigning different roles with different levels of data access (e.g., project owner, editor, contributor, tagger, viewer).</li>
+</ul>
+</div>
+<div id="wi-output" class="section level2">
+<h2><span class="header-section-number">3.6</span> Using AI output</h2>
+<p>All the above mentioned processing tools can be used to review and verify AI output presented in the “Identify” tab. You can approve computer vision identifications or edit them in the processing module. You can also include additional identifications if more than 1 animal (of the same or different species) is present in the picture and add other identifying information (e.g., sex, age, markings for each individual) or other remarks (e.g., comments or observations) that may be useful.</p>
+<p>When you download the resulting output, you will receive 4 different files that capture data related to your cameras, their deployments, and your projects (Figure <a href="wildlife-insights-wi.html#fig:wi-output-fig">3.5</a>):</p>
+<ul>
+<li><code>cameras.csv</code>: contains metadata related to the cameras, including camera_id, make, model, serial_number and year purchased.</li>
+<li><code>deployments.csv</code>: contains deployment dates, geographical coordinates, details of camera trap placement and camera settings.</li>
+<li><code>images.csv</code>: includes classifications and features recorded for each image.</li>
+<li><code>projects.csv</code>: includes project details such as project objectives, licenses for metadata and images, and information about the sampling design used for camera trap deployment.</li>
+</ul>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:wi-output-fig"></span>
+<img src="input_figures/wi/output.png" alt="WI files created when you download project information and AI processed data." width="80%" />
+<p class="caption">
+Figure 3.5: WI files created when you download project information and AI processed data.
+</p>
+</div>
+<p>In additional to these 4 CSV files, the folder with downloaded data will contain a tutorial for downloading images from WI and a file containing WI terms of use and privacy policy (Figure <a href="wildlife-insights-wi.html#fig:wi-output-fig">3.5</a>).</p>
+<p>You can also quickly inspect AI results in the Summary tab (upper left of Figure <a href="wildlife-insights-wi.html#fig:wiproject-fig">3.4</a>). You will see a map with your camera locations and a summary of the species in your data set (Figure <a href="wildlife-insights-wi.html#fig:wi-summary-fig">3.6</a>).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:wi-summary-fig"></span>
+<img src="input_figures/wi/summary.png" alt="WI summary of images by type and identified species." width="80%" />
+<p class="caption">
+Figure 3.6: WI summary of images by type and identified species.
+</p>
+</div>
+</div>
+<div id="wi-performance" class="section level2">
+<h2><span class="header-section-number">3.7</span> Assessing AI performance</h2>
+<p>AI classification systems have been improving, but their performance is still highly variable, both across study sites and species <span class="citation">(Tabak et al. <a href="#ref-tabak_2018">2018</a>)</span>. Thus, it is extremely important to evaluate model performance with your data set. Before reviewing all the images and AI classifications, you can classify a subset of your images and compare these identifications with AI output. This step will allow you to determine how well the model is working for various species of interest and also to determine if there are particular species or locations where model performance is particularly poor.</p>
+<p>Below, we demonstrate a step-by-step workflow for how to get WI output into R, join computer and human vision identifications, and estimate model performance metrics for each species. Throughout, we will use the <code>purrr</code> package in R <span class="citation">(Henry and Wickham <a href="#ref-purrr">2020</a>; R Core Team <a href="#ref-R-base">2021</a>)</span> to repeatedly apply the same function to objects in a list or column in a nested data frame efficiently and without the need for writing loops. Readers unfamiliar with <code>purrr</code> syntax, may want to view one or more of the tutorials, below, or make use of the <a href="https://github.com/rstudio/cheatsheets/blob/master/purrr.pdf">purrr cheat sheet</a>.</p>
+<ul>
+<li><a href="http://www.rebeccabarter.com/blog/2019-08-19_purrr/" class="uri">http://www.rebeccabarter.com/blog/2019-08-19_purrr/</a></li>
+<li><a href="https://www.r-bloggers.com/2020/05/one-stop-tutorial-on-purrr-package-in-r/" class="uri">https://www.r-bloggers.com/2020/05/one-stop-tutorial-on-purrr-package-in-r/</a></li>
+<li><a href="https://jennybc.github.io/purrr-tutorial/index.html" class="uri">https://jennybc.github.io/purrr-tutorial/index.html</a></li>
+</ul>
+<ol style="list-style-type: decimal">
+<li>Right after uploading images to the WI platform and <strong><em>before</em></strong> doing any image processing (i.e., identification), download the WI output (see the download tab in Figure <a href="wildlife-insights-wi.html#fig:wiproject-fig">3.4</a>). WI’s computer vision identifications will be contained in the images.csv file (Figure <a href="wildlife-insights-wi.html#fig:wi-compvision-fig">3.7</a>). Save that file as <code>images_cv.csv</code>.</li>
+</ol>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:wi-compvision-fig"></span>
+<img src="input_figures/wi/compvision.png" alt="Identifications provided by computer vision." width="80%" />
+<p class="caption">
+Figure 3.7: Identifications provided by computer vision.
+</p>
+</div>
+<ol start="2" style="list-style-type: decimal">
+<li>Use the WI processing module to verify a subset of your images (e.g., ~100,000) and either accept the computer vision identification as correct or edit the identification with the correct species label. The identified_by column presented in Figure 2.5 will change according to the new identifier (Figure <a href="wildlife-insights-wi.html#fig:wi-newid-fig">3.8</a>).</li>
+</ol>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:wi-newid-fig"></span>
+<img src="input_figures/wi/newid.png" alt="Identifications after verification by an expert." width="90%" />
+<p class="caption">
+Figure 3.8: Identifications after verification by an expert.
+</p>
+</div>
+<ol start="3" style="list-style-type: decimal">
+<li><p>Once you finish identifying a subset of your images, download the data from WI and change the name of the images.csv file to <code>images_hv.csv</code>. Create a data folder to store your two CSV files <code>images_cv.csv</code> and <code>images_hv.csv</code> that refer to classifications of computer and human vision, respectively. We provide an example of both files with the repository associated with this guide, named <code>images_cv_jan2020_raw.csv</code> and <code>images_hv_jan2020_raw.csv</code>.</p></li>
+<li><p>Process the two data files using the R code provided in the sections below.</p></li>
+</ol>
+<div id="reading-in-data-introduction-to-the-purrr-package" class="section level3">
+<h3><span class="header-section-number">3.7.1</span> Reading in data, introduction to the Purrr package</h3>
+<p>Before comparing human and computer vision we need to do some data cleaning. This cleaning includes removing duplicated uploads to the WI platform and making sure to keep a single record for each image, as WI creates multiple rows when more than one animal (or object) is identified in an image.</p>
+<p>First, we load required libraries.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(tidyverse) <span class="co"># for data wrangling and visualization, includes dplyr and purrr</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">library</span>(here) <span class="co"># to allow use of relative paths</span></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">library</span>(DT) <span class="co"># for viewing data tables</span></a></code></pre></div>
+<p>Next, we tell R the path (i.e., directory name) that holds our files. We will use the <code>here</code> package <span class="citation">(Müller <a href="#ref-here">2017</a>)</span> to tell R that our files live in the “./data/wi” directory. You may, alternatively, type in the full path to the file folder or a relative path from the root directory if you are using a project in Rstudio.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># Create filefolder&#39;s path. This should point to the folder name</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="co"># where you stored your CSV files downloaded from WI</span></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">filesfolder &lt;-<span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;wi&quot;</span>) </a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">filesfolder</a></code></pre></div>
+<pre><code>## [1] &quot;/Users/julianavelez/Documents/GitHub/Processing-Camera-Trap-Data-using-AI/data/wi&quot;</code></pre>
+<p>Next, we use the <code>dir</code> function to list the files contained in the “filesfolder” directory.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="co"># list all your CSV files (i.e., &quot;images_cv_jan2020_raw.csv&quot; and &quot;images_hv_jan2020_raw.csv&quot;)</span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">files &lt;-<span class="st"> </span><span class="kw">dir</span>(filesfolder, <span class="dt">pattern =</span> <span class="st">&quot;*.csv&quot;</span>) </a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">files</a></code></pre></div>
+<pre><code>## [1] &quot;images_cv_test.csv&quot;        &quot;images_hv_jan2020_raw.csv&quot;</code></pre>
+<p>We then use the <code>map</code> function in the <code>purrr</code> package to read in all of the files and store them in a list object named <code>mycsv</code>. The first argument to <code>map</code> is a list (here, <code>files</code>) which is “piped in” using <code>%&gt;%</code> from the <code>magrittr</code> package <span class="citation">(Bache and Wickham <a href="#ref-magrittr">2020</a>)</span>. Pipes (<code>%&gt;%</code>) provide a way to execute a sequence of data operations, organized so that the operations can be read from left to right (e.g., “Take this set of files and then read them in using <code>read_csv</code>”). The second argument to <code>map</code> is a function, in this case <code>read_csv</code>, to be applied to the list. The <code>map</code> function iterates over the two files stored in the <code>files</code> object, reads in the data files and then stores them in a new list named <code>mycsv.</code> We use <code>~</code> to refer to our function and use <code>.x</code> to refer to the list object that is passed to the function as an additional argument.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="co"># Read both CSV files</span></a>
+<a class="sourceLine" id="cb6-2" data-line-number="2">mycsv &lt;-<span class="st"> </span>files <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="st">  </span><span class="kw">map</span>(<span class="op">~</span><span class="st"> </span><span class="kw">read_csv</span>(<span class="kw">file.path</span>(filesfolder, .x)))</a>
+<a class="sourceLine" id="cb6-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="co"># Inspect how the data sets look like</span></a>
+<a class="sourceLine" id="cb6-6" data-line-number="6">mycsv </a></code></pre></div>
+<pre><code>## [[1]]
+## # A tibble: 104,235 × 25
+##    project_id deployment_id image_id filename is_blank identified_by wi_taxon_id
+##         &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;    &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;      
+##  1    2004246 A03           84c573d… A03/041…        1 Computer vis… f1856211-c…
+##  2    2004246 M04           2754d55… M04/040…        1 Computer vis… f1856211-c…
+##  3    2004246 M01           2a8aec6… M01/062…        0 Computer vis… 1f689929-8…
+##  4    2004246 N29           1c75bdc… N29/011…        1 Computer vis… f1856211-c…
+##  5    2004246 M04           e39d3ae… M04/021…        0 Computer vis… f2efdae9-e…
+##  6    2004246 A07           acfa3bc… A07/021…        0 Computer vis… 3d80f1d6-b…
+##  7    2004246 M01           ad80a12… M01/062…        0 Computer vis… f2d233e3-8…
+##  8    2004246 N05           702a38f… N05/062…        0 Computer vis… 988b8b2d-6…
+##  9    2004246 A06           473b772… A06/030…        0 Computer vis… 837e12c2-f…
+## 10    2004246 M05           6534fac… M05/020…        0 Computer vis… 627c919c-2…
+## # … with 104,225 more rows, and 18 more variables: class &lt;chr&gt;, order &lt;chr&gt;,
+## #   family &lt;chr&gt;, genus &lt;chr&gt;, species &lt;chr&gt;, common_name &lt;chr&gt;,
+## #   uncertainty &lt;lgl&gt;, timestamp &lt;dttm&gt;, number_of_objects &lt;dbl&gt;, age &lt;lgl&gt;,
+## #   sex &lt;lgl&gt;, animal_recognizable &lt;lgl&gt;, individual_id &lt;lgl&gt;,
+## #   individual_animal_notes &lt;lgl&gt;, highlighted &lt;lgl&gt;, markings &lt;lgl&gt;,
+## #   cv_confidence &lt;dbl&gt;, license &lt;chr&gt;
+## 
+## [[2]]
+## # A tibble: 114,237 × 27
+##       X1 project_id deployment_id image_id    filename  location        is_blank
+##    &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;       &lt;chr&gt;     &lt;chr&gt;              &lt;dbl&gt;
+##  1     1    2000949 N25           902b671f-5… N25/0331… gs://large_mam…        0
+##  2     2    2000949 N23           9a430206-a… N23/0424… gs://large_mam…        0
+##  3     3    2000949 N29           e727dc42-5… N29/0331… gs://large_mam…        0
+##  4     4    2000949 A06           db3c3213-5… A06/0602… gs://large_mam…        0
+##  5     5    2000949 A02           c7e33138-0… A02/0310… gs://large_mam…        1
+##  6     6    2000949 A04           52f77e0c-7… A04/0418… gs://large_mam…        0
+##  7     7    2000949 A06           94a5b596-1… A06/0302… gs://large_mam…        0
+##  8     8    2000949 A06           063c0153-d… A06/0619… gs://large_mam…        0
+##  9     9    2000949 A06           4b6f9c4e-e… A06/0625… gs://large_mam…        0
+## 10    10    2000949 A07           15c4e9f4-7… A07/0509… gs://large_mam…        0
+## # … with 114,227 more rows, and 20 more variables: identified_by &lt;chr&gt;,
+## #   wi_taxon_id &lt;chr&gt;, class &lt;chr&gt;, order &lt;chr&gt;, family &lt;chr&gt;, genus &lt;chr&gt;,
+## #   species &lt;chr&gt;, common_name &lt;chr&gt;, uncertainty &lt;lgl&gt;, timestamp &lt;dttm&gt;,
+## #   age &lt;chr&gt;, sex &lt;chr&gt;, animal_recognizable &lt;lgl&gt;, individual_id &lt;lgl&gt;,
+## #   number_of_objects &lt;dbl&gt;, individual_animal_notes &lt;chr&gt;, highlighted &lt;lgl&gt;,
+## #   markings &lt;chr&gt;, cv_confidence &lt;lgl&gt;, license &lt;chr&gt;</code></pre>
+<p>There are many variables that we will not need when evaluating AI performance. To simplify things, we use the <code>select</code> function to only keep the variables of interest:</p>
+<ul>
+<li><code>deployment_id</code>: deployment name including camera location.</li>
+<li><code>filename</code>: image filename.</li>
+<li><code>timestamp</code>: time of a camera trigger.</li>
+<li><code>image_id</code>: WI identifier for images uploaded to the platform.</li>
+<li><code>common_name</code>: species’ common name labeled either by computer or human vision.</li>
+<li><code>cv_confidence</code>: confidence value associated with the computer vision label.</li>
+</ul>
+<p>Additionally, we remove images without a classification (i.e., common_name = “NA”) and with the “Human” class, as human images in this data set predominately correspond to camera-set-up images. We inspect the final number of rows using <code>nrow()</code>.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">mycsv &lt;-<span class="st"> </span>mycsv <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="st">  </span><span class="kw">map</span>(<span class="op">~</span>.x <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="st">        </span><span class="kw">select</span>(deployment_id, filename, timestamp, image_id, common_name, cv_confidence) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="st">        </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(common_name)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb8-5" data-line-number="5"><span class="st">        </span><span class="kw">filter</span>(common_name <span class="op">!=</span><span class="st"> &quot;Human&quot;</span> <span class="op">&amp;</span><span class="st"> </span>common_name <span class="op">!=</span><span class="st"> &quot;Human-Camera Trapper&quot;</span>))</a>
+<a class="sourceLine" id="cb8-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb8-7" data-line-number="7">mycsv <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">map</span>(<span class="op">~</span>.x <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">nrow</span>())</a></code></pre></div>
+<pre><code>## [[1]]
+## [1] 104188
+## 
+## [[2]]
+## [1] 106787</code></pre>
+</div>
+<div id="removing-duplicate-images" class="section level3">
+<h3><span class="header-section-number">3.7.2</span> Removing duplicate images</h3>
+<p>Before discussing how to join the two data sets corresponding to human and computer vision, we need to remove duplicated rows that might result from accidentally uploading the same image more than once to the WI platform. We can identify these duplicated uploads as they contain the same information in all the columns except for <code>image_id</code>. Figure <a href="wildlife-insights-wi.html#fig:wi-duplicated-fig">3.9</a> shows two different examples of duplicated uploads.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:wi-duplicated-fig"></span>
+<img src="input_figures/wi/duplicated_uploads.png" alt="Identification of duplicated image uploads in the images.csv WI output." width="150%" />
+<p class="caption">
+Figure 3.9: Identification of duplicated image uploads in the images.csv WI output.
+</p>
+</div>
+<p>We will use the information contained in <code>deployment_id</code>, <code>filename</code>, and <code>timestamp</code> to uniquely identify each image event; hereafter, we will refer to this suite of variables as key columns. To remove duplicates in our data sets, we first use the <code>group_by</code> function to group rows using these key columns and store our grouped dataframe as <code>mycsv_grouped</code>. We use the <code>summarise</code> function <span class="citation">(Wickham et al. <a href="#ref-R-dplyr">2019</a>)</span> to create a new column <code>uploads</code> that contains the count of unique <code>image_id</code> values for each group of rows. Groups that have more than one <code>image_id</code> indicate duplicated uploads (Figure <a href="wildlife-insights-wi.html#fig:wi-duplicated-fig">3.9</a>). We then filter by counts &gt; 1 to inspect duplicated images, remove duplicated rows in our data sets using the <code>unique</code> function <span class="citation">(R Core Team <a href="#ref-R-base">2021</a>)</span> and store the remaining data in the <code>no_duplicates</code> list object.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">mycsv_grouped &lt;-<span class="st"> </span>mycsv <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="st">  </span><span class="kw">map</span>(<span class="op">~</span>.x <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="st">  </span><span class="kw">group_by</span>(deployment_id, filename, timestamp))</a>
+<a class="sourceLine" id="cb10-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb10-5" data-line-number="5"><span class="co"># Create data set with duplicated images</span></a>
+<a class="sourceLine" id="cb10-6" data-line-number="6">duplicated_images &lt;-<span class="st"> </span>mycsv_grouped <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb10-7" data-line-number="7"><span class="st">  </span><span class="kw">map</span>(<span class="op">~</span>.x <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb10-8" data-line-number="8"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">uploads =</span> <span class="kw">length</span>(<span class="kw">unique</span>(image_id))) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># count unique ID&#39;s</span></a>
+<a class="sourceLine" id="cb10-9" data-line-number="9"><span class="st">    </span><span class="kw">filter</span>(uploads <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>)) <span class="co"># for inspecting duplicated uploads</span></a>
+<a class="sourceLine" id="cb10-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb10-11" data-line-number="11"><span class="co"># Create a data set without the duplicated images</span></a>
+<a class="sourceLine" id="cb10-12" data-line-number="12">no_duplicates &lt;-<span class="st"> </span>mycsv_grouped <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb10-13" data-line-number="13"><span class="st">  </span><span class="kw">map</span>(<span class="op">~</span>.x <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb10-14" data-line-number="14"><span class="st">  </span><span class="kw">filter</span>(image_id <span class="op">==</span><span class="st"> </span><span class="kw">unique</span>(image_id)[<span class="dv">1</span>])) </a>
+<a class="sourceLine" id="cb10-15" data-line-number="15"><span class="co"># This code keeps all the records that have a single image ID and keeps only</span></a>
+<a class="sourceLine" id="cb10-16" data-line-number="16"><span class="co"># one record of duplicated uploads selected by indexing the first &quot;image_id&quot; within a group</span></a></code></pre></div>
+</div>
+<div id="images-with-multiple-observations-of-the-same-species" class="section level3">
+<h3><span class="header-section-number">3.7.3</span> Images with multiple observations of the same species</h3>
+<p>WI creates extra rows when you identify more than one animal per picture. Thus, it is likely that your two CSV files will slightly differ in number of rows (as is the case here). After removing duplicated records, we need to drop extra rows in the human vision data frame that result from identifying more than 1 animal of the same species in the same image. As an example, Figure <a href="wildlife-insights-wi.html#fig:wi-distinct-dets-fig">3.10</a> displays records for both a juvenile and adult Southern tamandua detected in the same image.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:wi-distinct-dets-fig"></span>
+<img src="input_figures/wi/distinct_dets.png" alt="Highlighted rows represent detections of one juvenile and an adult of the Southern Tamandua in the same image." width="150%" />
+<p class="caption">
+Figure 3.10: Highlighted rows represent detections of one juvenile and an adult of the Southern Tamandua in the same image.
+</p>
+</div>
+<p>We will use the human vision data set contained in the <code>no_duplicates</code> list object as the ground truth when evaluating model performance for all platforms reviewed in this gitbook. This list object has been saved as <code>images_hv_jan2020.csv</code> using the following code.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="co">#write_csv(same_sp_dets %&gt;% pluck(2) %&gt;% select(-cv_confidence), file = &quot;data/wi/processed_data/images_hv_jan2020.csv&quot;)</span></a></code></pre></div>
+<p>We regroup the data by filename, adding <code>common_name</code>. We then apply the <code>distinct</code> function to reduce multiple records of the same species in the same image to a single record. If the same filename has both classifications for a species and the “blank” category, we only keep the species classification.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">hv &lt;-<span class="st"> </span>no_duplicates <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="st">  </span><span class="kw">pluck</span>(<span class="dv">2</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="st">        </span><span class="kw">group_by</span>(filename, common_name) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb12-4" data-line-number="4"><span class="st">        </span><span class="kw">distinct</span>(filename, common_name, <span class="dt">.keep_all =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># keep single record for same filename and common_name</span></a>
+<a class="sourceLine" id="cb12-5" data-line-number="5"><span class="st">        </span><span class="kw">group_by</span>(filename) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb12-6" data-line-number="6"><span class="st">        </span><span class="kw">mutate</span>(<span class="dt">sp_num =</span> <span class="kw">length</span>(<span class="kw">unique</span>(common_name))) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb12-7" data-line-number="7"><span class="st">        </span><span class="kw">group_by</span>(filename) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb12-8" data-line-number="8"><span class="st">        </span><span class="kw">filter</span>(<span class="op">!</span>(common_name <span class="op">==</span><span class="st"> &quot;Blank&quot;</span> <span class="op">&amp;</span><span class="st"> </span>sp_num <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>)) <span class="co"># for groups with num_classes &gt; 1, remove blanks</span></a></code></pre></div>
+<p>For a filename with multiple predictions of the same <code>common_name</code> in computer vision, we only keep the record with the highest confidence value using the <code>top_n</code> function. To address this complication, we create a <code>sp_num</code> column containing the number of species per image, which can then be used to identify records with more than one species in an image <code>sp_num &gt; 1</code>.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">cv &lt;-<span class="st"> </span>no_duplicates <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="st">  </span><span class="kw">pluck</span>(<span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="st">        </span><span class="kw">group_by</span>(filename, common_name) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb13-4" data-line-number="4"><span class="st">        </span><span class="kw">top_n</span>(<span class="dv">1</span>, cv_confidence) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># keep highest value of same class</span></a>
+<a class="sourceLine" id="cb13-5" data-line-number="5"><span class="st">        </span><span class="kw">group_by</span>(filename, common_name) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb13-6" data-line-number="6"><span class="st">        </span><span class="kw">distinct</span>(filename, common_name, cv_confidence, <span class="dt">.keep_all =</span> <span class="ot">TRUE</span>) <span class="co"># keep single record for same filename, common_name and value</span></a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">cv &lt;-<span class="st"> </span>cv <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb14-2" data-line-number="2"><span class="st">        </span><span class="kw">group_by</span>(filename) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb14-3" data-line-number="3"><span class="st">        </span><span class="kw">mutate</span>(<span class="dt">sp_num =</span> <span class="kw">length</span>(<span class="kw">unique</span>(common_name))) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb14-4" data-line-number="4"><span class="st">        </span><span class="kw">group_by</span>(filename) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb14-5" data-line-number="5"><span class="st">        </span><span class="kw">filter</span>(<span class="op">!</span>(common_name <span class="op">==</span><span class="st"> &quot;Blank&quot;</span> <span class="op">&amp;</span><span class="st"> </span>sp_num <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># for groups with num_classes &gt; 1, remove blanks</span></a>
+<a class="sourceLine" id="cb14-6" data-line-number="6"><span class="st">        </span><span class="kw">mutate</span>(<span class="dt">sp_num =</span> <span class="kw">length</span>(<span class="kw">unique</span>(common_name))) <span class="co"># re-estimate sp_num with no blanks</span></a></code></pre></div>
+</div>
+<div id="merging-computer-and-human-vision-data-sets" class="section level3">
+<h3><span class="header-section-number">3.7.4</span> Merging computer and human vision data sets</h3>
+<p>Now that we have the same format for both human and computer vision data sets, we can use various “joins” <span class="citation">(Wickham et al. <a href="#ref-R-dplyr">2019</a>)</span> to merge the two data sets together so that we can evaluate the accuracy of WI. First, however, we will eliminate any images that were not processed by both humans and AI.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="co"># Determine which images have been viewed by both methods</span></a>
+<a class="sourceLine" id="cb15-2" data-line-number="2">ind1 &lt;-<span class="st"> </span>cv<span class="op">$</span>filename <span class="op">%in%</span><span class="st"> </span>hv<span class="op">$</span>filename <span class="co"># in both</span></a>
+<a class="sourceLine" id="cb15-3" data-line-number="3">ind2 &lt;-<span class="st"> </span>hv<span class="op">$</span>filename <span class="op">%in%</span><span class="st"> </span>cv<span class="op">$</span>filename <span class="co"># in both</span></a>
+<a class="sourceLine" id="cb15-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb15-5" data-line-number="5">cv &lt;-<span class="st"> </span>cv[ind1,] <span class="co"># eliminate images not processed by human vision</span></a>
+<a class="sourceLine" id="cb15-6" data-line-number="6">hv &lt;-<span class="st"> </span>hv[ind2,] <span class="co"># eliminate images not processed by computer vision</span></a>
+<a class="sourceLine" id="cb15-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb15-8" data-line-number="8"><span class="co"># Number of photos eliminated</span></a>
+<a class="sourceLine" id="cb15-9" data-line-number="9"><span class="kw">sum</span>(ind1 <span class="op">!=</span><span class="st"> </span><span class="ot">TRUE</span>) <span class="co"># in computer vision but not in hv</span></a></code></pre></div>
+<pre><code>## [1] 1796</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw">sum</span>(ind2 <span class="op">!=</span><span class="st"> </span><span class="ot">TRUE</span>) <span class="co"># in human vision but not in cv</span></a></code></pre></div>
+<pre><code>## [1] 2393</code></pre>
+<p>Now, we can use:</p>
+<ul>
+<li>an <code>inner_join</code> with <code>filename</code> and <code>class</code> to determine images that have correct predictions (i.e., images with the same class assigned by computer and human vision)</li>
+<li>an <code>anti_join</code> with <code>filename</code> and <code>class</code> to determine which records in the human vision data set have incorrect predictions from computer vision.</li>
+<li>an <code>anti_join</code> with <code>filename</code> and <code>class</code> to determine which records in the computer vision data set have incorrect predictions.</li>
+</ul>
+<p>We assume the classifications from human vision to be correct and distinguish them from MD predictions. The MD predictions will be correct if they match a class assigned by human vision for a particular record and incorrect if the classes assigned by the two visions differ.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="co"># correct predictions</span></a>
+<a class="sourceLine" id="cb19-2" data-line-number="2">matched &lt;-<span class="st"> </span>cv <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">inner_join</span>(hv, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;filename&quot;</span>, <span class="st">&quot;common_name&quot;</span>), </a>
+<a class="sourceLine" id="cb19-3" data-line-number="3">                <span class="dt">suffix =</span> <span class="kw">c</span>(<span class="st">&quot;_cv&quot;</span>, <span class="st">&quot;_hv&quot;</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb19-4" data-line-number="4"><span class="st">        </span><span class="kw">mutate</span>(<span class="dt">class_hv =</span> common_name) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb19-5" data-line-number="5"><span class="st">        </span><span class="kw">mutate</span>(<span class="dt">class_cv =</span> common_name) </a>
+<a class="sourceLine" id="cb19-6" data-line-number="6">      <span class="co">#%&gt;%</span></a>
+<a class="sourceLine" id="cb19-7" data-line-number="7">      <span class="co"># select(filename, value, class_cv, </span></a>
+<a class="sourceLine" id="cb19-8" data-line-number="8">      <span class="co">#        class_hv, sp_num_cv, sp_num_hv)</span></a>
+<a class="sourceLine" id="cb19-9" data-line-number="9">  </a>
+<a class="sourceLine" id="cb19-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb19-11" data-line-number="11">hv_only &lt;-<span class="st"> </span>hv <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">anti_join</span>(cv,</a>
+<a class="sourceLine" id="cb19-12" data-line-number="12">                <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;filename&quot;</span>, <span class="st">&quot;common_name&quot;</span>), </a>
+<a class="sourceLine" id="cb19-13" data-line-number="13">                <span class="dt">suffix =</span> <span class="kw">c</span>(<span class="st">&quot;_hv&quot;</span>, <span class="st">&quot;_cv&quot;</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb19-14" data-line-number="14"><span class="st">        </span><span class="kw">rename</span>(<span class="dt">class_hv =</span> common_name) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb19-15" data-line-number="15"><span class="st">        </span><span class="kw">rename</span>(<span class="dt">multiple_det_hv =</span> sp_num)</a>
+<a class="sourceLine" id="cb19-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb19-17" data-line-number="17"><span class="co"># records in the computer vision data set whose predictions are incorrect</span></a>
+<a class="sourceLine" id="cb19-18" data-line-number="18">cv_only&lt;-<span class="st"> </span>cv <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">anti_join</span>(hv, </a>
+<a class="sourceLine" id="cb19-19" data-line-number="19">               <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;filename&quot;</span>, <span class="st">&quot;common_name&quot;</span>), </a>
+<a class="sourceLine" id="cb19-20" data-line-number="20">               <span class="dt">suffix =</span> <span class="kw">c</span>(<span class="st">&quot;_cv&quot;</span>, <span class="st">&quot;_hv&quot;</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb19-21" data-line-number="21"><span class="st">        </span><span class="kw">rename</span>(<span class="dt">class_cv =</span> common_name) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb19-22" data-line-number="22"><span class="st">        </span><span class="kw">rename</span>(<span class="dt">multiple_det_cv =</span> sp_num)</a></code></pre></div>
+<p>We then use <code>left_join</code> to merge the predictions from the <code>cv_only</code> (computer vision) data set onto the records from the <code>hv_only</code> (human vision) data set.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1">hv_mismatch &lt;-<span class="st"> </span>hv_only <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">left_join</span>(cv_only,</a>
+<a class="sourceLine" id="cb20-2" data-line-number="2">                    <span class="dt">by =</span> <span class="st">&quot;filename&quot;</span>,</a>
+<a class="sourceLine" id="cb20-3" data-line-number="3">                    <span class="dt">suffix =</span> <span class="kw">c</span>(<span class="st">&quot;_hv&quot;</span>, <span class="st">&quot;_cv&quot;</span>)) </a></code></pre></div>
+<p>We then check for any computer vision records that are not yet accounted for in our data sets containing records with correct or incorrect predictions, i.e., <code>matched</code> and <code>hv_mismatch</code>, respectively.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">cv_others &lt;-<span class="st"> </span>cv_only[cv_only<span class="op">$</span>filename <span class="op">%in%</span><span class="st"> </span>hv_mismatch<span class="op">$</span>filename <span class="op">!=</span><span class="st"> </span><span class="ot">TRUE</span>,]</a>
+<a class="sourceLine" id="cb21-2" data-line-number="2"><span class="kw">table</span>(cv_others<span class="op">$</span>multiple_det_cv)</a></code></pre></div>
+<pre><code>## &lt; table of extent 0 &gt;</code></pre>
+<p>Then, we combine the matched and mismatched data sets.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1">both_visions &lt;-<span class="st"> </span><span class="kw">rbind</span>(matched, hv_mismatch)</a>
+<a class="sourceLine" id="cb23-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb23-3" data-line-number="3">both_visions_<span class="dv">65</span> &lt;-<span class="st"> </span>both_visions</a>
+<a class="sourceLine" id="cb23-4" data-line-number="4">both_visions_<span class="dv">65</span><span class="op">$</span>class_cv[both_visions_<span class="dv">65</span><span class="op">$</span>cv_confidence_cv <span class="op">&lt;</span><span class="st"> </span><span class="fl">0.65</span>] &lt;-<span class="st"> &quot;No CV Result&quot;</span> </a></code></pre></div>
+</div>
+<div id="confusion-matrix-and-performance-measures" class="section level3">
+<h3><span class="header-section-number">3.7.5</span> Confusion matrix and performance measures</h3>
+<p>Using the <code>both_visions</code> data frame, we can estimate a confusion matrix using the <code>confusionMatrix</code> function from the <code>caret</code> package <span class="citation">(Kuhn <a href="#ref-R-caret">2021</a>)</span> and plot it using <code>ggplot2</code> <span class="citation">(Wickham et al. <a href="#ref-R-ggplot2">2018</a>)</span>. The <code>confusionMatrix</code> function requires a data argument for predicted classes and a reference for true classifications, both as factor classes and with the same factor levels. We use the <code>factor</code> function <span class="citation">(R Core Team <a href="#ref-R-base">2021</a>)</span> to convert class names into factor classes. We specifiy <code>mode = &quot;prec_recall&quot;</code> when calling the <code>confusionMatrix</code> function <span class="citation">(Kuhn <a href="#ref-R-caret">2021</a>)</span> to estimate the precision and recall for the WI classifications.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="kw">library</span>(caret) <span class="co"># to inspect model performance</span></a>
+<a class="sourceLine" id="cb24-2" data-line-number="2"><span class="kw">library</span>(ggplot2) <span class="co"># to plot results</span></a>
+<a class="sourceLine" id="cb24-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb24-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb24-5" data-line-number="5">all_class &lt;-<span class="st"> </span><span class="kw">union</span>(both_visions_<span class="dv">65</span><span class="op">$</span>class_cv, both_visions_<span class="dv">65</span><span class="op">$</span>class_hv)</a>
+<a class="sourceLine" id="cb24-6" data-line-number="6">cm_wi &lt;-<span class="st"> </span><span class="kw">table</span>(<span class="kw">factor</span>(both_visions_<span class="dv">65</span><span class="op">$</span>class_cv, all_class), <span class="kw">factor</span>(both_visions_<span class="dv">65</span><span class="op">$</span>class_hv, all_class)) <span class="co"># table(pred, truth)</span></a>
+<a class="sourceLine" id="cb24-7" data-line-number="7">cm_wi &lt;-<span class="st"> </span><span class="kw">confusionMatrix</span>(cm_wi, <span class="dt">mode=</span><span class="st">&quot;prec_recall&quot;</span>)</a></code></pre></div>
+<p>Next, we count the number of records of each species separately for human and computer vision and filter taxa with more than 20 records. We then group the data by <code>class_cv</code> and<code>class_hv</code> and count the number of observations using <code>n()</code> inside <code>summarise</code>. Then we use the <code>intersect</code> function to get the pool of taxa shared by the two visions. Finally, we keep records containing classifications at the species level, but the same analyses can be performed at higher taxonomic levels.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1">tax_num_cv &lt;-<span class="st"> </span>both_visions_<span class="dv">65</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(class_cv) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb25-2" data-line-number="2"><span class="st">                               </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb25-3" data-line-number="3"><span class="st">                               </span><span class="kw">filter</span>(n <span class="op">&gt;=</span><span class="st"> </span><span class="dv">20</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb25-4" data-line-number="4"><span class="st">                               </span><span class="kw">pull</span>(<span class="st">&quot;class_cv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb25-5" data-line-number="5"><span class="st">                               </span><span class="kw">unique</span>()</a>
+<a class="sourceLine" id="cb25-6" data-line-number="6">tax_num_hv &lt;-<span class="st"> </span>both_visions_<span class="dv">65</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(class_hv) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb25-7" data-line-number="7"><span class="st">                               </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb25-8" data-line-number="8"><span class="st">                               </span><span class="kw">filter</span>(n <span class="op">&gt;=</span><span class="st"> </span><span class="dv">20</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb25-9" data-line-number="9"><span class="st">                               </span><span class="kw">pull</span>(<span class="st">&quot;class_hv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb25-10" data-line-number="10"><span class="st">                               </span><span class="kw">unique</span>()</a>
+<a class="sourceLine" id="cb25-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb25-12" data-line-number="12">(tax_num &lt;-<span class="st"> </span><span class="kw">intersect</span>(tax_num_cv, tax_num_hv))</a></code></pre></div>
+<pre><code>## [1] &quot;Bird&quot;             &quot;Blank&quot;            &quot;Cervidae Family&quot;  &quot;Collared Peccary&quot;
+## [5] &quot;Dasypus Species&quot;  &quot;Domestic Horse&quot;   &quot;Possum Family&quot;    &quot;Puma&quot;            
+## [9] &quot;Rodent&quot;</code></pre>
+<p>Collared peccary, domestic horse and puma are the three species shared and with at least 20 records in the output of both human and computer vision.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1">sp_num &lt;-<span class="st"> </span>tax_num[tax_num <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Collared Peccary&quot;</span>, <span class="st">&quot;Domestic Horse&quot;</span>, <span class="st">&quot;Puma&quot;</span>)]</a></code></pre></div>
+<p>Now we can use the confusion matrix to estimate model performance metrics including accuracy, precision, recall and F-1 score (See Chapter <a href="introduction.html#introduction">1</a> for metrics description).</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1">(overall_accuracy &lt;-<span class="st"> </span>cm_wi <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb28-2" data-line-number="2"><span class="st">  </span><span class="kw">pluck</span>(<span class="st">&quot;overall&quot;</span>, <span class="st">&quot;Accuracy&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb28-3" data-line-number="3"><span class="st">  </span><span class="kw">round</span>(., <span class="dv">2</span>))</a></code></pre></div>
+<pre><code>## [1] 0.23</code></pre>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1">classes_metrics &lt;-<span class="st"> </span>cm_wi <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb30-2" data-line-number="2"><span class="st">  </span><span class="kw">pluck</span>(<span class="st">&quot;byClass&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb30-3" data-line-number="3"><span class="st">  </span><span class="kw">as.data.frame</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb30-4" data-line-number="4"><span class="st">  </span><span class="kw">select</span>(Precision, Recall, F1) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb30-5" data-line-number="5"><span class="st">  </span><span class="kw">rownames_to_column</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb30-6" data-line-number="6"><span class="st">  </span><span class="kw">rename</span>(<span class="dt">species =</span> rowname) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb30-7" data-line-number="7"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">species =</span> <span class="kw">str_remove</span>(species, <span class="dt">pattern =</span> <span class="st">&quot;Class: &quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb30-8" data-line-number="8"><span class="st">  </span><span class="kw">filter</span>(species <span class="op">%in%</span><span class="st"> </span>sp_num) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb30-9" data-line-number="9"><span class="st">  </span><span class="kw">mutate</span>(<span class="kw">across</span>(is.numeric, <span class="op">~</span><span class="kw">round</span>(., <span class="dv">2</span>)))</a></code></pre></div>
+<div id="htmlwidget-134fa696a41d558d7cb8" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-134fa696a41d558d7cb8">{"x":{"filter":"none","vertical":false,"data":[["1","2","3"],["Collared Peccary","Domestic Horse","Puma"],[0.99,0.89,0.9],[0.25,0.68,0.53],[0.4,0.77,0.67]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>species<\/th>\n      <th>Precision<\/th>\n      <th>Recall<\/th>\n      <th>F1<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,4]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<table>
+<caption>
+<span id="tab:myDThtmltools1">Table 3.1: </span>Model performance metrics for species shared by human and computer vision and with at least 20 records in each set. We used a confidence threshold of 0.65 for determining the classifications.
+</caption>
+</table>
+</div>
+<div id="confidence-thresholds" class="section level3">
+<h3><span class="header-section-number">3.7.6</span> Confidence thresholds</h3>
+<p>Finally, we define a function that allows us to inspect how precision and recall change when different confidence thresholds are established for assigning a species label by computer vision (i.e., a prediction). Our function will assign a “No CV Result” label whenever the confidence for a computer vision prediction is below a user-specified confidence threshold. Higher thresholds should reduce the number of false positives but at the expense of more false negatives. We then estimate the same performance metrics for the specified confidence threshold. By repeating this process for several different thresholds, users can evaluate how precision and recall for each species change with the confidence threshold and identify a threshold that balances precision and recall for the different species.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1">threshold_for_metrics &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">conf_threshold =</span> <span class="fl">0.7</span>) {</a>
+<a class="sourceLine" id="cb31-2" data-line-number="2">  tmp &lt;-<span class="st"> </span>both_visions</a>
+<a class="sourceLine" id="cb31-3" data-line-number="3">  tmp<span class="op">$</span>class_cv[tmp<span class="op">$</span>cv_confidence_cv <span class="op">&lt;</span><span class="st"> </span>conf_threshold] &lt;-<span class="st"> &quot;No CV Result&quot;</span> </a>
+<a class="sourceLine" id="cb31-4" data-line-number="4">  <span class="co"># assign a &quot;No CV Result&quot; whenever the confidence value</span></a>
+<a class="sourceLine" id="cb31-5" data-line-number="5">  <span class="co"># of a prediction is lower than the threshold provided as </span></a>
+<a class="sourceLine" id="cb31-6" data-line-number="6">  <span class="co"># an argument in the function</span></a>
+<a class="sourceLine" id="cb31-7" data-line-number="7">  df &lt;-<span class="st"> </span>tmp <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(class_cv, class_hv, filename, cv_confidence_cv)</a>
+<a class="sourceLine" id="cb31-8" data-line-number="8">  all_class &lt;-<span class="st"> </span><span class="kw">union</span>(df<span class="op">$</span>class_cv, df<span class="op">$</span>class_hv)</a>
+<a class="sourceLine" id="cb31-9" data-line-number="9">  newtable &lt;-<span class="st"> </span><span class="kw">table</span>(<span class="kw">factor</span>(df<span class="op">$</span>class_cv, all_class), <span class="kw">factor</span>(df<span class="op">$</span>class_hv, all_class)) <span class="co"># table(pred, truth)</span></a>
+<a class="sourceLine" id="cb31-10" data-line-number="10">  cm &lt;-<span class="st"> </span><span class="kw">confusionMatrix</span>(newtable, <span class="dt">mode=</span><span class="st">&quot;prec_recall&quot;</span>)</a>
+<a class="sourceLine" id="cb31-11" data-line-number="11">  <span class="co"># use the confusionMatrix function from the caret package using the</span></a>
+<a class="sourceLine" id="cb31-12" data-line-number="12">  <span class="co"># class_cv containing the new labels according to a particular</span></a>
+<a class="sourceLine" id="cb31-13" data-line-number="13">  <span class="co"># confidence threshold</span></a>
+<a class="sourceLine" id="cb31-14" data-line-number="14">  classes_metrics &lt;-<span class="st"> </span>cm <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># get confusion matrix</span></a>
+<a class="sourceLine" id="cb31-15" data-line-number="15"><span class="st">    </span><span class="kw">pluck</span>(<span class="st">&quot;byClass&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># get metrics by class</span></a>
+<a class="sourceLine" id="cb31-16" data-line-number="16"><span class="st">    </span><span class="kw">as.data.frame</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># assign a data frame object</span></a>
+<a class="sourceLine" id="cb31-17" data-line-number="17"><span class="st">    </span><span class="kw">select</span>(Precision, Recall, F1) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># select metrics of interest</span></a>
+<a class="sourceLine" id="cb31-18" data-line-number="18"><span class="st">    </span><span class="kw">rownames_to_column</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># format data frame</span></a>
+<a class="sourceLine" id="cb31-19" data-line-number="19"><span class="st">    </span><span class="kw">rename</span>(<span class="dt">class =</span> rowname) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># rename class column</span></a>
+<a class="sourceLine" id="cb31-20" data-line-number="20"><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">conf_threshold =</span> conf_threshold)</a>
+<a class="sourceLine" id="cb31-21" data-line-number="21">  classes_metrics<span class="op">$</span>class &lt;-<span class="st"> </span><span class="kw">str_remove</span>(<span class="dt">string =</span> classes_metrics<span class="op">$</span>class,</a>
+<a class="sourceLine" id="cb31-22" data-line-number="22">                                      <span class="dt">pattern =</span> <span class="st">&quot;Class: &quot;</span>) </a>
+<a class="sourceLine" id="cb31-23" data-line-number="23">  </a>
+<a class="sourceLine" id="cb31-24" data-line-number="24">  <span class="kw">return</span>(classes_metrics) <span class="co"># return a data frame with metrics for every class</span></a>
+<a class="sourceLine" id="cb31-25" data-line-number="25">}</a></code></pre></div>
+<p>Let’s look at the distribution of confidence values associated with species with at least 20 records in both visions using the <code>geom_bar</code> function <span class="citation">(Wickham et al. <a href="#ref-R-ggplot2">2018</a>)</span>.</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1"><span class="co"># Plot confidence values </span></a>
+<a class="sourceLine" id="cb32-2" data-line-number="2">both_visions <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb32-3" data-line-number="3"><span class="st">  </span><span class="kw">filter</span>(class_cv <span class="op">%in%</span><span class="st"> </span>sp_num <span class="op">&amp;</span><span class="st"> </span>class_hv <span class="op">%in%</span><span class="st"> </span>sp_num)  <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb32-4" data-line-number="4"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(cv_confidence_cv, <span class="dt">group =</span> class_cv, <span class="dt">colour =</span> class_cv)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb32-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb32-6" data-line-number="6"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>class_cv, <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb32-7" data-line-number="7"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;Empirical distribution&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;Confidence values&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb32-8" data-line-number="8"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position=</span><span class="st">&quot;bottom&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb32-9" data-line-number="9"><span class="st">  </span><span class="kw">scale_color_viridis_d</span>()</a></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-14"></span>
+<img src="02-wi_files/figure-html/unnamed-chunk-14-1.png" alt="Distribution of confidence values associated with species that have more than 50 records." width="864" />
+<p class="caption">
+Figure 3.11: Distribution of confidence values associated with species that have more than 50 records.
+</p>
+</div>
+<p>We can see that the distribution of confidence values is left skewed for the collared peccary, domestic horse and puma with most records having high confidence values suggesting that the AI prediction is presumed to be correct most of the time.</p>
+<p>Let’s estimate model performance metrics for confidence values ranging from 0.1 to 0.99 using the map_df function <span class="citation">(Henry and Wickham <a href="#ref-purrr">2020</a>)</span> . The map_df function <span class="citation">(Henry and Wickham <a href="#ref-purrr">2020</a>)</span> returns a dataframe object. Once we get a dataframe of model performance metrics for a range of confidence values, we can plot the results using the <code>ggplot2</code> package <span class="citation">(Wickham et al. <a href="#ref-R-ggplot2">2018</a>)</span>.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1">conf_vector =<span class="st"> </span><span class="kw">seq</span>(<span class="fl">0.1</span>, <span class="fl">0.99</span>, <span class="dt">length=</span><span class="dv">100</span>)</a>
+<a class="sourceLine" id="cb33-2" data-line-number="2">metrics_all_confs &lt;-<span class="st"> </span><span class="kw">map_df</span>(conf_vector, threshold_for_metrics)</a>
+<a class="sourceLine" id="cb33-3" data-line-number="3">conf_sp &lt;-<span class="st"> </span>metrics_all_confs <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(class <span class="op">%in%</span><span class="st"> </span>sp_num)</a></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1"><span class="co"># Plot Precision and Recall</span></a>
+<a class="sourceLine" id="cb34-2" data-line-number="2">metrics_all_confs &lt;-<span class="st"> </span>metrics_all_confs <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb34-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate_if</span>(is.numeric, round, <span class="dt">digits =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb34-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb34-5" data-line-number="5">prec_rec_wi &lt;-<span class="st"> </span>metrics_all_confs <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb34-6" data-line-number="6"><span class="st">  </span><span class="kw">filter</span>(class <span class="op">%in%</span><span class="st"> </span>sp_num) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb34-7" data-line-number="7"><span class="st">  </span><span class="kw">rename</span>(<span class="dt">Taxon =</span> class, <span class="st">`</span><span class="dt">Confidence threshold</span><span class="st">`</span> =<span class="st"> </span>conf_threshold) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb34-8" data-line-number="8"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Recall, <span class="dt">y =</span> Precision, <span class="dt">group =</span> Taxon, <span class="dt">colour =</span> Taxon)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb34-9" data-line-number="9"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">size =</span> <span class="st">`</span><span class="dt">Confidence threshold</span><span class="st">`</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb34-10" data-line-number="10"><span class="st">  </span><span class="kw">scale_size</span>(<span class="dt">range =</span> <span class="kw">c</span>(<span class="fl">0.01</span>,<span class="dv">3</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb34-11" data-line-number="11"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Recall&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Precision&quot;</span>, ) <span class="op">+</span></a>
+<a class="sourceLine" id="cb34-12" data-line-number="12"><span class="st">  </span><span class="kw">scale_color_viridis_d</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb34-13" data-line-number="13"><span class="st">  </span><span class="kw">xlim</span>(<span class="dv">0</span>, <span class="dv">1</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylim</span>(<span class="dv">0</span>, <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb34-14" data-line-number="14">  <span class="kw">geom_line</span>()</a></code></pre></div>
+<pre><code>## geom_line: na.rm = FALSE, orientation = NA
+## stat_identity: na.rm = FALSE
+## position_identity</code></pre>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1">prec_rec_wi</a></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:thresholds"></span>
+<img src="02-wi_files/figure-html/thresholds-1.png" alt="Precision and recall for different confidence thresholds for species with at least 50 records. Point sizes represent the confidence thresholds used to accept AI predictions." width="100%" />
+<p class="caption">
+Figure 3.12: Precision and recall for different confidence thresholds for species with at least 50 records. Point sizes represent the confidence thresholds used to accept AI predictions.
+</p>
+</div>
+<p>We see that as we increase the confidence threshold, precision usually increases and recall decreases (Figure <a href="wildlife-insights-wi.html#fig:thresholds">3.12</a>). Ideally, we would like AI to have high precision and recall, though the latter is likely to be more important in most cases. Remember that precision tells us the probability that the species is truly present when AI identifies the species as being present in an image (Chapter <a href="introduction.html#introduction">1</a>). If AI suffers from low precision, then we may have to manually review photos that AI tags as having species present in order to remove false positives. Recall, on the other hand, tells us how likely AI is to find a species in the image when it is truly present. If AI suffers from low recall, then it will miss many photos containing images of species that are truly present. To remedy this problem, we would need to review images where AI says the species is absent in order to reduce false negatives. For this particular data set, AI would be most useful for classifying domestic horses and pumas. For example, we can be confident that WI is correctly labeling domestic horse, with a precision of 89% at a 68% recall, using a 0.65 confidence threshold (Figure <a href="wildlife-insights-wi.html#fig:thresholds">3.12</a>). We can also be confident that WI is correctly labeling pumas (precision of 90%, and it will help us to spot 53% of the actual records for the species, also using a 0.65 confidence threshold). Yet, the low to moderate recall for all species suggests that we will still have to review all images to identify other records of animals that are not detected by WI.</p>
+</div>
+</div>
+<div id="conclusions" class="section level2">
+<h2><span class="header-section-number">3.8</span> Conclusions</h2>
+<p>We have seen how to set up a project, upload and process camera trap photos using WI’s platform. Additionally we provided R code for evaluating per-species model performance for different confidence thresholds. Although we found that WI was able to classify some species with high levels of precision, recall values were typically low; thus, experts will still need to review images to find the animals missed by computer vision.</p>
+
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-ahumada_wi">
+<p>Ahumada, Jorge A., Eric Fegraus, Tanya Birch, Nicole Flores, Roland Kays, Timothy G. O’Brien, Jonathan Palmer, et al. 2019. “Wildlife Insights: A Platform to Maximize the Potential of Camera Trap and Other Passive Sensor Wildlife Data for the Planet.” Journal Article. <em>Environmental Conservation</em> 47 (1): 1–6. <a href="https://doi.org/10.1017/S0376892919000298">https://doi.org/10.1017/S0376892919000298</a>.</p>
+</div>
+<div id="ref-magrittr">
+<p>Bache, Stefan Milton, and Hadley Wickham. 2020. <em>Magrittr: A Forward-Pipe Operator for R</em>. <a href="https://CRAN.R-project.org/package=magrittr">https://CRAN.R-project.org/package=magrittr</a>.</p>
+</div>
+<div id="ref-purrr">
+<p>Henry, Lionel, and Hadley Wickham. 2020. <em>Purrr: Functional Programming Tools</em>. <a href="https://CRAN.R-project.org/package=purrr">https://CRAN.R-project.org/package=purrr</a>.</p>
+</div>
+<div id="ref-wi_initiatives">
+<p>Initiatives, Wildlife Insights. 2021. “Initiatives. Wildlife Insights Getting Started Guide.” Web Page. <a href="https://www.wildlifeinsights.org/get-started/basics/initiatives">https://www.wildlifeinsights.org/get-started/basics/initiatives</a>.</p>
+</div>
+<div id="ref-R-caret">
+<p>Kuhn, Max. 2021. <em>Caret: Classification and Regression Training</em>. <a href="https://CRAN.R-project.org/package=caret">https://CRAN.R-project.org/package=caret</a>.</p>
+</div>
+<div id="ref-here">
+<p>Müller, Kirill. 2017. <em>Here: A Simpler Way to Find Your Files</em>. <a href="https://CRAN.R-project.org/package=here">https://CRAN.R-project.org/package=here</a>.</p>
+</div>
+<div id="ref-R-base">
+<p>R Core Team. 2021. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>.</p>
+</div>
+<div id="ref-tabak_2018">
+<p>Tabak, Michael A., Mohammad S. Norouzzadeh, David W. Wolfson, Steven J. Sweeney, Kurt C. Vercauteren, Nathan P. Snow, Joseph M. Halseth, et al. 2018. “Machine Learning to Classify Animal Species in Camera Trap Images: Applications in Ecology.” Journal Article. <em>Methods in Ecology and Evolution</em> 10 (4): 585–90. <a href="https://doi.org/10.1111/2041-210x.13120">https://doi.org/10.1111/2041-210x.13120</a>.</p>
+</div>
+<div id="ref-R-ggplot2">
+<p>Wickham, Hadley, Winston Chang, Lionel Henry, Thomas Lin Pedersen, Kohske Takahashi, Claus Wilke, and Kara Woo. 2018. <em>Ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics</em>. <a href="https://CRAN.R-project.org/package=ggplot2">https://CRAN.R-project.org/package=ggplot2</a>.</p>
+</div>
+<div id="ref-R-dplyr">
+<p>Wickham, Hadley, Romain François, Lionel Henry, and Kirill Müller. 2019. <em>Dplyr: A Grammar of Data Manipulation</em>. <a href="https://CRAN.R-project.org/package=dplyr">https://CRAN.R-project.org/package=dplyr</a>.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="camera-trap-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="megadetector.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/02-wi.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["CTWorkflows.pdf", "CTWorkflows.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
